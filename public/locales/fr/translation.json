@@ -1,0 +1,9 @@
+{
+  "categoryApp": {
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "group": "Grouper",
+    "refresh": "Actualiser"
+  }
+}

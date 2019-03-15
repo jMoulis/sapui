@@ -1,0 +1,9 @@
+{
+  "categoryApp": {
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "group": "Group",
+    "refresh": "Refresh"
+  }
+}
