@@ -113,7 +113,7 @@ const Toolbar = ({ refreshAction, onSearchChange }) => {
           <IconRadiusCustom>&#xe163;</IconRadiusCustom>
         </Button>
       </ActionWrapper>
-      {isModal && (
+      {true && (
         <Modal>
           <ActionMenu action={selectedAction} close={setDisplayModal} />
         </Modal>

@@ -1,4 +1,8 @@
 {
+  "commons": {
+    "ok": "OK",
+    "cancel": "Cancel"
+  },
   "categoryApp": {
     "search": "Search",
     "filter": "Filter",

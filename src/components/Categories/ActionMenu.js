@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import Icon from 'components/commons/Icon';
 import { useTranslation } from 'react-i18next';
+import Icon from 'components/commons/Icon';
+import { ResetButton } from 'components/commons/Buttons';
+import { ButtonGroup } from 'components/commons/Buttons/ButtonGroup';
 import SortMenu from './SortMenu';
 import FilterMenu from './FilterMenu';
 import GroupMenu from './GroupMenu';
+import { ButtonEmphasized } from '../commons/Buttons/Buttons';
 
 const Root = styled.div`
+  label: ActionMenuRoot;
+  display: flex;
+  flex-direction: column;
   background-color: white;
   width: 35rem;
   min-height: 40rem;
@@ -30,22 +36,28 @@ const IconRadiusCustom = styled(IconCustom)`
   border-radius: 2px;
 `;
 
-const Button = styled.button`
-  border: none;
-  background-color: transparent;
-  outline: none;
-`;
-
 const ActionWrapper = styled.div`
   display: flex;
   border-bottom: 1px solid #e5e5e5;
 `;
 
-const ButtonGroup = styled.div`
+const ActionButtonGroup = styled.div`
   border: 1px solid #e5e5e5;
   border-radius: 2px;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
+`;
+
+const Content = styled.div`
+  flex: 1;
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 3rem;
+  background-color: #2f3c48;
 `;
 
 const renderMenu = action => {
@@ -65,38 +77,43 @@ const ActionMenu = ({ action, close }) => {
   const [selectedAction, setAction] = useState(action);
   return (
     <Root>
-      <Header>
-        Title
-        <button type="button" onClick={() => close(false)}>
-          Close
-        </button>
-      </Header>
+      <Header>Title</Header>
       <ActionWrapper>
-        <ButtonGroup>
-          <Button
+        <ActionButtonGroup>
+          <ResetButton
             type="button"
             title={t('categoryApp.sort')}
             onClick={() => setAction('sort')}
           >
             <IconRadiusCustom>&#xe095;</IconRadiusCustom>
-          </Button>
-          <Button
+          </ResetButton>
+          <ResetButton
             type="button"
             title={t('categoryApp.filter')}
             onClick={() => setAction('filter')}
           >
             <IconRadiusCustom>&#xe076;</IconRadiusCustom>
-          </Button>
-          <Button
+          </ResetButton>
+          <ResetButton
             type="button"
             title={t('categoryApp.group')}
             onClick={() => setAction('group')}
           >
             <IconRadiusCustom>&#xe163;</IconRadiusCustom>
-          </Button>
-        </ButtonGroup>
+          </ResetButton>
+        </ActionButtonGroup>
       </ActionWrapper>
-      {renderMenu(selectedAction)}
+      <Content>{renderMenu(selectedAction)}</Content>
+      <Footer>
+        <ButtonGroup>
+          <ButtonEmphasized type="button" onClick={() => close(false)}>
+            {t('ok')}
+          </ButtonEmphasized>
+          <ResetButton type="button" onClick={() => close(false)}>
+            {t('cancel')}
+          </ResetButton>
+        </ButtonGroup>
+      </Footer>
     </Root>
   );
 };

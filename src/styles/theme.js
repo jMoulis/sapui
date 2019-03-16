@@ -10,6 +10,14 @@ const theme = {
   colors: {
     primary: 'hotpink',
   },
+  buttons: {
+    emphasized: {
+      hover: {
+        backgroundColor: '#418ac7',
+        border: '#418ac7',
+      },
+    },
+  },
   mediaQueries,
 };
 
