@@ -3,18 +3,22 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Global } from '@emotion/core';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { GlobalStyles, Theme } from 'styles';
+import { GlobalStyles, theme } from 'styles';
 import { ThemeProvider } from 'emotion-theming';
 import store from 'store';
 import { App } from 'components/App';
 import * as serviceWorker from './serviceWorker';
 import './i18n';
 
+const currentTheme = 'belize';
+
+console.log(theme(currentTheme));
+
 ReactDOM.render(
   <Router>
     <Provider store={store}>
       <Global styles={GlobalStyles} />
-      <ThemeProvider theme={Theme}>
+      <ThemeProvider theme={theme(currentTheme)}>
         <App />
       </ThemeProvider>
     </Provider>

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
 import Icon from 'components/commons/Icon';
-import { ResetButton } from 'components/commons/Buttons';
+import { ResetButton, CancelButton } from 'components/commons/Buttons';
 import { ButtonGroup } from 'components/commons/Buttons/ButtonGroup';
 import SortMenu from './SortMenu';
 import FilterMenu from './FilterMenu';
 import GroupMenu from './GroupMenu';
-import { ButtonEmphasized } from '../commons/Buttons/Buttons';
+import { ButtonEmphasized } from '../commons/Buttons';
 
 const Root = styled.div`
   label: ActionMenuRoot;
@@ -48,6 +49,12 @@ const ActionButtonGroup = styled.div`
   margin-bottom: 0.5rem;
 `;
 
+const Form = styled.form`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
 const Content = styled.div`
   flex: 1;
 `;
@@ -56,25 +63,31 @@ const Footer = styled.footer`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 3rem;
+  padding: 1rem;
   background-color: #2f3c48;
 `;
 
-const renderMenu = action => {
-  switch (action) {
+const renderMenu = (option, action, form) => {
+  switch (option) {
     case 'sort':
-      return <SortMenu />;
+      return <SortMenu action={action} form={form} />;
     case 'filter':
-      return <FilterMenu />;
+      return <FilterMenu action={action} form={form} />;
     case 'group':
-      return <GroupMenu />;
+      return <GroupMenu action={action} form={form} />;
     default:
       return null;
   }
 };
-const ActionMenu = ({ action, close }) => {
+
+const ActionMenu = ({ option, close, onSubmit }) => {
   const { t } = useTranslation();
-  const [selectedAction, setAction] = useState(action);
+  const [selectedOption, setOption] = useState(option);
+  const [form, setFormValue] = useState({
+    sort: null,
+    group: null,
+    filter: null,
+  });
   return (
     <Root>
       <Header>Title</Header>
@@ -83,39 +96,54 @@ const ActionMenu = ({ action, close }) => {
           <ResetButton
             type="button"
             title={t('categoryApp.sort')}
-            onClick={() => setAction('sort')}
+            onClick={() => setOption('sort')}
           >
             <IconRadiusCustom>&#xe095;</IconRadiusCustom>
           </ResetButton>
           <ResetButton
             type="button"
             title={t('categoryApp.filter')}
-            onClick={() => setAction('filter')}
+            onClick={() => setOption('filter')}
           >
             <IconRadiusCustom>&#xe076;</IconRadiusCustom>
           </ResetButton>
           <ResetButton
             type="button"
             title={t('categoryApp.group')}
-            onClick={() => setAction('group')}
+            onClick={() => setOption('group')}
           >
             <IconRadiusCustom>&#xe163;</IconRadiusCustom>
           </ResetButton>
         </ActionButtonGroup>
       </ActionWrapper>
-      <Content>{renderMenu(selectedAction)}</Content>
-      <Footer>
-        <ButtonGroup>
-          <ButtonEmphasized type="button" onClick={() => close(false)}>
-            {t('ok')}
-          </ButtonEmphasized>
-          <ResetButton type="button" onClick={() => close(false)}>
-            {t('cancel')}
-          </ResetButton>
-        </ButtonGroup>
-      </Footer>
+      <Form
+        onSubmit={event => {
+          event.preventDefault();
+          onSubmit(form);
+          close(false);
+        }}
+      >
+        <Content>{renderMenu(selectedOption, setFormValue, form)}</Content>
+        <Footer>
+          <ButtonGroup>
+            <ButtonEmphasized type="submit">{t('commons.ok')}</ButtonEmphasized>
+            <CancelButton type="button" onClick={() => close(false)}>
+              {t('commons.cancel')}
+            </CancelButton>
+          </ButtonGroup>
+        </Footer>
+      </Form>
     </Root>
   );
+};
+
+ActionMenu.propTypes = {
+  option: PropTypes.string,
+  close: PropTypes.func.isRequired,
+};
+
+ActionMenu.defaultProps = {
+  option: null,
 };
 
 export default ActionMenu;

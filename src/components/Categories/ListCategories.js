@@ -1,12 +1,16 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import useODataApi from 'services/useDataApi';
+import { oDataRouter, useODataApi } from 'services/oData';
 import { NavLink } from 'react-router-dom';
 import List from 'components/commons/List';
 import ListItem from 'components/commons/ListItem';
 import Icon from 'components/commons/Icon';
 import Loader from 'components/commons/Loader/Loader';
 import Toolbar from './Toolbar';
+import Modal from '../commons/Modal';
+import ActionMenu from './ActionMenu';
+import Helpers from '../../services/Helpers';
 
 const Root = styled.div`
   label: CategoriesRoot;
@@ -64,19 +68,33 @@ const Wrapper = styled.div`
 `;
 
 const ListCategories = () => {
+  const helpers = new Helpers();
   let timer = null;
   const [categories, setCategories] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState(null);
+  const [actionMenuStatus, setDisplayActionMenu] = useState(false);
+  const [selectedOption, setOption] = useState(null);
+
   const { data, isLoading, isError, doFetch, refresh } = useODataApi({
     responseKey: 'categories',
     defaultValue: [],
   });
 
+  const handleSelectActionMenuOption = ({ sort, group, filter }) => {
+    if (sort) {
+      setCategories(
+        helpers.sorting({
+          array: data.categories,
+          key: sort.object,
+          order: sort.order,
+        }),
+      );
+    }
+  };
+
   useEffect(() => {
     timer = setTimeout(() => {
-      doFetch(
-        'https://cors-anywhere.herokuapp.com/https://services.odata.org/V4/northwind/northwind.svc/Categories',
-      );
+      doFetch(oDataRouter.categories());
       setCategories(data.categories);
     }, 200);
     return () => {
@@ -85,13 +103,14 @@ const ListCategories = () => {
   }, [data]);
 
   useEffect(() => {
-    const filterByName = ({ array, value, key }) =>
+    const search = ({ array, value, key }) =>
       array.filter(item => item[key].includes(value));
+
     if (!searchInputValue) {
       setCategories(data.categories);
     } else {
       setCategories(
-        filterByName({
+        search({
           array: data.categories,
           value: searchInputValue,
           key: 'CategoryName',
@@ -99,6 +118,8 @@ const ListCategories = () => {
       );
     }
   }, [searchInputValue, data]);
+
+  useEffect(() => {}, [categories]);
 
   if (isError) return <span>Error</span>;
   return (
@@ -110,6 +131,8 @@ const ListCategories = () => {
         <Toolbar
           refreshAction={() => refresh()}
           onSearchChange={setSearchInputValue}
+          setOption={setOption}
+          setDisplayActionMenu={() => setDisplayActionMenu(!actionMenuStatus)}
         />
         <Wrapper>
           {isLoading && <Loader />}
@@ -126,6 +149,13 @@ const ListCategories = () => {
           </ListCustom>
         </Wrapper>
       </ListToolbarWrapper>
+      <Modal show={actionMenuStatus}>
+        <ActionMenu
+          option={selectedOption}
+          close={setDisplayActionMenu}
+          onSubmit={handleSelectActionMenuOption}
+        />
+      </Modal>
     </Root>
   );
 };

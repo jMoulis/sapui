@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
-import useDataApi from 'services/useDataApi';
+import { useODataApi, oDataRouter } from 'services/oData';
 import PropTypes from 'prop-types';
 import List from 'components/commons/List';
 
@@ -12,16 +12,14 @@ const BtnLink = styled.button`
 `;
 
 const ListProducts = ({ match, callback }) => {
-  const { data, isLoading, isError, doFetch } = useDataApi({
+  const { data, isLoading, isError, doFetch } = useODataApi({
     responseKey: 'products',
     defaultValue: [],
   });
   useEffect(() => {
     const categoryId = match.params.category;
     callback(false);
-    doFetch(
-      `https://cors-anywhere.herokuapp.com/https://services.odata.org/V4/northwind/northwind.svc/Categories(${categoryId})/Products`,
-    );
+    doFetch(oDataRouter.categoriesProducts(categoryId));
     return () => callback(true);
   }, []);
 

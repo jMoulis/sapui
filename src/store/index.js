@@ -1,22 +1,19 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import mainReducer from 'store/reducers/mainReducer';
-import authReducer from 'store/reducers/authReducer';
-import userReducer from 'store/reducers/userReducer';
+import categoryReducer from 'store/reducers/categoryReducer';
 
-import authApi from 'store/api/authApi';
-import userApi from 'store/api/userApi';
+import categoryApi from 'store/api/categoryApi';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   mainReducer,
-  authReducer,
-  userReducer,
+  categoryReducer,
 });
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(authApi), applyMiddleware(userApi)),
+  composeEnhancers(applyMiddleware(categoryApi)),
 );
 
 export default store;

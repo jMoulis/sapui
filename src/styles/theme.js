@@ -1,3 +1,5 @@
+import belize from './belize';
+
 const breakpoints = { xs: 576, sm: 768, md: 992, lg: 1200 };
 const mediaQueries = Object.keys(breakpoints).reduce((response, key) => {
   return {
@@ -6,19 +8,25 @@ const mediaQueries = Object.keys(breakpoints).reduce((response, key) => {
   };
 }, {});
 
-const theme = {
-  colors: {
-    primary: 'hotpink',
-  },
-  buttons: {
-    emphasized: {
-      hover: {
-        backgroundColor: '#418ac7',
-        border: '#418ac7',
-      },
+const colors = {
+  primary: 'hotpink',
+  white: '#ffffff',
+  black: '#000000',
+};
+
+const getActualTheme = {
+  belize,
+};
+
+const theme = currentTheme => {
+  return {
+    colors,
+    customTheme: {
+      ...getActualTheme[currentTheme],
     },
-  },
-  mediaQueries,
+    base: {},
+    mediaQueries,
+  };
 };
 
 export default theme;

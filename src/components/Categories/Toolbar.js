@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import Icon from 'components/commons/Icon';
-import Modal from 'components/commons/Modal';
-import ActionMenu from './ActionMenu';
 
 const Root = styled.div`
   label: Toolbar;
@@ -59,10 +58,14 @@ const ActionWrapper = styled.div`
   margin-left: 1rem;
 `;
 
-const Toolbar = ({ refreshAction, onSearchChange }) => {
+const Toolbar = ({
+  refreshAction,
+  onSearchChange,
+  setDisplayActionMenu,
+  setOption,
+}) => {
   const { t } = useTranslation();
-  const [isModal, setDisplayModal] = useState(false);
-  const [selectedAction, setAction] = useState(null);
+
   return (
     <Root>
       <SearchForm onSubmit={event => event.preventDefault()}>
@@ -86,8 +89,8 @@ const Toolbar = ({ refreshAction, onSearchChange }) => {
           type="button"
           title={t('categoryApp.sort')}
           onClick={() => {
-            setAction('sort');
-            setDisplayModal(prevState => !prevState);
+            setOption('sort');
+            setDisplayActionMenu();
           }}
         >
           <IconRadiusCustom>&#xe095;</IconRadiusCustom>
@@ -96,8 +99,8 @@ const Toolbar = ({ refreshAction, onSearchChange }) => {
           type="button"
           title={t('categoryApp.filter')}
           onClick={() => {
-            setAction('filter');
-            setDisplayModal(prevState => !prevState);
+            setOption('filter');
+            setDisplayActionMenu();
           }}
         >
           <IconRadiusCustom>&#xe076;</IconRadiusCustom>
@@ -106,20 +109,22 @@ const Toolbar = ({ refreshAction, onSearchChange }) => {
           type="button"
           title={t('categoryApp.group')}
           onClick={() => {
-            setAction('group');
-            setDisplayModal(prevState => !prevState);
+            setOption('group');
+            setDisplayActionMenu();
           }}
         >
           <IconRadiusCustom>&#xe163;</IconRadiusCustom>
         </Button>
       </ActionWrapper>
-      {true && (
-        <Modal>
-          <ActionMenu action={selectedAction} close={setDisplayModal} />
-        </Modal>
-      )}
     </Root>
   );
+};
+
+Toolbar.propTypes = {
+  refreshAction: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
+  setDisplayActionMenu: PropTypes.func.isRequired,
+  setOption: PropTypes.func.isRequired,
 };
 
 export default Toolbar;
