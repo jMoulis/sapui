@@ -1,13 +1,34 @@
 {
   "commons": {
+    "asc": "Ascending",
+    "cancel": "Cancel",
+    "display": "Display",
+    "desc": "Descending",
+    "filter": "Filter",
+    "group": "Group",
     "ok": "OK",
-    "cancel": "Cancel"
+    "refresh": "Refresh",
+    "reset": "Reset",
+    "return": "Return",
+    "search": "Search",
+    "sort": "Sort",
+    "void": "Void"
+  },
+  "sorting": {
+    "sortBy": "Sort by",
+    "sortOrder": "Order",
+    "sortByObject": "object"
+  },
+  "grouping": {
+    "groupBy": "Group by",
+    "groupByObject": "Group object"
+  },
+  "filtering": {
+    "filterBy": "Filter by"
   },
   "categoryApp": {
-    "search": "Search",
-    "filter": "Filter",
-    "sort": "Sort",
-    "group": "Group",
-    "refresh": "Refresh"
+    "category": "Category",
+    "categoryName": "Category name",
+    "categoryId": "Category Id"
   }
 }

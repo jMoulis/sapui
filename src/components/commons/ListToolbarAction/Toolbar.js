@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import Icon from 'components/commons/Icon';
+import { Icon } from 'components/commons/Icons';
 
 const Root = styled.div`
   label: Toolbar;
@@ -58,11 +58,38 @@ const ActionWrapper = styled.div`
   margin-left: 1rem;
 `;
 
+const actions = (t, setOption, setDisplayActionMenu) => [
+  {
+    title: t('commons.sort'),
+    onClick: () => {
+      setOption('sort');
+      setDisplayActionMenu();
+    },
+    icon: '&#xe095;',
+  },
+  {
+    title: t('commons.filter'),
+    onClick: () => {
+      setOption('filter');
+      setDisplayActionMenu();
+    },
+    icon: '&#xe076;',
+  },
+  {
+    title: t('commons.group'),
+    onClick: () => {
+      setOption('group');
+      setDisplayActionMenu();
+    },
+    icon: '&#xe163;',
+  },
+];
+
 const Toolbar = ({
   refreshAction,
   onSearchChange,
   setDisplayActionMenu,
-  setOption,
+  setActionType,
 }) => {
   const { t } = useTranslation();
 
@@ -70,51 +97,35 @@ const Toolbar = ({
     <Root>
       <SearchForm onSubmit={event => event.preventDefault()}>
         <Input
-          placeholder={t('categoryApp.search')}
+          placeholder={t('commons.search')}
           onChange={event => onSearchChange(event.target.value)}
         />
-        <Button type="submit" title={t('categoryApp.search')}>
+        <Button type="submit" title={t('commons.search')}>
           <IconCustom>&#xe00d;</IconCustom>
         </Button>
         <Button
           type="button"
           onClick={refreshAction}
-          title={t('categoryApp.refresh')}
+          title={t('commons.refresh')}
         >
           <IconCustom>&#xe00a;</IconCustom>
         </Button>
       </SearchForm>
       <ActionWrapper>
-        <Button
-          type="button"
-          title={t('categoryApp.sort')}
-          onClick={() => {
-            setOption('sort');
-            setDisplayActionMenu();
-          }}
-        >
-          <IconRadiusCustom>&#xe095;</IconRadiusCustom>
-        </Button>
-        <Button
-          type="button"
-          title={t('categoryApp.filter')}
-          onClick={() => {
-            setOption('filter');
-            setDisplayActionMenu();
-          }}
-        >
-          <IconRadiusCustom>&#xe076;</IconRadiusCustom>
-        </Button>
-        <Button
-          type="button"
-          title={t('categoryApp.group')}
-          onClick={() => {
-            setOption('group');
-            setDisplayActionMenu();
-          }}
-        >
-          <IconRadiusCustom>&#xe163;</IconRadiusCustom>
-        </Button>
+        {actions(t, setActionType, setDisplayActionMenu).map(action => {
+          return (
+            <Button
+              key={action.title}
+              type="button"
+              title={action.title}
+              onClick={action.onClick}
+            >
+              <IconRadiusCustom
+                dangerouslySetInnerHTML={{ __html: action.icon }}
+              />
+            </Button>
+          );
+        })}
       </ActionWrapper>
     </Root>
   );
@@ -124,7 +135,7 @@ Toolbar.propTypes = {
   refreshAction: PropTypes.func.isRequired,
   onSearchChange: PropTypes.func.isRequired,
   setDisplayActionMenu: PropTypes.func.isRequired,
-  setOption: PropTypes.func.isRequired,
+  setActionType: PropTypes.func.isRequired,
 };
 
 export default Toolbar;

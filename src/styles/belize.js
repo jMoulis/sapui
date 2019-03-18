@@ -1,4 +1,14 @@
 const theme = {
+  fonts: {
+    colors: {
+      lightBlue: '#147575',
+    },
+  },
+  colors: {
+    blue: '#427cac',
+    gray: '#bfbfbf',
+    lightBlue: '#c6d8ea',
+  },
   buttons: {
     emphasized: {
       borderColor: 'rgb(65, 138, 199)',

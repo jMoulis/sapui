@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useODataApi, oDataRouter } from 'services/oData';
 import PropTypes from 'prop-types';
-import List from 'components/commons/List';
+import { List } from 'components/commons/List';
 
 const BtnLink = styled.button`
   border: none;
@@ -46,6 +46,7 @@ ListProducts.propTypes = {
     staticContext: PropTypes.object,
     title: PropTypes.string,
   }).isRequired,
+  callback: PropTypes.func.isRequired,
 };
 
 export default ListProducts;

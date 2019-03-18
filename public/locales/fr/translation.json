@@ -1,13 +1,34 @@
 {
   "commons": {
+    "asc": "croissant",
+    "cancel": "Annuler",
+    "desc": "décroissant",
+    "display": "Afficher",
+    "filter": "Filtrer",
+    "group": "Grouper",
     "ok": "OK",
-    "cancel": "Annuler"
+    "refresh": "Actualiser",
+    "reset": "Réinitialiser",
+    "return": "Retour",
+    "search": "Rechercher",
+    "sort": "Trier",
+    "void": "Néant"
+  },
+  "sorting": {
+    "sortBy": "Trier par",
+    "sortOrder": "Ordre",
+    "sortByObject": "objet"
+  },
+  "grouping": {
+    "groupBy": "Regrouper par",
+    "groupByObject": "Regrouper objet"
+  },
+  "filtering": {
+    "filterBy": "Filtrer par"
   },
   "categoryApp": {
-    "search": "Rechercher",
-    "filter": "Filtrer",
-    "sort": "Trier",
-    "group": "Grouper",
-    "refresh": "Actualiser"
+    "category": "Catégorie",
+    "categoryName": "Catégorie nom",
+    "categoryId": "Catégorie Id"
   }
 }

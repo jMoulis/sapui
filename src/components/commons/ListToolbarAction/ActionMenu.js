@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
-import Icon from 'components/commons/Icon';
-import { ResetButton, CancelButton } from 'components/commons/Buttons';
-import { ButtonGroup } from 'components/commons/Buttons/ButtonGroup';
+import { Icon } from 'components/commons/Icons';
+import {
+  ResetButton,
+  CancelButton,
+  ButtonEmphasized,
+  ButtonGroup,
+} from 'components/commons/Buttons';
 import SortMenu from './SortMenu';
-import FilterMenu from './FilterMenu';
+import { FilterMenu } from './FilterMenu';
 import GroupMenu from './GroupMenu';
-import { ButtonEmphasized } from '../commons/Buttons';
 
 const Root = styled.div`
   label: ActionMenuRoot;
@@ -67,22 +70,24 @@ const Footer = styled.footer`
   background-color: #2f3c48;
 `;
 
-const renderMenu = (option, action, form) => {
-  switch (option) {
+const renderMenu = ({ actionType, action, form, options }) => {
+  switch (actionType) {
     case 'sort':
-      return <SortMenu action={action} form={form} />;
+      return <SortMenu action={action} form={form} options={options.sort} />;
     case 'filter':
-      return <FilterMenu action={action} form={form} />;
+      return (
+        <FilterMenu action={action} form={form} options={options.filter} />
+      );
     case 'group':
-      return <GroupMenu action={action} form={form} />;
+      return <GroupMenu action={action} form={form} options={options.group} />;
     default:
       return null;
   }
 };
 
-const ActionMenu = ({ option, close, onSubmit }) => {
+const ActionMenu = ({ actionType, close, onSubmit, options }) => {
   const { t } = useTranslation();
-  const [selectedOption, setOption] = useState(option);
+  const [selectedActionType, setActionType] = useState(actionType);
   const [form, setFormValue] = useState({
     sort: null,
     group: null,
@@ -90,27 +95,27 @@ const ActionMenu = ({ option, close, onSubmit }) => {
   });
   return (
     <Root>
-      <Header>Title</Header>
+      <Header>{t('commons.display')}</Header>
       <ActionWrapper>
         <ActionButtonGroup>
           <ResetButton
             type="button"
-            title={t('categoryApp.sort')}
-            onClick={() => setOption('sort')}
+            title={t('commons.sort')}
+            onClick={() => setActionType('sort')}
           >
             <IconRadiusCustom>&#xe095;</IconRadiusCustom>
           </ResetButton>
           <ResetButton
             type="button"
-            title={t('categoryApp.filter')}
-            onClick={() => setOption('filter')}
+            title={t('commons.filter')}
+            onClick={() => setActionType('filter')}
           >
             <IconRadiusCustom>&#xe076;</IconRadiusCustom>
           </ResetButton>
           <ResetButton
             type="button"
-            title={t('categoryApp.group')}
-            onClick={() => setOption('group')}
+            title={t('commons.group')}
+            onClick={() => setActionType('group')}
           >
             <IconRadiusCustom>&#xe163;</IconRadiusCustom>
           </ResetButton>
@@ -123,7 +128,14 @@ const ActionMenu = ({ option, close, onSubmit }) => {
           close(false);
         }}
       >
-        <Content>{renderMenu(selectedOption, setFormValue, form)}</Content>
+        <Content>
+          {renderMenu({
+            actionType: selectedActionType,
+            action: setFormValue,
+            form,
+            options,
+          })}
+        </Content>
         <Footer>
           <ButtonGroup>
             <ButtonEmphasized type="submit">{t('commons.ok')}</ButtonEmphasized>
@@ -138,12 +150,12 @@ const ActionMenu = ({ option, close, onSubmit }) => {
 };
 
 ActionMenu.propTypes = {
-  option: PropTypes.string,
+  actionType: PropTypes.string,
   close: PropTypes.func.isRequired,
 };
 
 ActionMenu.defaultProps = {
-  option: null,
+  actionType: null,
 };
 
 export default ActionMenu;
