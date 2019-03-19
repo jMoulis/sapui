@@ -74,27 +74,17 @@ const ListToolbarAction = ({
   isLoading,
   pathToDetail,
   actionMenuOptions,
+  callback,
 }) => {
   const helpers = new Helpers();
   const [filteredData, setFilteredData] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState(null);
   const [actionMenuStatus, setDisplayActionMenu] = useState(false);
   const [selectedActionType, setActionType] = useState(null);
+  const [request, setRequest] = useState(null);
 
-  const handleSelectActionMenuOption = ({ sort, group, filter }) => {
-    console.log('sort', sort);
-    console.log('group', group);
-    console.log('filter', filter);
-    // doAfetch
-    if (sort) {
-      setFilteredData(
-        helpers.sorting({
-          array: data,
-          key: sort.object,
-          order: sort.order,
-        }),
-      );
-    }
+  const handleSelectActionMenuOption = props => {
+    callback(props.sort);
   };
 
   useEffect(() => {}, [actionMenuStatus]);
@@ -115,7 +105,11 @@ const ListToolbarAction = ({
     }
   }, [searchInputValue, data]);
 
-  useEffect(() => {}, [filteredData]);
+  // useEffect(() => {
+  //   if (request) {
+  //     callback(request);
+  //   }
+  // }, [request]);
 
   return (
     <Root>

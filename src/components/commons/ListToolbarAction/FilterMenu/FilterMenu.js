@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { List, ListItem } from 'components/commons/List';
 import { useTranslation } from 'react-i18next';
+import { List, ListItem } from 'components/commons/List';
+import types from 'components/commons/ListToolbarAction/types';
 import FilterMenuDetail from './FilterMenuDetail/FilterMenuDetail';
 
 const Root = styled.div`
@@ -90,8 +91,9 @@ const FilterMenu = ({ action, form, options }) => {
               });
             }}
             detail={
-              selectedItem &&
-              options.find(option => option.value === selectedItem)
+              (selectedItem &&
+                options.find(option => option.value === selectedItem)) ||
+              null
             }
           />
         </Wrapper>
@@ -102,18 +104,8 @@ const FilterMenu = ({ action, form, options }) => {
 
 FilterMenu.propTypes = {
   action: PropTypes.func.isRequired,
-  form: PropTypes.shape({
-    sort: PropTypes.object,
-    filter: PropTypes.object,
-    group: PropTypes.object,
-  }).isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      value: PropTypes.string,
-      options: PropTypes.arrayOf(PropTypes.string),
-    }),
-  ),
+  form: PropTypes.shape({ ...types.form }).isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({ ...types.detail })),
 };
 FilterMenu.defaultProps = {
   options: null,

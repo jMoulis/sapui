@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import { oDataRouter, useODataApi } from 'services/oData';
 import ListToolbarAction from 'components/commons/ListToolbarAction/ListToolbarAction';
 import { useTranslation } from 'react-i18next';
+import { fetchCategories } from 'store/reducers/categoryReducer';
+import { setQuery } from '../../store/reducers/categoryReducer';
 
 const Root = styled.div`
   label: CategoriesRoot;
@@ -17,19 +19,19 @@ const sort = t => [
     type: 'order',
     title: t('sorting.sortBy'),
     item: {
-      asc: { value: 'ASC', title: t('commons.asc') },
-      desc: { value: 'DESC', title: t('commons.desc') },
+      asc: { value: 'asc', title: t('commons.asc') },
+      desc: { value: 'desc', title: t('commons.desc') },
     },
   },
   {
     type: 'object',
     title: `${t('commons.sort')} ${t('sorting.sortByObject')}`,
     item: {
-      name: {
+      nameItem: {
         value: 'CategoryName',
         title: t('categoryApp.categoryName'),
       },
-      id: { value: 'CategoryID', title: t('categoryApp.categoryId') },
+      idItem: { value: 'CategoryID', title: t('categoryApp.categoryId') },
     },
   },
 ];
@@ -69,30 +71,26 @@ const filter = t => [
   },
 ];
 
-const ListCategories = () => {
-  let timer = null;
+const ListCategories = ({
+  categories,
+  fetchCategoriesAction,
+  loading,
+  error,
+  query,
+  setQueryAction,
+}) => {
   const { t } = useTranslation();
-  const { data, isLoading, isError, doFetch, refresh } = useODataApi({
-    responseKey: 'categories',
-    defaultValue: [],
-  });
 
   useEffect(() => {
-    timer = setTimeout(() => {
-      doFetch(oDataRouter.categories());
-    }, 200);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [data]);
+    fetchCategoriesAction(query);
+  }, [query]);
 
-  if (isError) return <span>Error</span>;
-
+  if (error) return <span>Error</span>;
   return (
     <Root>
       <ListToolbarAction
-        data={data.categories}
-        isLoading={isLoading}
+        data={categories}
+        isLoading={loading}
         actionMenuOptions={{
           sort: sort(t),
           group: group(t),
@@ -101,11 +99,32 @@ const ListCategories = () => {
         keyValue="CategoryName"
         keyId="CategoryID"
         title="Categories"
-        refreshAction={refresh}
+        // refreshAction={refresh}
         pathToDetail="/exo/"
+        callback={values => {
+          setQueryAction(values);
+        }}
       />
     </Root>
   );
 };
 
-export default ListCategories;
+const mapStateToProps = ({ categoryReducer }) => ({
+  categories: categoryReducer.categories,
+  loading: categoryReducer.loading,
+  error: categoryReducer.error,
+  query: categoryReducer.query,
+});
+const mapDispatchToProps = dispatch => ({
+  fetchCategoriesAction: request => {
+    dispatch(fetchCategories(request));
+  },
+  setQueryAction: query => {
+    dispatch(setQuery(query));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ListCategories);

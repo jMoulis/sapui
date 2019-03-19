@@ -1,6 +1,9 @@
 import React from 'react';
-import { List, ListItem } from 'components/commons/List';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { List, ListItem } from 'components/commons/List';
+import { InputRadioComplete } from 'components/commons/InputRadio';
+import types from 'components/commons/ListToolbarAction/types';
 
 const ListItemCustom = styled(ListItem)`
   padding: 1rem;
@@ -21,43 +24,6 @@ const ListItemCustom = styled(ListItem)`
   }
 `;
 
-const InputRadio = styled.div`
-  position: relative;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: 0.2rem solid ${({ theme }) => theme.customTheme.colors.gray};
-  border-radius: 1rem;
-  padding: 1px;
-  margin-right: 0.5rem;
-  cursor: pointer;
-  &:hover {
-    border: 0.25rem solid ${({ theme }) => theme.customTheme.colors.blue};
-  }
-`;
-
-const InputRadioDot = styled.div`
-  position: absolute;
-  height: 0.5rem;
-  width: 0.5rem;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border-radius: 1rem;
-  background-color: ${({ theme }) => theme.customTheme.colors.blue};
-`;
-
-const InvisibleInput = styled.input`
-  visibility: hidden;
-  height: 0.1rem;
-  width: 0.1rem;
-`;
-
-const Label = styled.label`
-  cursor: pointer;
-`;
-
 const FilterMenuDetailList = ({ detail, form, onSelect }) => {
   return (
     <List>
@@ -71,28 +37,33 @@ const FilterMenuDetailList = ({ detail, form, onSelect }) => {
               }}
               isSelected={form.filter && form.filter[detail.value] === option}
             >
-              <InputRadio data-name="input-radio">
-                {form.filter && form.filter[detail.value] === option && (
-                  <InputRadioDot data-name="input-radio-dot" />
-                )}
-              </InputRadio>
-              <Label htmlFor={option}>
-                <InvisibleInput
-                  id={option}
-                  name={detail.value}
-                  type="radio"
-                  value={option}
-                  onChange={() => {
-                    return onSelect({ [detail.value]: option });
-                  }}
-                />
-                {option}
-              </Label>
+              <InputRadioComplete
+                id={option}
+                data-name="input-radio"
+                show={form.filter && form.filter[detail.value] === option}
+                name={detail.value}
+                type="radio"
+                value={option}
+                label={option}
+                onChange={() => {
+                  return onSelect({ [detail.value]: option });
+                }}
+              />
             </ListItemCustom>
           );
         })}
     </List>
   );
+};
+
+FilterMenuDetailList.propTypes = {
+  detail: PropTypes.shape({ ...types.detail }),
+  form: PropTypes.shape({ ...types.form }).isRequired,
+  onSelect: PropTypes.func.isRequired,
+};
+
+FilterMenuDetailList.defaultProps = {
+  detail: null,
 };
 
 export default FilterMenuDetailList;
