@@ -10,7 +10,7 @@ import { App } from 'components/App';
 import * as serviceWorker from './serviceWorker';
 import './i18n';
 
-const currentTheme = 'belize';
+const currentTheme = 'fiori';
 
 console.log(theme(currentTheme));
 

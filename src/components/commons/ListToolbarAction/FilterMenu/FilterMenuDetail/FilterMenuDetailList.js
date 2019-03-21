@@ -10,9 +10,9 @@ const ListItemCustom = styled(ListItem)`
   display: flex;
   align-items: center;
   background-color: ${({ isSelected, theme }) =>
-    isSelected && theme.customTheme.colors.lightBlue};
+    isSelected && theme.custom.colors.lightBlue};
   &:active {
-    background-color: ${({ theme }) => theme.customTheme.colors.blue};
+    background-color: ${({ theme }) => theme.custom.colors.blue};
     color: #fff;
     [data-name='input-radio'] {
       background-color: transparent;
@@ -23,31 +23,33 @@ const ListItemCustom = styled(ListItem)`
     }
   }
 `;
-
+// $filter=CategoryID%20le%20100
+//
 const FilterMenuDetailList = ({ detail, form, onSelect }) => {
   return (
     <List>
       {detail &&
-        detail.options.map(option => {
+        detail.options.map((option, key) => {
           return (
             <ListItemCustom
-              key={option}
+              key={key}
               onClick={() => {
-                return onSelect({ [detail.value]: option });
+                return onSelect({
+                  [detail.fieldName]: `${option.operator} ${option.value}`,
+                });
               }}
-              isSelected={form.filter && form.filter[detail.value] === option}
+              isSelected={
+                form.filter && form.filter[detail.value] === option.value
+              }
             >
               <InputRadioComplete
-                id={option}
+                id={option.value}
                 data-name="input-radio"
-                show={form.filter && form.filter[detail.value] === option}
-                name={detail.value}
+                show={form.filter && form.filter[detail.value] === option.value}
+                name={detail.label}
                 type="radio"
-                value={option}
-                label={option}
-                onChange={() => {
-                  return onSelect({ [detail.value]: option });
-                }}
+                value={option.value}
+                label={option.value}
               />
             </ListItemCustom>
           );

@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withRouter } from 'react-router-dom';
-import { Icon } from 'components/commons/Icons';
-import { ChevronLeft } from '../commons/Icons';
+import { Icon, GridIcon } from 'components/commons/Icons';
+import FlexBox from './FlexBox';
 
 const AppTitle = styled.h3`
   display: flex;
   justify-content: center;
   flex: 2;
+  color: ${({ theme }) => theme.custom.colors.action.secondary};
 `;
 
 const Root = styled.nav`
@@ -16,54 +17,53 @@ const Root = styled.nav`
   align-items: center;
   justify-content: space-between;
   height: 4.6rem;
-  background-color: ${({ theme }) => theme.customTheme.colors.lightBlue};
-  color: ${({ theme }) => theme.customTheme.colors.blue};
+  background-color: ${({ theme }) => theme.custom.colors.shell.shell1};
   padding: 1rem;
   & > * {
-    text-shadow: 0 0 0.125rem #ffffff;
+    color: ${({ theme }) => theme.custom.colors.action.secondary};
   }
 `;
 
-const IconsWrapper = styled.div`
-  display: flex;
+const Img = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
-const ButtonLink = styled.button`
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 1rem;
-  transition: all 100ms ease-in;
-  border-radius: 0.3rem;
-  color: #346187;
-  font-size: 1.5rem;
-  text-shadow: 0 0 0.125rem #ffffff;
-  &:hover {
-    background-color: rgba(52, 97, 135, 0.15);
-  }
+const Logo = styled.div`
+  background-image: ${({ logo }) => `url(${logo})`};
+  background-size: contain;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
 `;
 
-const Navbar = ({ activeAppTitle, history }) => {
+const Navbar = ({ company, history }) => {
   return (
     <Root>
-      <IconsWrapper>
+      <FlexBox css={{ alignItems: 'center' }}>
+        <Logo logo={company.logo} />
+        <AppTitle>{company.name}</AppTitle>
+      </FlexBox>
+      <FlexBox css={{ width: '3rem', height: '3rem' }}>
+        <Img
+          src="https://unpkg.com/fiori-fundamentals@1.3.3/dist/images/copilot.png"
+          alt="Siri"
+        />
+      </FlexBox>
+      <FlexBox>
         <Icon>&#xe0ca;</Icon>
-        <ChevronLeft onClick={() => history.goBack()} />
-      </IconsWrapper>
-      <AppTitle>
-        <ButtonLink>{activeAppTitle}</ButtonLink>
-      </AppTitle>
+        <GridIcon onClick={() => history.push('/')} />
+      </FlexBox>
     </Root>
   );
 };
 
 Navbar.propTypes = {
-  activeAppTitle: PropTypes.string,
+  companyName: PropTypes.string,
 };
 
 Navbar.defaultProps = {
-  activeAppTitle: '',
+  companyName: '',
 };
 
 export default withRouter(Navbar);

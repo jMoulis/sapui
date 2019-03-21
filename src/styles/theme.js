@@ -1,4 +1,5 @@
 import belize from './belize';
+import fiori from './fiori';
 
 const breakpoints = { xs: 576, sm: 768, md: 992, lg: 1200 };
 const mediaQueries = Object.keys(breakpoints).reduce((response, key) => {
@@ -8,20 +9,13 @@ const mediaQueries = Object.keys(breakpoints).reduce((response, key) => {
   };
 }, {});
 
-const colors = {
-  primary: 'hotpink',
-  white: '#ffffff',
-  black: '#000000',
-};
-
 const getActualTheme = {
-  belize,
+  fiori,
 };
 
 const theme = currentTheme => {
   return {
-    colors,
-    customTheme: {
+    custom: {
       ...getActualTheme[currentTheme],
     },
     base: {},

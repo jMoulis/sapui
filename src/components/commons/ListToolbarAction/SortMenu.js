@@ -10,7 +10,7 @@ const Root = styled.div``;
 const Title = styled.span`
   label: Title;
   padding: 1rem;
-  color: ${({ theme }) => theme.customTheme.fonts.colors.lightBlue};
+  color: ${({ theme }) => theme.custom.fonts.colors.lightBlue};
 `;
 
 const ListItemCustom = styled(ListItem)`
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   margin-top: 2rem;
 `;
 
-const SortMenu = ({ action, form, options }) => {
+const SortMenu = ({ action, form, menus }) => {
   const { t } = useTranslation();
   const [queries, setQuery] = useState([]);
   const [selectedValue, setSelectedValue] = useState({
@@ -72,7 +72,7 @@ const SortMenu = ({ action, form, options }) => {
 
   return (
     <Root>
-      {options.map(option => {
+      {menus.map(option => {
         return (
           <Wrapper key={option.title}>
             <Title>{option.title}</Title>
@@ -122,6 +122,6 @@ const SortMenu = ({ action, form, options }) => {
 SortMenu.propTypes = {
   action: PropTypes.func.isRequired,
   form: PropTypes.shape({ ...types.form }).isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({ ...types.detail })).isRequired,
+  menus: PropTypes.arrayOf(PropTypes.shape({ ...types.detail })).isRequired,
 };
 export default SortMenu;

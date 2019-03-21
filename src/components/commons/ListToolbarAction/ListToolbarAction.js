@@ -1,11 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { List, ListItem } from 'components/commons/List';
 import { Icon } from 'components/commons/Icons';
-import Modal from 'components/commons/Modal';
-import Helpers from 'services/Helpers';
 import Loader from 'components/commons/Loader/Loader';
 import Toolbar from './Toolbar';
 import ActionMenu from './ActionMenu';
@@ -73,61 +72,49 @@ const ListToolbarAction = ({
   refreshAction,
   isLoading,
   pathToDetail,
-  actionMenuOptions,
+  menus,
   callback,
 }) => {
-  const helpers = new Helpers();
-  const [filteredData, setFilteredData] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState(null);
   const [actionMenuStatus, setDisplayActionMenu] = useState(false);
-  const [selectedActionType, setActionType] = useState(null);
-  const [request, setRequest] = useState(null);
+  const [selectedMenu, setSelectedMenu] = useState(null);
 
-  const handleSelectActionMenuOption = props => {
-    callback(props.sort);
+  const handleSelectActionMenuOption = queries => {
+    // GET Categories?$skip=0&$top=20&$orderby=CategoryID%20desc,CategoryName%20desc&$filter=CategoryID%20le%20100
+    console.log(queries);
+    const response = Object.values(queries)
+      .filter(values => values !== null)
+      .join('&');
+    callback(response);
   };
 
   useEffect(() => {}, [actionMenuStatus]);
   useEffect(() => {
-    const search = ({ array, value, key }) =>
-      array.filter(item => item[key].includes(value));
-
     if (!searchInputValue) {
-      setFilteredData(data);
+      callback();
     } else {
-      setFilteredData(
-        search({
-          array: data,
-          value: searchInputValue,
-          key: keyValue,
-        }),
-      );
+      callback(`$filter=CategoryName eq '${searchInputValue}'`);
     }
   }, [searchInputValue, data]);
-
-  // useEffect(() => {
-  //   if (request) {
-  //     callback(request);
-  //   }
-  // }, [request]);
-
   return (
     <Root>
       <Header>{`${title} (${data && data.length})`}</Header>
       <ListToolbarWrapper>
         <Toolbar
-          refreshAction={() => refreshAction()}
+          refreshAction={refreshAction}
           onSearchChange={setSearchInputValue}
-          setActionType={setActionType}
+          setMenuSelected={setSelectedMenu}
           setDisplayActionMenu={() => setDisplayActionMenu(!actionMenuStatus)}
+          menus={menus}
+          selectedMenu={selectedMenu}
         />
         <Wrapper>
           <ListCustom>
             {isLoading ? (
               <Loader />
             ) : (
-              filteredData &&
-              filteredData.map(item => (
+              data &&
+              data.map(item => (
                 <ListItem key={item[keyId]}>
                   <NavLinkCustom to={`${pathToDetail}${item[keyId]}`}>
                     {item[keyValue]}
@@ -139,16 +126,32 @@ const ListToolbarAction = ({
           </ListCustom>
         </Wrapper>
       </ListToolbarWrapper>
-      <Modal show={actionMenuStatus}>
-        <ActionMenu
-          actionType={selectedActionType}
-          close={() => setDisplayActionMenu(false)}
-          onSubmit={handleSelectActionMenuOption}
-          options={actionMenuOptions}
-        />
-      </Modal>
+      <ActionMenu
+        show={actionMenuStatus}
+        selectedMenu={selectedMenu}
+        close={() => setDisplayActionMenu(false)}
+        onSubmit={handleSelectActionMenuOption}
+        setMenuSelected={setSelectedMenu}
+        menus={menus}
+      />
     </Root>
   );
 };
 
+ListToolbarAction.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object),
+  keyId: PropTypes.string.isRequired,
+  keyValue: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  refreshAction: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  pathToDetail: PropTypes.string.isRequired,
+  menus: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
+  callback: PropTypes.func,
+};
+
+ListToolbarAction.defaultProps = {
+  callback: null,
+  data: null,
+};
 export default ListToolbarAction;

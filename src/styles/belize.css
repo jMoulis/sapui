@@ -43355,7 +43355,7 @@ html[dir='rtl'] .sapUshellRightFloatingContainerItemBounceOut {
   font-style: italic;
   width: calc(100% - 3rem);
 }
-.sapUshellSearchFilterContextualBar .sapUshellSearchFilterResetButton {
+.sapUshellSearchFilterContextualBar .sapUshellSearchFilterBtnReset {
   color: #ffffff;
 }
 #searchPrefsView {
@@ -72113,10 +72113,10 @@ html[data-sap-ui-browser^='ie'].sap-desktop
   background-color: #3f5161;
 }
 .sapContrast.sapUshellSearchFilterContextualBar
-  .sapUshellSearchFilterResetButton,
+  .sapUshellSearchFilterBtnReset,
 .sapContrast
   .sapUshellSearchFilterContextualBar
-  .sapUshellSearchFilterResetButton {
+  .sapUshellSearchFilterBtnReset {
   color: #2f3c48;
 }
 .sapContrast.searchTabStrips,

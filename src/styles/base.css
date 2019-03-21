@@ -36714,7 +36714,7 @@ html[dir='rtl'] .sapUshellRightFloatingContainerItemBounceOut {
   font-style: italic;
   width: calc(100% - 3rem);
 }
-.sapUshellSearchFilterContextualBar .sapUshellSearchFilterResetButton {
+.sapUshellSearchFilterContextualBar .sapUshellSearchFilterBtnReset {
   color: #ffffff;
 }
 #searchPrefsView {

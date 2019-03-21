@@ -36,7 +36,7 @@ InputRadioComplete.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 InputRadioComplete.defaultProps = {

@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import ListToolbarAction from 'components/commons/ListToolbarAction/ListToolbarAction';
 import { useTranslation } from 'react-i18next';
-import { fetchCategories } from 'store/reducers/categoryReducer';
-import { setQuery } from '../../store/reducers/categoryReducer';
+import { setQuery, fetchCategories } from 'store/reducers/categoryReducer';
+import types from 'components/commons/ListToolbarAction/types';
 
 const Root = styled.div`
   label: CategoriesRoot;
@@ -49,7 +50,7 @@ const group = t => [
     type: 'object',
     title: `${t('grouping.groupByObject')}`,
     item: {
-      name: {
+      idItem: {
         value: 'categroyID',
         title: t('categoryApp.categoryId'),
       },
@@ -58,16 +59,31 @@ const group = t => [
   },
 ];
 
+// field, value, operator
 const filter = t => [
   {
-    name: t('categoryApp.categoryId'),
-    value: 'CategoryID',
-    options: ['<100', '>100'],
+    label: t('categoryApp.categoryId'),
+    fieldName: 'CategoryID',
+    options: [
+      {
+        operator: 'gt',
+        value: 100,
+      },
+      {
+        operator: 'lt',
+        value: 100,
+      },
+    ],
   },
   {
-    name: t('categoryApp.categoryName'),
-    value: 'CategoryName',
-    options: ['b', 'c'],
+    label: t('categoryApp.categoryName'),
+    fieldName: 'CategoryName',
+    options: [
+      {
+        operator: 'eq',
+        value: 'Bevrages',
+      },
+    ],
   },
 ];
 
@@ -91,7 +107,7 @@ const ListCategories = ({
       <ListToolbarAction
         data={categories}
         isLoading={loading}
-        actionMenuOptions={{
+        menus={{
           sort: sort(t),
           group: group(t),
           filter: filter(t),
@@ -99,7 +115,9 @@ const ListCategories = ({
         keyValue="CategoryName"
         keyId="CategoryID"
         title="Categories"
-        // refreshAction={refresh}
+        refreshAction={() => {
+          setQueryAction();
+        }}
         pathToDetail="/exo/"
         callback={values => {
           setQueryAction(values);
@@ -109,6 +127,20 @@ const ListCategories = ({
   );
 };
 
+ListCategories.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.shape({ ...types.category })),
+  fetchCategoriesAction: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  query: PropTypes.string,
+  setQueryAction: PropTypes.func.isRequired,
+};
+
+ListCategories.defaultProps = {
+  categories: null,
+  error: null,
+  query: null,
+};
 const mapStateToProps = ({ categoryReducer }) => ({
   categories: categoryReducer.categories,
   loading: categoryReducer.loading,

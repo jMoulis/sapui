@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Icon, ChevronLeft } from 'components/commons/Icons';
 import { useTranslation } from 'react-i18next';
-import { ResetButton } from 'components/commons/Buttons';
+import { BtnReset } from 'components/commons/Buttons';
 
 const SearchForm = styled.div`
   flex: 1;
@@ -59,9 +59,9 @@ const FilterMenuHeader = ({ goBack }) => {
           onChange={event => onInputChange(event.target.value)}
           value={input}
         />
-        <ResetButton type="submit" title={t('commons.search')}>
+        <BtnReset type="submit" title={t('commons.search')}>
           <IconCustom>&#xe00d;</IconCustom>
-        </ResetButton>
+        </BtnReset>
       </SearchForm>
     </Wrapper>
   );

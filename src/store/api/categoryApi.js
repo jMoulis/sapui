@@ -3,13 +3,11 @@ import {
   FETCH_CATEGORIES,
   fetchCategoriesSuccess,
   fetchCategoriesFailure,
-} from 'store/reducers/categoryReducer';
-import oDataRouter from 'services/oData/oDataRouter';
-import {
   FETCH_CATEGORY_PRODUCTS,
   fetchCategoryProductsSuccess,
   fetchCategoryProductsFailure,
-} from '../reducers/categoryReducer';
+} from 'store/reducers/categoryReducer';
+import oDataRouter from 'services/oData/oDataRouter';
 
 export default store => next => async action => {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ const Title = styled.span`
   display: block;
   margin-top: 2rem;
   padding: 1rem;
-  color: ${({ theme }) => theme.customTheme.fonts.colors.lightBlue};
+  color: ${({ theme }) => theme.custom.fonts.colors.lightBlue};
 `;
 
 const ListItemCustom = styled(ListItem)`
@@ -24,7 +24,7 @@ const ListItemCustom = styled(ListItem)`
   display: flex;
   align-items: center;
   &:active {
-    background-color: ${({ theme }) => theme.customTheme.colors.blue};
+    background-color: ${({ theme }) => theme.custom.colors.blue};
     color: #fff;
   }
 `;
@@ -43,18 +43,31 @@ const Wrapper = styled.div`
 
 const Text = styled.span`
   display: block;
-  color: ${({ theme }) => theme.customTheme.fonts.colors.lightBlue};
+  color: ${({ theme }) => theme.custom.fonts.colors.lightBlue};
   font-size: 1.2rem;
 `;
-const FilterMenu = ({ action, form, options }) => {
+
+const FilterMenu = ({ action, form, menus }) => {
   const { t } = useTranslation();
   const [showdetail, setDetailDisplay] = useState(false);
   const [selectedItem, setSelectedItem] = useState(false);
-
+  const [queries, setQuery] = useState([]);
   const handleSelectFilter = name => {
     setDetailDisplay(true);
     setSelectedItem(name);
   };
+
+  useEffect(() => {
+    console.log('filterMenu');
+    const response = Object.keys(queries).map(key => {
+      return `${key} ${queries[key]}`;
+    }, []);
+
+    action({
+      ...form,
+      filter: `$filter=${response.join(',')}`,
+    });
+  }, [queries]);
 
   return (
     <Root>
@@ -62,14 +75,14 @@ const FilterMenu = ({ action, form, options }) => {
         <Wrapper>
           <Title>{t('filtering.filterBy')}</Title>
           <List>
-            {options.map(option => {
+            {menus.map(menu => {
               return (
                 <ListItemCustom
-                  key={option.value}
-                  onClick={() => handleSelectFilter(option.value)}
+                  key={menu.fieldName}
+                  onClick={() => handleSelectFilter(menu.fieldName)}
                 >
-                  <span>{option.name}</span>
-                  <Text>{form.filter && form.filter[option.value] && 1}</Text>
+                  <span>{menu.label}</span>
+                  <Text>{form.filter && form.filter[menu.fieldName] && 1}</Text>
                 </ListItemCustom>
               );
             })}
@@ -82,17 +95,11 @@ const FilterMenu = ({ action, form, options }) => {
             form={form}
             onSelect={value => {
               setDetailDisplay(false);
-              return action({
-                ...form,
-                filter: {
-                  ...form.filter,
-                  ...value,
-                },
-              });
+              setQuery(prevState => ({ ...prevState, ...value }));
             }}
             detail={
               (selectedItem &&
-                options.find(option => option.value === selectedItem)) ||
+                menus.find(menu => menu.fieldName === selectedItem)) ||
               null
             }
           />
@@ -105,9 +112,9 @@ const FilterMenu = ({ action, form, options }) => {
 FilterMenu.propTypes = {
   action: PropTypes.func.isRequired,
   form: PropTypes.shape({ ...types.form }).isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({ ...types.detail })),
+  menus: PropTypes.arrayOf(PropTypes.shape({ ...types.detail })),
 };
 FilterMenu.defaultProps = {
-  options: null,
+  menus: null,
 };
 export default FilterMenu;

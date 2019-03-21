@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const ResetButton = styled.button`
+const BtnReset = styled.button`
   border: none;
   background-color: transparent;
   outline: none;
@@ -8,4 +8,4 @@ const ResetButton = styled.button`
   transition: all 150ms ease-in;
 `;
 
-export default ResetButton;
+export default BtnReset;
