@@ -10,7 +10,7 @@ const Root = styled.div``;
 const Title = styled.span`
   label: Title;
   padding: 1rem;
-  color: ${({ theme }) => theme.custom.fonts.colors.lightBlue};
+  color: ${({ theme }) => theme.fonts.colors.lightBlue};
 `;
 
 const ListItemCustom = styled(ListItem)`

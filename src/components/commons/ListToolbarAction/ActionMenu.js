@@ -15,8 +15,7 @@ const Header = styled.header`
 
 const ActionWrapper = styled.div`
   display: flex;
-  border-bottom: 1px solid
-    ${({ theme }) => theme.custom.colors.neutral.neutral2};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.neutral2};
 `;
 
 const Form = styled.form`

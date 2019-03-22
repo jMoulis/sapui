@@ -9,7 +9,7 @@ const AppTitle = styled.h3`
   display: flex;
   justify-content: center;
   flex: 2;
-  color: ${({ theme }) => theme.custom.colors.action.secondary};
+  color: ${({ theme }) => theme.colors.action.secondary};
 `;
 
 const Root = styled.nav`
@@ -17,10 +17,10 @@ const Root = styled.nav`
   align-items: center;
   justify-content: space-between;
   height: 4.6rem;
-  background-color: ${({ theme }) => theme.custom.colors.shell.shell1};
+  background-color: ${({ theme }) => theme.colors.shell.shell1};
   padding: 1rem;
   & > * {
-    color: ${({ theme }) => theme.custom.colors.action.secondary};
+    color: ${({ theme }) => theme.colors.action.secondary};
   }
 `;
 
@@ -37,6 +37,16 @@ const Logo = styled.div`
   margin-right: 1rem;
 `;
 
+const IconWrapper = styled(FlexBox)`
+  & i {
+    margin: 0.5rem;
+    font-size: 2.5rem;
+  }
+  & i:first-of-type {
+    margin-right: 2rem;
+  }
+`;
+
 const Navbar = ({ company, history }) => {
   return (
     <Root>
@@ -50,20 +60,31 @@ const Navbar = ({ company, history }) => {
           alt="Siri"
         />
       </FlexBox>
-      <FlexBox>
+      <IconWrapper>
         <Icon>&#xe0ca;</Icon>
         <GridIcon onClick={() => history.push('/')} />
-      </FlexBox>
+      </IconWrapper>
     </Root>
   );
 };
 
 Navbar.propTypes = {
-  companyName: PropTypes.string,
+  company: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  history: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.func,
+      PropTypes.array,
+    ]),
+  ).isRequired,
 };
 
 Navbar.defaultProps = {
-  companyName: '',
+  company: '',
 };
 
 export default withRouter(Navbar);

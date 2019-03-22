@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 const BtnReset = styled.button`
   display: inline-block;
   margin: 0 0.25rem;
-  padding: 0;
   appearance: none;
   outline: 0;
   border: 0;
@@ -13,29 +12,39 @@ const BtnReset = styled.button`
   user-select: none;
   white-space: nowrap;
   background-color: transparent;
-  border-radius: 4px;
-  font-size: 1.2rem;
-  line-height: 1.42857;
+  border-radius: ${({ xs }) => {
+    if (xs) return '2px';
+    return '4px';
+  }};
   font-weight: 400;
-  line-height: 1;
-  padding-left: ${({ square }) => (square ? '0.2rem' : '1.2rem')};
-  padding-right: ${({ square }) => (square ? '0.2rem' : '1.2rem')};
+  padding: ${({ square, xs, lg, sm }) => {
+    if (square) return '0';
+    if (xs) return '0 0.2rem';
+    if (sm) return '0 0.5rem';
+    if (lg) return '0 5rem';
+    return '0.5rem 1rem';
+  }};
   border-style: solid;
   border-width: 1px;
-  height: ${({ small, xs, large }) => {
+  /* height: ${({ sm, xs, lg }) => {
     if (xs) return 'unset';
-    if (small) return '2rem';
-    if (large) return '5rem';
+    if (sm) return '1.5rem';
+    if (lg) return '5rem';
     return '2.5rem';
+  }}; */
+  font-size: ${({ sm, xs, lg }) => {
+    if (xs) return '0.7rem';
+    if (sm) return '1rem';
+    if (lg) return '4rem';
+    return '1.5rem';
   }};
-  ${({ theme }) => theme.custom.buttons.actions}
   transition: all 0.125s ease-in;
   & > i {
-    font-size: ${({ small, xs, large }) => {
-      if (xs) return '1rem';
-      if (small) return '1.5rem';
-      if (large) return '3.5rem';
-      return '1.7rem';
+    font-size: ${({ sm, xs, lg }) => {
+      if (xs) return '0.7rem';
+      if (sm) return '1rem';
+      if (lg) return '4rem';
+      return '1.5rem';
     }};
     border-radius: 2px;
     &:hover {

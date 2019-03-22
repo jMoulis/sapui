@@ -15,7 +15,7 @@ const Title = styled.span`
   display: block;
   margin-top: 2rem;
   padding: 1rem;
-  color: ${({ theme }) => theme.custom.fonts.colors.lightBlue};
+  color: ${({ theme }) => theme.fonts.colors.lightBlue};
 `;
 
 const ListItemCustom = styled(ListItem)`
@@ -24,7 +24,7 @@ const ListItemCustom = styled(ListItem)`
   display: flex;
   align-items: center;
   &:active {
-    background-color: ${({ theme }) => theme.custom.colors.blue};
+    background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
   }
 `;
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 
 const Text = styled.span`
   display: block;
-  color: ${({ theme }) => theme.custom.fonts.colors.lightBlue};
+  color: ${({ theme }) => theme.fonts.colors.lightBlue};
   font-size: 1.2rem;
 `;
 

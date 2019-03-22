@@ -10,9 +10,9 @@ const ListItemCustom = styled(ListItem)`
   display: flex;
   align-items: center;
   background-color: ${({ isSelected, theme }) =>
-    isSelected && theme.custom.colors.lightBlue};
+    isSelected && theme.colors.lightBlue};
   &:active {
-    background-color: ${({ theme }) => theme.custom.colors.blue};
+    background-color: ${({ theme }) => theme.colors.blue};
     color: #fff;
     [data-name='input-radio'] {
       background-color: transparent;

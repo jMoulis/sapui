@@ -1,8 +1,9 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import { List, ListItem } from 'components/commons/List';
 import { Icon } from 'components/commons/Icons';
 import Loader from 'components/commons/Loader/Loader';
@@ -75,34 +76,33 @@ const ListToolbarAction = ({
   menus,
   callback,
 }) => {
-  const [searchInputValue, setSearchInputValue] = useState(null);
   const [actionMenuStatus, setDisplayActionMenu] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState(null);
 
+  const handleSearchInput = async value => {
+    if (!value) {
+      refreshAction();
+    } else {
+      await AwesomeDebouncePromise(
+        () => callback(`$filter=${keyValue} eq '${value}'`),
+        500,
+      )();
+    }
+  };
   const handleSelectActionMenuOption = queries => {
-    // GET Categories?$skip=0&$top=20&$orderby=CategoryID%20desc,CategoryName%20desc&$filter=CategoryID%20le%20100
-    console.log(queries);
     const response = Object.values(queries)
       .filter(values => values !== null)
       .join('&');
     callback(response);
   };
 
-  useEffect(() => {}, [actionMenuStatus]);
-  useEffect(() => {
-    if (!searchInputValue) {
-      callback();
-    } else {
-      callback(`$filter=CategoryName eq '${searchInputValue}'`);
-    }
-  }, [searchInputValue, data]);
   return (
     <Root>
       <Header>{`${title} (${data && data.length})`}</Header>
       <ListToolbarWrapper>
         <Toolbar
           refreshAction={refreshAction}
-          onSearchChange={setSearchInputValue}
+          onSearchChange={handleSearchInput}
           setMenuSelected={setSelectedMenu}
           setDisplayActionMenu={() => setDisplayActionMenu(!actionMenuStatus)}
           menus={menus}

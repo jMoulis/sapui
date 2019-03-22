@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { keyframes } from '@emotion/core';
 import { useTranslation } from 'react-i18next';
 import FlexBox from 'components/Layout/FlexBox';
-import { BtnActions } from 'components/commons/Buttons';
+import { Button, BtnClose } from 'components/commons/Buttons';
 import { CloseIcon } from 'components/commons/Icons';
 
 const fadeIn = keyframes`
@@ -57,15 +57,14 @@ const Header = styled(FlexBox)`
   padding: 1rem;
 `;
 const Content = styled(FlexBox)`
-  border-top: 1px solid ${({ theme }) => theme.custom.colors.neutral.neutral2};
-  border-bottom: 1px solid
-    ${({ theme }) => theme.custom.colors.neutral.neutral2};
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral.neutral2};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.neutral2};
 `;
 const Footer = styled(FlexBox)`
   justify-content: flex-end;
   align-items: center;
   padding: 1rem;
-  background-color: ${({ theme }) => theme.custom.colors.action.secondary};
+  background-color: ${({ theme }) => theme.colors.action.secondary};
   & > :first-of-type {
     flex: 1;
   }
@@ -101,9 +100,9 @@ const Modal = ({ children, show, header, content, footer, close }) => {
           <>
             <Header>
               {header}
-              <BtnActions xs square action="danger" small onClick={close}>
+              <BtnClose square action="danger" small onClick={close}>
                 <CloseIcon />
-              </BtnActions>
+              </BtnClose>
             </Header>
             <Content column flex="1">
               {content}
@@ -114,19 +113,19 @@ const Modal = ({ children, show, header, content, footer, close }) => {
                   css={{ alignItems: 'center', justifyContent: 'flex-end' }}
                 >
                   {footer.submit && (
-                    <BtnActions small type="submit" onClick={footer.submit}>
+                    <Button small type="submit" onClick={footer.submit}>
                       {t('commons.ok')}
-                    </BtnActions>
+                    </Button>
                   )}
                   {footer.cancel && (
-                    <BtnActions
+                    <Button
                       action="neutral"
                       type="button"
                       small
                       onClick={footer.cancel}
                     >
                       {t('commons.cancel')}
-                    </BtnActions>
+                    </Button>
                   )}
                 </FlexBox>
               }

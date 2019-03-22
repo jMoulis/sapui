@@ -5,7 +5,7 @@
       "plugins": ["emotion", "@babel/plugin-proposal-class-properties"]
     },
     "development": {
-      "plugins": [["emotion", { "sourceMap": true }]]
+      "plugins": [["emotion", { "sourceMap": true }], "react-docgen"]
     }
   }
 }

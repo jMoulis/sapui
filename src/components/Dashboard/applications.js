@@ -1,10 +1,11 @@
 import React from 'react';
+import { CategoryDetail } from 'components/Categories/CategoryDetail';
 import CategoryApp from '../Categories/CategoryApp';
 import Appli2 from '../Appli2/Appli2';
 import Appli3 from '../Appli3/Appli3';
-import ListProducts from '../Categories/ListProducts';
 
 const Test3 = () => <span>Test3</span>;
+
 export default [
   {
     path: '/exo',
@@ -16,7 +17,7 @@ export default [
         path: '/exo/:category',
         title: 'Exercice 1',
         allowed: true,
-        component: ListProducts,
+        component: CategoryDetail,
       },
     ],
   },

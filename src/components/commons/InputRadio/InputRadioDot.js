@@ -10,7 +10,7 @@ const InputRadioDot = styled.div`
   right: 0;
   margin: auto;
   border-radius: 1rem;
-  background-color: ${({ theme }) => theme.custom.colors.blue};
+  background-color: ${({ theme }) => theme.colors.blue};
 `;
 
 export default InputRadioDot;

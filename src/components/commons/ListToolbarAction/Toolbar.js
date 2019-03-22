@@ -2,10 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { Icon } from 'components/commons/Icons';
+import { SearchInput } from 'components/commons/SearchInput';
 import ActionMenuIcons from './ActionMenuIcons';
-import { BtnActions } from '../Buttons';
-import { SearchInput } from '../SearchInput';
 
 const Root = styled.div`
   label: Toolbar;
@@ -29,11 +27,12 @@ const Toolbar = ({
   selectedMenu,
 }) => {
   const { t } = useTranslation();
-
   return (
     <Root>
       <SearchInput
-        onChange={event => onSearchChange(event.target.value)}
+        onChange={event => {
+          return onSearchChange(event.target.value);
+        }}
         reset={{ onClick: refreshAction }}
         placeholder={t('commons.search')}
       />
@@ -55,6 +54,11 @@ Toolbar.propTypes = {
   setDisplayActionMenu: PropTypes.func.isRequired,
   setMenuSelected: PropTypes.func.isRequired,
   menus: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
+  selectedMenu: PropTypes.string,
+};
+
+Toolbar.defaultProps = {
+  selectedMenu: null,
 };
 
 export default Toolbar;

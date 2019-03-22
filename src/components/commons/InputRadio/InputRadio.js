@@ -4,13 +4,13 @@ const InputRadio = styled.div`
   position: relative;
   height: 1.5rem;
   width: 1.5rem;
-  border: 0.2rem solid ${({ theme }) => theme.custom.colors.gray};
+  border: 0.2rem solid ${({ theme }) => theme.colors.gray};
   border-radius: 1rem;
   padding: 1px;
   margin-right: 0.5rem;
   cursor: pointer;
   &:hover {
-    border: 0.25rem solid ${({ theme }) => theme.custom.colors.blue};
+    border: 0.25rem solid ${({ theme }) => theme.colors.blue};
   }
 `;
 

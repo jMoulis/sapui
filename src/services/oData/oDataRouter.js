@@ -5,6 +5,7 @@ const oDataRouter = {
     return `${ROOT}/Categories?${(request && request.replace(/["]+/g, '')) ||
       ''}`;
   },
+  category: categoryId => `${ROOT}/Categories(${categoryId})`,
   categoryProducts: categoryId => `${ROOT}/Categories(${categoryId})/Products`,
 };
 

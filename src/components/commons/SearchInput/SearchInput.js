@@ -5,7 +5,7 @@ import { Icon } from 'components/commons/Icons';
 import { useTranslation } from 'react-i18next';
 import { FlexBox } from 'components/Layout';
 import InputText from './Input';
-import { BtnRegular, BtnGroup } from '../Buttons';
+import { Button, BtnGroup } from '../Buttons';
 
 const Root = styled(FlexBox)`
   margin: 0.5rem;
@@ -26,13 +26,13 @@ const BtnGroupCustom = styled(BtnGroup)`
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left: none;
-    border-color: ${({ theme }) => theme.custom.forms.element.borderColor};
-    background-color: ${({ theme }) => theme.custom.colors.neutral.neutral2};
+    border-color: ${({ theme }) => theme.forms.element.borderColor};
+    background-color: ${({ theme }) => theme.colors.neutral.neutral2};
     &:hover {
-      background-color: ${({ theme }) => theme.custom.colors.neutral.neutral4};
+      background-color: ${({ theme }) => theme.colors.neutral.neutral4};
     }
     &:active {
-      ${({ theme }) => theme.custom.buttons.actions['&:active']}
+      ${({ theme }) => theme.buttons.actions['&:active']}
       box-shadow: 0 0 0 0 transparent;
     }
   }
@@ -44,18 +44,17 @@ const SearchInput = ({ reset, placeholder, onChange }) => {
     <Root>
       <InputText type="text" placeholder={placeholder} onChange={onChange} />
       <BtnGroupCustom>
-        <BtnRegular square type="submit" title={t('commons.search')}>
+        <Button type="submit" title={t('commons.search')}>
           <Icon>&#xe00d;</Icon>
-        </BtnRegular>
+        </Button>
         {reset && (
-          <BtnRegular
-            square
+          <Button
             type="submit"
             title={t('commons.refresh')}
             onClick={reset.onClick}
           >
             <Icon>&#xe00a;</Icon>
-          </BtnRegular>
+          </Button>
         )}
       </BtnGroupCustom>
     </Root>

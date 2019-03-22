@@ -2,11 +2,9 @@ export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE';
 
-export const FETCH_CATEGORY_PRODUCTS = 'FETCH_CATEGORY_PRODUCTS';
-export const FETCH_CATEGORY_PRODUCTS_SUCCESS =
-  'FETCH_CATEGORY_PRODUCTS_SUCCESS';
-export const FETCH_CATEGORY_PRODUCTS_FAILURE =
-  'FETCH_CATEGORY_PRODUCTS_FAILURE';
+export const FETCH_CATEGORY = 'FETCH_CATEGORY';
+export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
+export const FETCH_CATEGORY_FAILURE = 'FETCH_CATEGORY_FAILURE';
 
 export const SET_QUERY = 'SET_QUERY';
 
@@ -15,7 +13,7 @@ const initialState = {
   loaded: false,
   loading: false,
   categories: null,
-  products: null,
+  category: null,
   query: null,
 };
 
@@ -43,26 +41,26 @@ const reducer = (state = initialState, action = {}) => {
         categories: null,
       };
     }
-    case FETCH_CATEGORY_PRODUCTS: {
+    case FETCH_CATEGORY: {
       return {
         ...state,
         loading: true,
       };
     }
-    case FETCH_CATEGORY_PRODUCTS_SUCCESS: {
+    case FETCH_CATEGORY_SUCCESS: {
       return {
         ...state,
         loading: false,
         loaded: true,
-        products: action.payload,
+        category: action.payload,
       };
     }
-    case FETCH_CATEGORY_PRODUCTS_FAILURE: {
+    case FETCH_CATEGORY_FAILURE: {
       return {
         ...state,
         loading: false,
         loaded: true,
-        products: null,
+        category: null,
       };
     }
     case SET_QUERY: {
@@ -91,16 +89,16 @@ export const fetchCategoriesFailure = error => ({
   payload: error,
 });
 
-export const fetchCategoryProducts = request => ({
-  type: FETCH_CATEGORY_PRODUCTS,
+export const fetchCategory = request => ({
+  type: FETCH_CATEGORY,
   request,
 });
-export const fetchCategoryProductsSuccess = payload => ({
-  type: FETCH_CATEGORY_PRODUCTS_SUCCESS,
+export const fetchCategorySuccess = payload => ({
+  type: FETCH_CATEGORY_SUCCESS,
   payload,
 });
-export const fetchCategoryProductsFailure = error => ({
-  type: FETCH_CATEGORY_PRODUCTS_FAILURE,
+export const fetchCategoryFailure = error => ({
+  type: FETCH_CATEGORY_FAILURE,
   payload: error,
 });
 

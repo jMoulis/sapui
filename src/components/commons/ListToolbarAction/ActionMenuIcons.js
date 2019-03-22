@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import iconLoader from 'components/commons/Icons/IconLoader';
-import { BtnRegular, BtnGroup } from 'components/commons/Buttons';
+import { Button, BtnGroup } from 'components/commons/Buttons';
 import { useTranslation } from 'react-i18next';
 import { Icon } from 'components/commons/Icons';
 
@@ -16,7 +16,7 @@ const ActionMenuIcons = ({
     <BtnGroup>
       {Object.keys(menus).map(key => {
         return (
-          <BtnRegular
+          <Button
             key={key}
             type="button"
             title={t(`commons.${key}`)}
@@ -29,7 +29,7 @@ const ActionMenuIcons = ({
             }}
           >
             <Icon dangerouslySetInnerHTML={{ __html: iconLoader[key] }} />
-          </BtnRegular>
+          </Button>
         );
       })}
     </BtnGroup>
