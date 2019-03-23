@@ -16,7 +16,7 @@ const Root = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4.6rem;
+  height: 6rem;
   background-color: ${({ theme }) => theme.colors.shell.shell1};
   padding: 1rem;
   & > * {

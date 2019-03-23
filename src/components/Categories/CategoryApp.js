@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
+import { Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
+import { RouteWithSubRoutes } from 'services/routesConfigurator';
+import { FlexBox } from 'components/Layout';
 import ListCategories from './ListCategories';
-import { RouteWithSubRoutes } from '../../services/routesConfigurator';
 
-const Flex = styled.div`
-  label: CategoryApp;
-  display: flex;
-  flex: 1;
-`;
+const bigSize = true;
 
 const CategoryApp = ({ routes }) => {
   const [displayCategory, setCatVisibility] = useState(true);
   return (
-    <Flex>
-      {displayCategory && <ListCategories />}
-      {routes.map((route, i) => (
-        <RouteWithSubRoutes key={i} {...route} callback={setCatVisibility} />
-      ))}
-    </Flex>
+    <>
+      <FlexBox css={{ position: 'relative' }}>
+        {!bigSize ? displayCategory && <ListCategories /> : <ListCategories />}
+        <Switch>
+          {/* <Route
+            exact
+            path="/exo"
+            render={() => <FlexBox css={{ flex: 1 }}>Tets</FlexBox>}
+          /> */}
+          {routes.map((route, i) => (
+            <RouteWithSubRoutes
+              key={i}
+              {...route}
+              callback={setCatVisibility}
+            />
+          ))}
+        </Switch>
+      </FlexBox>
+    </>
   );
 };
 

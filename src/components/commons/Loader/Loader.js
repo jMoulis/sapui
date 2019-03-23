@@ -76,9 +76,8 @@ const Root = styled.div`
   position: absolute;
   flex: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: 5rem;
   background-color: transparent;
   z-index: 1;
   top: 0;

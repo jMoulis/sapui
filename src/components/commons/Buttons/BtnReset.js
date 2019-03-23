@@ -12,10 +12,10 @@ const BtnReset = styled.button`
   user-select: none;
   white-space: nowrap;
   background-color: transparent;
-  border-radius: ${({ xs }) => {
+  /* border-radius: ${({ xs }) => {
     if (xs) return '2px';
     return '4px';
-  }};
+  }}; */
   font-weight: 400;
   padding: ${({ square, xs, lg, sm }) => {
     if (square) return '0';

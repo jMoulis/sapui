@@ -8,7 +8,7 @@ const InputText = styled.input`
   border-width: 1px;
   border-color: ${({ theme }) => theme.forms.element.borderColor};
   background-color: ${({ theme }) => theme.colors.action.secondary};
-  border-radius: 4px;
+  /* border-radius: 4px; */
   transition: border-color 0.125s;
   padding-left: 12px;
   padding-right: 12px;

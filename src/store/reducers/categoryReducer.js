@@ -6,6 +6,8 @@ export const FETCH_CATEGORY = 'FETCH_CATEGORY';
 export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
 export const FETCH_CATEGORY_FAILURE = 'FETCH_CATEGORY_FAILURE';
 
+export const RESET_CATEGORY = 'RESET_CATEGORY';
+
 export const SET_QUERY = 'SET_QUERY';
 
 const initialState = {
@@ -13,7 +15,11 @@ const initialState = {
   loaded: false,
   loading: false,
   categories: null,
-  category: null,
+  categoryQuery: {
+    loading: false,
+    category: null,
+    error: null,
+  },
   query: null,
 };
 
@@ -44,15 +50,21 @@ const reducer = (state = initialState, action = {}) => {
     case FETCH_CATEGORY: {
       return {
         ...state,
-        loading: true,
+        categoryQuery: {
+          loading: true,
+          category: null,
+          error: null,
+        },
       };
     }
     case FETCH_CATEGORY_SUCCESS: {
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        category: action.payload,
+        categoryQuery: {
+          loading: false,
+          loaded: true,
+          category: action.payload,
+        },
       };
     }
     case FETCH_CATEGORY_FAILURE: {
@@ -61,12 +73,24 @@ const reducer = (state = initialState, action = {}) => {
         loading: false,
         loaded: true,
         category: null,
+        error: action.payload,
       };
     }
     case SET_QUERY: {
       return {
         ...state,
         query: action.query,
+      };
+    }
+    case RESET_CATEGORY: {
+      return {
+        ...state,
+        categoryQuery: {
+          category: null,
+          loading: true,
+          loaded: false,
+          error: null,
+        },
       };
     }
     default:
@@ -100,6 +124,10 @@ export const fetchCategorySuccess = payload => ({
 export const fetchCategoryFailure = error => ({
   type: FETCH_CATEGORY_FAILURE,
   payload: error,
+});
+
+export const resetCategory = () => ({
+  type: RESET_CATEGORY,
 });
 
 export const setQuery = query => ({

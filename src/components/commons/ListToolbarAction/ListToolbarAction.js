@@ -31,33 +31,24 @@ const IconCustom = styled(Icon)`
   font-size: 1rem;
 `;
 
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  background-color: #eff4f9;
-  height: 4.8rem;
-  box-shadow: 0 0.125rem 0 0 #eff4f9, inset 0 -0.125rem 0 0 #d1e0ee;
-  padding-left: 3rem;
-  margin-bottom: 3rem;
-`;
-
 const ListToolbarWrapper = styled.div`
   position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 0 2rem;
+  /* padding: 0 2rem;
   ${({ theme }) => ({
     [theme.mediaQueries.sm]: {
       padding: 0,
     },
-  })}
+  })} */
 `;
 const ListCustom = styled(List)`
   display: flex;
   flex-direction: column;
   position: relative;
   border-top: 1px solid #bfbfbf;
+  min-height: 5rem;
 `;
 
 const Wrapper = styled.div`
@@ -69,7 +60,6 @@ const ListToolbarAction = ({
   data,
   keyId,
   keyValue,
-  title,
   refreshAction,
   isLoading,
   pathToDetail,
@@ -98,7 +88,6 @@ const ListToolbarAction = ({
 
   return (
     <Root>
-      <Header>{`${title} (${data && data.length})`}</Header>
       <ListToolbarWrapper>
         <Toolbar
           refreshAction={refreshAction}
@@ -111,7 +100,9 @@ const ListToolbarAction = ({
         <Wrapper>
           <ListCustom>
             {isLoading ? (
-              <Loader />
+              <li>
+                <Loader />
+              </li>
             ) : (
               data &&
               data.map(item => (

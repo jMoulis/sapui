@@ -5,15 +5,9 @@ import styled from '@emotion/styled';
 import ListToolbarAction from 'components/commons/ListToolbarAction/ListToolbarAction';
 import { useTranslation } from 'react-i18next';
 import { setQuery, fetchCategories } from 'store/reducers/categoryReducer';
+import { SubTitle } from 'components/commons/Headings';
 import types from 'components/commons/ListToolbarAction/types';
-
-const Root = styled.div`
-  label: CategoriesRoot;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  background-color: #fafafa;
-`;
+import Panel from '../commons/Panel/Panel';
 
 const sort = t => [
   {
@@ -96,14 +90,13 @@ const ListCategories = ({
   setQueryAction,
 }) => {
   const { t } = useTranslation();
-
   useEffect(() => {
     fetchCategoriesAction(query);
   }, [query]);
 
   if (error) return <span>Error</span>;
   return (
-    <Root>
+    <Panel title={`Categories (${categories && categories.length})`}>
       <ListToolbarAction
         data={categories}
         isLoading={loading}
@@ -119,11 +112,9 @@ const ListCategories = ({
           setQueryAction();
         }}
         pathToDetail="/exo/"
-        callback={values => {
-          setQueryAction(values);
-        }}
+        callback={values => setQueryAction(values)}
       />
-    </Root>
+    </Panel>
   );
 };
 

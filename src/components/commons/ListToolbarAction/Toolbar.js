@@ -10,7 +10,7 @@ const Root = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: transparent;
-  padding: 1rem;
+  padding: 1rem 0;
 `;
 
 const ActionWrapper = styled.div`
