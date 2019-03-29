@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import applications from './applications';
 
 const Tile = styled.div`
   width: 14.8rem;
@@ -28,22 +28,33 @@ const StyledLink = styled(NavLink)`
   text-decoration: none;
 `;
 
-export default function Dashboard() {
+const Dashboard = ({ config }) => {
+  console.log('click');
   return (
     <Root>
-      {applications.map(
-        application =>
-          application.allowed && (
-            <StyledLink
-              key={application.path}
-              to={{
-                pathname: application.path,
-              }}
-            >
-              <Tile>{application.title}</Tile>
-            </StyledLink>
-          ),
-      )}
+      {config &&
+        Object.values(config.router).map(
+          route =>
+            route.allowed && (
+              <StyledLink
+                key={route.path}
+                to={{
+                  pathname: route.path,
+                }}
+              >
+                <Tile>{route.title}</Tile>
+              </StyledLink>
+            ),
+        )}
     </Root>
   );
-}
+};
+
+const mapStateToProps = ({ hedgingReducer }) => ({
+  config: hedgingReducer.config,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(Dashboard);

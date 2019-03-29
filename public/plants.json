@@ -1,0 +1,1536 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0001')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0001')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0001",
+        "Version": "000",
+        "Name": "STOCKBREST",
+        "Date": null,
+        "Risk": "1",
+        "uri": "http://localhost:3000/plantsProducts.json"
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0010')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0010')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0010",
+        "Version": "000",
+        "Name": "DP LORIENT",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0010')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0010')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0010')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0010')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0010')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0015')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0015')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0015",
+        "Version": "000",
+        "Name": "SFDM DONGES",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0015')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0015')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0015')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0015')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0015')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0020')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0020')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0020",
+        "Version": "000",
+        "Name": "TOTAL VERN",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0020')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0020')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0020')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0020')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0020')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0025')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0025')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0025",
+        "Version": "000",
+        "Name": "PICOTY LA ROCHELLE PALLICE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0025')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0025')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0025')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0025')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0025')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0026')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0026')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0026",
+        "Version": "000",
+        "Name": "SDLP PALLICE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0026')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0026')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0026')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0026')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0026')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0030')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0030')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0030",
+        "Version": "000",
+        "Name": "EPG AMBÃS",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0030')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0030')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0030')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0030')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0030')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0031')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0031')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0031",
+        "Version": "000",
+        "Name": "DPA BASSENS",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0031')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0031')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0031')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0031')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0031')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0034')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0034')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0034",
+        "Version": "000",
+        "Name": "LBC Bayonne",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0034')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0034')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0034')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0034')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0034')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0040')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0040')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0040",
+        "Version": "000",
+        "Name": "ESSO TOULOUSE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0040')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0040')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0040')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0040')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0040')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0041')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0041')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0041",
+        "Version": "000",
+        "Name": "TOTAL TOULOUSE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0041')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0041')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0041')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0041')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0041')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0052')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0052')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0052",
+        "Version": "000",
+        "Name": "EP PORT LA NOUVELLE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0052')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0052')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0052')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0052')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0052')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0058')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0058')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0058",
+        "Version": "000",
+        "Name": "GDH FRONTIGNAN",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0058')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0058')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0058')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0058')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0058')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0060')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0060')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0060",
+        "Version": "000",
+        "Name": "DP FOS",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0060')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0060')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0060')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0060')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0060')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0067')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0067')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0067",
+        "Version": "000",
+        "Name": "DPCA PUGET",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0067')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0067')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0067')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0067')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0067')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0069')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0069')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0069",
+        "Version": "000",
+        "Name": "DPPV",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0069')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0069')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0069')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0069')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0069')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0070')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0070')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0070",
+        "Version": "000",
+        "Name": "EPL HERRIOT",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0070')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0070')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0070')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0070')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0070')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0073')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0073')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0073",
+        "Version": "000",
+        "Name": "SDSP ST PRIEST",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0073')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0073')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0073')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0073')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0073')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0075')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0075')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0075",
+        "Version": "000",
+        "Name": "DPHS ANNECY",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0075')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0075')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0075')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0075')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0075')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0081')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0081')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0081",
+        "Version": "000",
+        "Name": "EP DIJON",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0081')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0081')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0081')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0081')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0081')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0085')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0085')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0085",
+        "Version": "000",
+        "Name": "COURNON D'AUVERGNE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0085')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0085')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0085')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0085')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0085')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0090')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0090')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0090",
+        "Version": "000",
+        "Name": "RUBIS STOCKAGE VILLAGE NEUF",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0090')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0090')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0090')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0090')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0090')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0091')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0091')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0091",
+        "Version": "000",
+        "Name": "EP MULHOUSE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0091')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0091')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0091')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0091')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0091')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0095')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0095')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0095",
+        "Version": "000",
+        "Name": "SES STRASBOURG",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0095')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0095')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0095')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0095')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0095')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0096')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0096')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0096",
+        "Version": "000",
+        "Name": "WAGRAM TERMINAL",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0096')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0096')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0096')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0096')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0096')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0105')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0105')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0105",
+        "Version": "000",
+        "Name": "SFDM SAINT BAUSSANT",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0105')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0105')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0105')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0105')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0105')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0110')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0110')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0110",
+        "Version": "000",
+        "Name": "SFDM VATRY",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0110')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0110')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0110')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0110')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0110')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0113')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0113')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0113",
+        "Version": "000",
+        "Name": "DPC ST POL",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0113')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0113')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0113')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0113')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0113')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0129')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0129')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0129",
+        "Version": "000",
+        "Name": "DPC CAEN",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0129')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0129')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0129')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0129')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0129')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0140')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0140')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0140",
+        "Version": "000",
+        "Name": "RT ROUEN GQ",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0140')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0140')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0140')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0140')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0140')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0150')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0150')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0150",
+        "Version": "000",
+        "Name": "CCMP NANTERRE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0150')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0150')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0150')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0150')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0150')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0151')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0151')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0151",
+        "Version": "000",
+        "Name": "CIM GRIGNY",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0151')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0151')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0151')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0151')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0151')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0152')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0152')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0152",
+        "Version": "000",
+        "Name": "RM COIGNIÃRES",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0152')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0152')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0152')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0152')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0152')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0154')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0154')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0154",
+        "Version": "000",
+        "Name": "CCMP MITRY-MORY",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0154')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0154')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0154')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0154')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0154')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0155')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0155')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0155",
+        "Version": "000",
+        "Name": "SPVM VILLENEUVE LE ROI",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0155')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0155')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0155')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0155')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0155')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0157')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0157')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0157",
+        "Version": "000",
+        "Name": "SOGEPP GENNEVILLIERS",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0157')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0157')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0157')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0157')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0157')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0168')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0168')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0168",
+        "Version": "000",
+        "Name": "SFDM LA FERTÃ ALAIS",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0168')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0168')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0168')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0168')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0168')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0172')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0172')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0172",
+        "Version": "000",
+        "Name": "DP ST JEAN DE BRAYE",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0172')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0172')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0172')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0172')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0172')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0175')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0175')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0175",
+        "Version": "000",
+        "Name": "CCMP SAINT PIERRE DES CORPS",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0175')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0175')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0175')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0175')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0175')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0181')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0181')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "0181",
+        "Version": "000",
+        "Name": "SDPS LE MANS",
+        "Date": null,
+        "Risk": "1",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0181')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0181')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0181')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0181')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('0181')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('1FER')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('1FER')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "1FER",
+        "Version": "000",
+        "Name": "Transit Train",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('1FER')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('1FER')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('1FER')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('1FER')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('1FER')/Gantt"
+          }
+        }
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('3DMM')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('3DMM')",
+          "type": "ZHEDGING_SRV.Plant"
+        },
+        "PlantID": "3DMM",
+        "Version": "000",
+        "Name": "Transit Pipe DMM",
+        "Date": null,
+        "Risk": "3",
+        "Products": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('3DMM')/Products"
+          }
+        },
+        "PostLights": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('3DMM')/PostLights"
+          }
+        },
+        "Hedge": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('3DMM')/Hedge"
+          }
+        },
+        "Pricing": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('3DMM')/Pricing"
+          }
+        },
+        "Gantt": {
+          "__deferred": {
+            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Plants('3DMM')/Gantt"
+          }
+        }
+      }
+    ]
+  }
+}

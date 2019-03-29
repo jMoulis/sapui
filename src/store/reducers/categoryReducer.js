@@ -7,6 +7,7 @@ export const FETCH_CATEGORY_SUCCESS = 'FETCH_CATEGORY_SUCCESS';
 export const FETCH_CATEGORY_FAILURE = 'FETCH_CATEGORY_FAILURE';
 
 export const RESET_CATEGORY = 'RESET_CATEGORY';
+export const RESET_CATEGORIES = 'RESET_CATEGORIES';
 
 export const SET_QUERY = 'SET_QUERY';
 
@@ -93,6 +94,12 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
     }
+    case RESET_CATEGORIES: {
+      return {
+        ...state,
+        categories: null,
+      };
+    }
     default:
       return {
         ...state,
@@ -128,6 +135,10 @@ export const fetchCategoryFailure = error => ({
 
 export const resetCategory = () => ({
   type: RESET_CATEGORY,
+});
+
+export const resetCategories = () => ({
+  type: RESET_CATEGORIES,
 });
 
 export const setQuery = query => ({

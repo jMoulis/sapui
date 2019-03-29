@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import styled from '@emotion/styled';
 import ListToolbarAction from 'components/commons/ListToolbarAction/ListToolbarAction';
 import { useTranslation } from 'react-i18next';
 import { setQuery, fetchCategories } from 'store/reducers/categoryReducer';
-import { SubTitle } from 'components/commons/Headings';
 import types from 'components/commons/ListToolbarAction/types';
 import Panel from '../commons/Panel/Panel';
 
@@ -111,7 +109,7 @@ const ListCategories = ({
         refreshAction={() => {
           setQueryAction();
         }}
-        pathToDetail="/exo/"
+        pathToDetail="/category/"
         callback={values => setQueryAction(values)}
       />
     </Panel>

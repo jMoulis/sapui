@@ -1,0 +1,35 @@
+{
+  "entities": {
+    "plants": {
+      "label": "plants",
+      "entity": "Plants",
+      "displayField": "Name",
+      "uri": "http://localhost:3000/plants.json",
+      "initMenu": true
+    },
+    "products": {
+      "label": "products",
+      "entity": "Products",
+      "displayField": "Name",
+      "uri": "http://localhost:3000/products.json",
+      "initMenu": true
+    },
+    "posts": {
+      "label": "posts",
+      "entity": "Posts",
+      "displayField": "OrderID",
+      "uri": "http://localhost:3000/plantsProductsPosts.json"
+    }
+  },
+  "router": {
+    "hedging": {
+      "title": "Hedging",
+      "allowed": true,
+      "path": "/hedging",
+      "component": "Hedging",
+      "componentPath": "Hedging/Hedging.js",
+      "routes": []
+    }
+  },
+  "initNavMenu": ["plants", "products"]
+}

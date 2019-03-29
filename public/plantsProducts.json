@@ -10,34 +10,10 @@
         "ProductID": "000000000000000102",
         "Version": "000",
         "Name": "SUPERCARBURANT SANS PLOMB 98 BASE",
-        "PlantID": "",
+        "PlantID": "0001",
         "Date": null,
-        "Risk": "2",
-        "Plants": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000102')/Plants"
-          }
-        },
-        "PostLights": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000102')/PostLights"
-          }
-        },
-        "Hedge": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000102')/Hedge"
-          }
-        },
-        "Pricing": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000102')/Pricing"
-          }
-        },
-        "Gantt": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000102')/Gantt"
-          }
-        }
+        "Risk": "3",
+        "uri": "http://localhost:3000/plantsProductsPosts.json"
       },
       {
         "__metadata": {
@@ -48,9 +24,9 @@
         "ProductID": "000000000000000103",
         "Version": "000",
         "Name": "SUPERCARBURANT SANS PLOMB 95 BASE",
-        "PlantID": "",
+        "PlantID": "0001",
         "Date": null,
-        "Risk": "3",
+        "Risk": "1",
         "Plants": {
           "__deferred": {
             "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000103')/Plants"
@@ -86,7 +62,7 @@
         "ProductID": "000000000000000106",
         "Version": "000",
         "Name": "ETHANOL",
-        "PlantID": "",
+        "PlantID": "0001",
         "Date": null,
         "Risk": "3",
         "Plants": {
@@ -117,158 +93,6 @@
       },
       {
         "__metadata": {
-          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000111')",
-          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000111')",
-          "type": "ZHEDGING_SRV.Product"
-        },
-        "ProductID": "000000000000000111",
-        "Version": "000",
-        "Name": "Inhibiteur de corrosion",
-        "PlantID": "",
-        "Date": null,
-        "Risk": "3",
-        "Plants": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000111')/Plants"
-          }
-        },
-        "PostLights": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000111')/PostLights"
-          }
-        },
-        "Hedge": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000111')/Hedge"
-          }
-        },
-        "Pricing": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000111')/Pricing"
-          }
-        },
-        "Gantt": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000111')/Gantt"
-          }
-        }
-      },
-      {
-        "__metadata": {
-          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000160')",
-          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000160')",
-          "type": "ZHEDGING_SRV.Product"
-        },
-        "ProductID": "000000000000000160",
-        "Version": "000",
-        "Name": "ETHANOL double comptage",
-        "PlantID": "",
-        "Date": null,
-        "Risk": "1",
-        "Plants": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000160')/Plants"
-          }
-        },
-        "PostLights": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000160')/PostLights"
-          }
-        },
-        "Hedge": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000160')/Hedge"
-          }
-        },
-        "Pricing": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000160')/Pricing"
-          }
-        },
-        "Gantt": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000160')/Gantt"
-          }
-        }
-      },
-      {
-        "__metadata": {
-          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000200')",
-          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000200')",
-          "type": "ZHEDGING_SRV.Product"
-        },
-        "ProductID": "000000000000000200",
-        "Version": "000",
-        "Name": "GAZOLE MOTEUR",
-        "PlantID": "",
-        "Date": null,
-        "Risk": "1",
-        "Plants": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000200')/Plants"
-          }
-        },
-        "PostLights": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000200')/PostLights"
-          }
-        },
-        "Hedge": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000200')/Hedge"
-          }
-        },
-        "Pricing": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000200')/Pricing"
-          }
-        },
-        "Gantt": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000200')/Gantt"
-          }
-        }
-      },
-      {
-        "__metadata": {
-          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000201')",
-          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000201')",
-          "type": "ZHEDGING_SRV.Product"
-        },
-        "ProductID": "000000000000000201",
-        "Version": "000",
-        "Name": "ADDITIF GAZOLE MOTEUR",
-        "PlantID": "",
-        "Date": null,
-        "Risk": "3",
-        "Plants": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000201')/Plants"
-          }
-        },
-        "PostLights": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000201')/PostLights"
-          }
-        },
-        "Hedge": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000201')/Hedge"
-          }
-        },
-        "Pricing": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000201')/Pricing"
-          }
-        },
-        "Gantt": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000201')/Gantt"
-          }
-        }
-      },
-      {
-        "__metadata": {
           "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000203')",
           "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000203')",
           "type": "ZHEDGING_SRV.Product"
@@ -276,7 +100,7 @@
         "ProductID": "000000000000000203",
         "Version": "000",
         "Name": "GAZOLE Biofree",
-        "PlantID": "",
+        "PlantID": "0001",
         "Date": null,
         "Risk": "1",
         "Plants": {
@@ -314,9 +138,9 @@
         "ProductID": "000000000000000206",
         "Version": "000",
         "Name": "EMHV",
-        "PlantID": "",
+        "PlantID": "0001",
         "Date": null,
-        "Risk": "3",
+        "Risk": "1",
         "Plants": {
           "__deferred": {
             "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000206')/Plants"
@@ -352,7 +176,7 @@
         "ProductID": "000000000000000300",
         "Version": "000",
         "Name": "FIOUL DOMESTIQUE BASE",
-        "PlantID": "",
+        "PlantID": "0001",
         "Date": null,
         "Risk": "3",
         "Plants": {
@@ -390,7 +214,7 @@
         "ProductID": "000000000000000301",
         "Version": "000",
         "Name": "COLORANT FIOUL DOMESTIQUE",
-        "PlantID": "",
+        "PlantID": "0001",
         "Date": null,
         "Risk": "3",
         "Plants": {
@@ -416,44 +240,6 @@
         "Gantt": {
           "__deferred": {
             "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000301')/Gantt"
-          }
-        }
-      },
-      {
-        "__metadata": {
-          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000312')",
-          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000312')",
-          "type": "ZHEDGING_SRV.Product"
-        },
-        "ProductID": "000000000000000312",
-        "Version": "000",
-        "Name": "FIOUL DOMESTIQUE GRAND FROID (TLF-15)",
-        "PlantID": "",
-        "Date": null,
-        "Risk": "",
-        "Plants": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000312')/Plants"
-          }
-        },
-        "PostLights": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000312')/PostLights"
-          }
-        },
-        "Hedge": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000312')/Hedge"
-          }
-        },
-        "Pricing": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000312')/Pricing"
-          }
-        },
-        "Gantt": {
-          "__deferred": {
-            "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/Products('000000000000000312')/Gantt"
           }
         }
       }

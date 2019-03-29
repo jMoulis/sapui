@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
@@ -49,7 +50,6 @@ const CategoryDetail = ({
     }
     return () => {
       resetCategoryAction();
-      callback(true);
     };
   }, [categoryId]);
 
@@ -67,7 +67,7 @@ const CategoryDetail = ({
             /> */}
             <Title>{category.CategoryName}</Title>
             <FlexBox css={{ alignItems: 'center', marginRight: '1rem' }}>
-              <Button action="danger" onClick={() => history.push('/exo')}>
+              <Button action="danger" onClick={() => history.push('/category')}>
                 X
               </Button>
               <Button>Partager</Button>
@@ -89,6 +89,22 @@ const CategoryDetail = ({
       )}
     </Panel>
   );
+};
+
+CategoryDetail.propTypes = {
+  callback: PropTypes.func,
+  category: PropTypes.shape({}),
+  fetchCategoryAction: PropTypes.func.isRequired,
+  match: PropTypes.shape({}).isRequired,
+  loading: PropTypes.bool,
+  history: PropTypes.shape({}).isRequired,
+  resetCategoryAction: PropTypes.func.isRequired,
+};
+
+CategoryDetail.defaultProps = {
+  callback: PropTypes.func,
+  category: PropTypes.shape({}),
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = ({ categoryReducer }) => ({

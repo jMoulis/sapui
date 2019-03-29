@@ -1,0 +1,38 @@
+{
+  "d": {
+    "results": [
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/PostsLights(OrderID='4500032612',PostID='00010')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/PostsLights(OrderID='4500032612',PostID='00010')",
+          "type": "ZHEDGING_SRV.PostLight"
+        },
+        "OrderID": "4500032612",
+        "PostID": "00010",
+        "Version": "000",
+        "ProductID": "000000000000000102",
+        "PlantID": "0001",
+        "Risk": "3",
+        "Date": null,
+        "OriginPlantID": "",
+        "OriginProductID": ""
+      },
+      {
+        "__metadata": {
+          "id": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/PostsLights(OrderID='4500033336',PostID='00010')",
+          "uri": "https://lu2fp.siplec.com:44300/sap/opu/odata/sap/ZHEDGING_SRV/PostsLights(OrderID='4500033336',PostID='00010')",
+          "type": "ZHEDGING_SRV.PostLight"
+        },
+        "OrderID": "4500033336",
+        "PostID": "00010",
+        "Version": "000",
+        "ProductID": "000000000000000102",
+        "PlantID": "0001",
+        "Risk": "2",
+        "Date": null,
+        "OriginPlantID": "",
+        "OriginProductID": ""
+      }
+    ]
+  }
+}

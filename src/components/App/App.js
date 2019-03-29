@@ -1,52 +1,62 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { Suspense } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import Navbar from 'components/Layout/Navbar';
 import Main from 'components/Layout/Main';
 import { Dashboard } from 'components/Dashboard';
-import applications from 'components/Dashboard/applications';
 import CompanyLogo from 'assets/images/logo.jpg';
+import { RouteWithSubRoutes } from 'services/routesConfigurator';
+import { fetchConfig } from '../Hedging/store/reducers/hedgingReducer';
+import NotFound from '../NotFound/NotFound';
 
-function RouteWithSubRoutes(route) {
-  return (
-    <Route
-      path={route.path}
-      render={props => {
-        return <route.component {...props} {...route} />;
-      }}
-    />
-  );
-}
+const App = ({ fetchConfigAction, loading, config, match }) => {
+  const [routes, setRoutes] = useState([]);
+  useEffect(() => {
+    fetchConfigAction();
+  }, []);
 
-// eslint-disable-next-line no-unused-vars
-function setTitle(pathame) {
-  const appPath = pathame.split('/')[1];
-  return applications.find(application => {
-    return application.path === `/${appPath}`;
-  });
-}
+  useEffect(() => {
+    if (config && !loading) {
+      const renderRoute = () => {
+        try {
+          Object.values(config.router).map(value => {
+            setRoutes(prevRoutes => [
+              ...prevRoutes,
+              {
+                ...value,
+              },
+            ]);
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      renderRoute();
+    }
+  }, [config, match]);
 
-// eslint-disable-next-line no-unused-vars
-const App = ({ location: { pathname } }) => {
-  // const appTitle = setTitle(pathname);
   const company = {
     name: 'FakeCompany',
     logo: CompanyLogo,
   };
+  if (loading) return <span>Loader</span>;
+  if (!config) return <span>Loader</span>;
+
   return (
     <Main>
       <Navbar company={company} />
-      <Switch>
-        <Suspense fallback={<></>}>
+      <Suspense fallback={<></>}>
+        <Switch>
           <Route exact path="/" render={router => <Dashboard {...router} />} />
-          {applications.map(application => {
-            return (
-              <RouteWithSubRoutes {...application} key={application.path} />
-            );
+          {Object.values(config.router).map(route => {
+            console.log('go To route', route);
+            return <RouteWithSubRoutes {...route} key={route.path} />;
           })}
-        </Suspense>
-      </Switch>
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </Main>
   );
 };
@@ -55,4 +65,19 @@ App.propTypes = {
   location: PropTypes.object.isRequired,
 };
 
-export default withRouter(App);
+const mapStateToProps = ({ hedgingReducer }) => ({
+  config: hedgingReducer.config,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchConfigAction: () => {
+    dispatch(fetchConfig());
+  },
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(App),
+);
