@@ -2,10 +2,9 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 const DynamicComponent = value => {
-  console.log('From dynamic content', value);
   try {
     const Module = React.lazy(() =>
-      import(`../components/${value.componentPath}`),
+      import(`../components/${value.componentPath}.js`),
     );
     return <Module {...value} />;
   } catch (error) {

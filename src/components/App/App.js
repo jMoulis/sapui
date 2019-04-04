@@ -10,32 +10,12 @@ import CompanyLogo from 'assets/images/logo.jpg';
 import { RouteWithSubRoutes } from 'services/routesConfigurator';
 import { fetchConfig } from '../Hedging/store/reducers/hedgingReducer';
 import NotFound from '../NotFound/NotFound';
+import axios from 'axios';
 
 const App = ({ fetchConfigAction, loading, config, match }) => {
-  const [routes, setRoutes] = useState([]);
   useEffect(() => {
     fetchConfigAction();
   }, []);
-
-  useEffect(() => {
-    if (config && !loading) {
-      const renderRoute = () => {
-        try {
-          Object.values(config.router).map(value => {
-            setRoutes(prevRoutes => [
-              ...prevRoutes,
-              {
-                ...value,
-              },
-            ]);
-          });
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      renderRoute();
-    }
-  }, [config, match]);
 
   const company = {
     name: 'FakeCompany',
@@ -47,11 +27,45 @@ const App = ({ fetchConfigAction, loading, config, match }) => {
   return (
     <Main>
       <Navbar company={company} />
+      <button
+        type="button"
+        onClick={() => {
+          axios({
+            method: 'POST',
+            url: '/api/v1/plants',
+            data: { name: 'Dépôt 2' },
+          }).then(response => console.log(response));
+        }}
+      >
+        Add plant
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          axios({
+            method: 'PATCH',
+            url: '/api/v1/plants/5ca459ed6ad238080a4e391a',
+            data: { name: 'Dépôt 4' },
+          }).then(response => console.log(response));
+        }}
+      >
+        Edit plant
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          axios({
+            method: 'DELETE',
+            url: '/api/v1/plants/5ca459ed6ad238080a4e391a',
+          }).then(response => console.log(response));
+        }}
+      >
+        Delete plant
+      </button>
       <Suspense fallback={<></>}>
         <Switch>
           <Route exact path="/" render={router => <Dashboard {...router} />} />
           {Object.values(config.router).map(route => {
-            console.log('go To route', route);
             return <RouteWithSubRoutes {...route} key={route.path} />;
           })}
           <Route component={NotFound} />

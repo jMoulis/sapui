@@ -29,12 +29,11 @@ const StyledLink = styled(NavLink)`
 `;
 
 const Dashboard = ({ config }) => {
-  console.log('click');
   return (
     <Root>
       {config &&
-        Object.values(config.router).map(
-          route =>
+        Object.values(config.router).map(route => {
+          return (
             route.allowed && (
               <StyledLink
                 key={route.path}
@@ -44,8 +43,9 @@ const Dashboard = ({ config }) => {
               >
                 <Tile>{route.title}</Tile>
               </StyledLink>
-            ),
-        )}
+            )
+          );
+        })}
     </Root>
   );
 };

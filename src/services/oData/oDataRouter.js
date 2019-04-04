@@ -7,7 +7,7 @@ const oDataRouter = {
   },
   category: categoryId => `${ROOT}/Categories(${categoryId})`,
   categoryProducts: categoryId => `${ROOT}/Categories(${categoryId})/Products`,
-  config: () => 'http://localhost:3000/configuration.json',
+  config: () => 'http://localhost:3000/api/v1/config',
   plants: () => 'http://localhost:3000/plants.json',
   navigation: url => url,
 };

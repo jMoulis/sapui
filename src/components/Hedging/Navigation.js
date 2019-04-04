@@ -1,45 +1,42 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navigation = ({
-  datas,
-  setBreadCrumbs,
-  fetchNavigationAction,
   config,
-  initNavMenu,
+  callback,
+  setRootUrl,
+  rootUrl,
+  navQuery,
+  location,
 }) => {
-  const [selectedEntity, setEntity] = useState(null);
-  if (initNavMenu)
-    return (
-      <ul>
-        {Object.values(config.entities).map(menu => {
-          console.log(menu);
-          if (!menu.initMenu) return null;
-          return (
-            <li
-              onClick={() => {
-                // setBreadCrumbs(prevCrumbs => [...prevCrumbs, data]);
-                // setEntity(config.entities[menu].label);
-                fetchNavigationAction(menu.uri);
-              }}
-            >
-              {menu.entity}
-            </li>
-          );
-        })}
-      </ul>
-    );
-  return (
+  return navQuery.datas ? (
     <ul>
-      {datas.map(data => {
+      {navQuery.datas.map((route, i) => {
         return (
-          <li
+          <Link
+            to={`${rootUrl}/${route.Name}`}
             onClick={() => {
-              // setBreadCrumbs(prevCrumbs => [...prevCrumbs, data]);
-              fetchNavigationAction(data.uri);
+              callback(route.uri);
             }}
-          />
+          >
+            {route.Name}
+          </Link>
+        );
+      })}
+    </ul>
+  ) : (
+    <ul>
+      {config.router.hedging.routes.map((route, i) => {
+        return (
+          <Link
+            to={route.path}
+            onClick={() => {
+              callback(route.uri);
+              return setRootUrl(route.path);
+            }}
+          >
+            {route.title}
+          </Link>
         );
       })}
     </ul>

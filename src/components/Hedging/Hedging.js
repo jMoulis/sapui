@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { Link, Switch } from 'react-router-dom';
+import { NavLink, Switch } from 'react-router-dom';
 import { Loader } from 'components/commons/Loader';
 import { RouteWithSubRoutes } from 'services/routesConfigurator';
 import { connect } from 'react-redux';
@@ -14,18 +14,24 @@ const Body = styled.section``;
 const Footer = styled.footer``;
 
 const Hedging = ({
-  match,
+  location,
   routes,
   fetchConfigAction,
   loading,
   config,
   fetchNavigationAction,
   navQuery,
+  history,
 }) => {
   const [breadCrumbs, setBreadCrumbs] = useState([]);
-
+  const [rootUrl, setRootUrl] = useState('');
   if (loading) return <Loader />;
   if (!config) return <Loader />;
+  useEffect(() => {
+    const entity = location.pathname.split();
+    console.log(config);
+    // fetchNavigationAction(location.pathname);
+  }, [location.pathname]);
   return (
     <>
       <BreadCrumbs>
@@ -40,18 +46,26 @@ const Hedging = ({
         <select>
           <option>31.05.2018</option>
         </select>
-        <ul>
-          {config.router.hedging.routes.map(route => (
-            <li>
-              <Link to={route.path}>{route.title}</Link>
-            </li>
-          ))}
-        </ul>
       </LeftPanel>
       <Body>
+        <Navigation
+          config={config}
+          callback={fetchNavigationAction}
+          setRootUrl={setRootUrl}
+          rootUrl={rootUrl}
+          navQuery={navQuery}
+        />
         <Switch>
           {config.router.hedging.routes.map((route, i) => {
-            return <RouteWithSubRoutes key={i} {...route} />;
+            return (
+              <RouteWithSubRoutes
+                key={i}
+                config={config}
+                {...route}
+                callback={fetchNavigationAction}
+                datas={navQuery.datas}
+              />
+            );
           })}
         </Switch>
       </Body>
