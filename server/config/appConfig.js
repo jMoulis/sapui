@@ -47,16 +47,9 @@ module.exports = {
         {
           title: 'Products',
           path: '/hedging/products',
-          uri: '/products.json',
+          uri: '/api/v1/products',
           component: 'HedgeContent',
           componentPath: 'Hedging/HedgeContent',
-        },
-        {
-          title: 'Posts',
-          path: '/hedging/plants/posts',
-          component: 'HedgeContent',
-          componentPath: 'Hedging/HedgeContent',
-          uri: '/plantsProductsPosts.json',
         },
       ],
     },

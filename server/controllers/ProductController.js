@@ -1,5 +1,6 @@
 const Api = require('../services/Api');
 const Product = require('../models/Product');
+const Plant = require('../models/Plant');
 
 module.exports = {
   fetchAll: async (req, res) => {
@@ -17,9 +18,17 @@ module.exports = {
   create: async (req, res) => {
     const api = new Api(res);
     try {
-      const newPlant = await Product.create(req.body);
+      const newProduct = await Product.create(req.body);
+      await Plant.updateOne(
+        { _id: req.body.plantID },
+        {
+          $push: {
+            products: newProduct._id,
+          },
+        },
+      );
       api.success({
-        data: newPlant,
+        data: newProduct,
         collection: 'products',
       });
     } catch (error) {
@@ -29,10 +38,10 @@ module.exports = {
   fetchOne: async (req, res) => {
     const api = new Api(res);
     try {
-      const plant = await Product.findOne({ _id: req.params.id });
-      if (!plant) return api.failure({ message: 'No Product found' }, 404);
+      const product = await Product.findOne({ _id: req.params.id });
+      if (!product) return api.failure({ message: 'No Product found' }, 404);
       return api.success({
-        data: plant,
+        data: product,
         collection: 'products',
       });
     } catch (error) {
@@ -42,13 +51,13 @@ module.exports = {
   edit: async (req, res) => {
     const api = new Api(res);
     try {
-      const plant = await Product.findOneAndUpdate(
+      const product = await Product.findOneAndUpdate(
         { _id: req.params.id },
         { ...req.body },
       );
-      if (!plant) return api.failure({ message: 'No Product found' }, 404);
+      if (!product) return api.failure({ message: 'No Product found' }, 404);
       return api.success({
-        data: plant,
+        data: product,
         collection: 'products',
       });
     } catch (error) {
@@ -58,10 +67,10 @@ module.exports = {
   delete: async (req, res) => {
     const api = new Api(res);
     try {
-      const plant = await Product.findOneAndRemove({ _id: req.params.id });
-      if (!plant) return api.failure({ message: 'No Product found' }, 404);
+      const product = await Product.findOneAndRemove({ _id: req.params.id });
+      if (!product) return api.failure({ message: 'No Product found' }, 404);
       return api.success({
-        data: plant,
+        data: product,
         collection: 'products',
       });
     } catch (error) {

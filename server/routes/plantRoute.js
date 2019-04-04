@@ -10,4 +10,6 @@ module.exports = app => {
     .patch(Plant.edit)
     .get(Plant.fetchOne)
     .delete(Plant.delete);
+  app.get('/api/v1/plants/:id/products', Plant.fetchProducts);
+  app.get('/api/v1/plants/:id/posts', Plant.fetchPosts);
 };

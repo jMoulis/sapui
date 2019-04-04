@@ -10,10 +10,13 @@ export default store => next => action => {
   switch (action.type) {
     case FETCH_NAVIGATION: {
       axios(oDataRouter.navigation(action.entity))
-        .then(({ data: { d } }) => {
-          store.dispatch(fetchNavigationSuccess(d.results));
+        .then(({ data }) => {
+          store.dispatch(fetchNavigationSuccess(data));
         })
-        .catch(error => store.dispatch(fetchNavigationFailure(error.response)));
+        .catch(error => {
+          console.error('From Navifation Api', error.message);
+          return store.dispatch(fetchNavigationFailure(error.response));
+        });
       break;
     }
     default:

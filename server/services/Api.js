@@ -4,8 +4,7 @@ module.exports = class Api {
     this.res = res;
   }
 
-  success({ data, collection }, code) {
-    console.log(data);
+  success({ data, collection, navigation, parentId }, code) {
     // Check if data is an array of document
     // Because the type receveid is always an object, must check through available method
     if (typeof data.map === 'function') {
@@ -13,6 +12,9 @@ module.exports = class Api {
         data.map(item => ({
           ...item._doc,
           uris: this._buildUris(collection, item._id),
+          navigation:
+            navigation &&
+            `/api/v1/${collection}/${parentId || item._id}/${navigation}`,
         })),
       );
     }
@@ -31,9 +33,9 @@ module.exports = class Api {
 
   _buildUris(collection, id) {
     return {
-      post: `api/v1/${collection}/${id}`,
-      get: `api/v1/${collection}/${id}`,
-      patch: `api/v1/${collection}/${id}`,
+      post: `/api/v1/${collection}/${id}`,
+      get: `/api/v1/${collection}/${id}`,
+      patch: `/api/v1/${collection}/${id}`,
     };
   }
 };

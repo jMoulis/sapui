@@ -1,5 +1,7 @@
 const Api = require('../services/Api');
 const Post = require('../models/Post');
+const Plant = require('../models/Plant');
+const Product = require('../models/Product');
 
 module.exports = {
   fetchAll: async (req, res) => {
@@ -17,9 +19,25 @@ module.exports = {
   create: async (req, res) => {
     const api = new Api(res);
     try {
-      const newPlant = await Post.create(req.body);
+      const newPost = await Post.create(req.body);
+      await Plant.updateOne(
+        { _id: req.body.plantId },
+        {
+          $push: {
+            posts: newPost._id,
+          },
+        },
+      );
+      await Product.updateOne(
+        { _id: req.body.productId },
+        {
+          $push: {
+            posts: newPost._id,
+          },
+        },
+      );
       api.success({
-        data: newPlant,
+        data: newPost,
         collection: 'posts',
       });
     } catch (error) {
@@ -29,10 +47,10 @@ module.exports = {
   fetchOne: async (req, res) => {
     const api = new Api(res);
     try {
-      const plant = await Post.findOne({ _id: req.params.id });
-      if (!plant) return api.failure({ message: 'No post found' }, 404);
+      const post = await Post.findOne({ _id: req.params.id });
+      if (!post) return api.failure({ message: 'No post found' }, 404);
       api.success({
-        data: plant,
+        data: post,
         collection: 'posts',
       });
     } catch (error) {
@@ -42,14 +60,14 @@ module.exports = {
   edit: async (req, res) => {
     const api = new Api(res);
     try {
-      const plant = await Post.findOneAndUpdate(
+      const post = await Post.findOneAndUpdate(
         { _id: req.params.id },
         { ...req.body },
       );
-      if (!plant) return api.failure({ message: 'No post found' }, 404);
+      if (!post) return api.failure({ message: 'No post found' }, 404);
       api.success(
         {
-          data: plant,
+          data: post,
           collection: 'posts',
         },
         204,

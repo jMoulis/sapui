@@ -23,7 +23,8 @@
     "no-useless-computed-key": "off",
     "no-absolute-path": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/forbid-prop-types": "off"
   },
   "settings": {
     "import/resolver": {

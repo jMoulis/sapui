@@ -1,18 +1,21 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import Navbar from 'components/Layout/Navbar';
-import Main from 'components/Layout/Main';
+import { Navbar, Main, Footer } from 'components/Layout';
 import { Dashboard } from 'components/Dashboard';
 import CompanyLogo from 'assets/images/logo.jpg';
 import { RouteWithSubRoutes } from 'services/routesConfigurator';
-import { fetchConfig } from '../Hedging/store/reducers/hedgingReducer';
+import styled from '@emotion/styled';
+import { fetchConfig } from 'components/Hedging/store/reducers/hedgingReducer';
 import NotFound from '../NotFound/NotFound';
-import axios from 'axios';
 
-const App = ({ fetchConfigAction, loading, config, match }) => {
+const Wrapper = styled.div`
+  min-height: 90vh;
+  display: flex;
+`;
+const App = ({ fetchConfigAction, config }) => {
   useEffect(() => {
     fetchConfigAction();
   }, []);
@@ -21,64 +24,44 @@ const App = ({ fetchConfigAction, loading, config, match }) => {
     name: 'FakeCompany',
     logo: CompanyLogo,
   };
-  if (loading) return <span>Loader</span>;
+
   if (!config) return <span>Loader</span>;
 
   return (
     <Main>
       <Navbar company={company} />
-      <button
-        type="button"
-        onClick={() => {
-          axios({
-            method: 'POST',
-            url: '/api/v1/plants',
-            data: { name: 'Dépôt 2' },
-          }).then(response => console.log(response));
-        }}
-      >
-        Add plant
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          axios({
-            method: 'PATCH',
-            url: '/api/v1/plants/5ca459ed6ad238080a4e391a',
-            data: { name: 'Dépôt 4' },
-          }).then(response => console.log(response));
-        }}
-      >
-        Edit plant
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          axios({
-            method: 'DELETE',
-            url: '/api/v1/plants/5ca459ed6ad238080a4e391a',
-          }).then(response => console.log(response));
-        }}
-      >
-        Delete plant
-      </button>
-      <Suspense fallback={<></>}>
-        <Switch>
-          <Route exact path="/" render={router => <Dashboard {...router} />} />
-          {Object.values(config.router).map(route => {
-            return <RouteWithSubRoutes {...route} key={route.path} />;
-          })}
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
+      <Wrapper>
+        <Suspense fallback={<></>}>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={router => <Dashboard {...router} />}
+            />
+            {Object.values(config.router).map(route => {
+              return <RouteWithSubRoutes {...route} key={route.path} />;
+            })}
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </Wrapper>
+      <Footer />
     </Main>
   );
 };
 
 App.propTypes = {
-  location: PropTypes.object.isRequired,
+  config: PropTypes.shape({
+    entities: PropTypes.object,
+    router: PropTypes.object,
+    initNavMenu: PropTypes.arrayOf(PropTypes.string),
+  }),
+  fetchConfigAction: PropTypes.func.isRequired,
 };
 
+App.defaultProps = {
+  config: null,
+};
 const mapStateToProps = ({ hedgingReducer }) => ({
   config: hedgingReducer.config,
 });

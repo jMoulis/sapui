@@ -19,6 +19,14 @@ class Helpers {
       return order === 'ASC' ? asc : desc;
     });
   };
+
+  slugify = str =>
+    str
+      .toString()
+      .replace(' ', '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
 }
 
 export default Helpers;

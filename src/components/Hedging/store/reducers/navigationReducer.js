@@ -2,6 +2,8 @@ export const FETCH_NAVIGATION = 'FETCH_NAVIGATION';
 export const FETCH_NAVIGATION_SUCCESS = 'FETCH_NAVIGATION_SUCCESS';
 export const FETCH_NAVIGATION_FAILURE = 'FETCH_NAVIGATION_FAILURE';
 
+export const RESET_NAVIGATION = 'RESET_NAVIGATION';
+
 const initialState = {
   navQuery: {
     datas: null,
@@ -27,6 +29,16 @@ const reducer = (state = initialState, action = {}) => {
         navQuery: { error: action.payload, datas: null, loading: false },
       };
     }
+    case RESET_NAVIGATION: {
+      return {
+        ...state,
+        navQuery: {
+          datas: null,
+          loading: null,
+          error: null,
+        },
+      };
+    }
     default:
       return {
         ...state,
@@ -48,4 +60,8 @@ export const fetchNavigationSuccess = payload => ({
 export const fetchNavigationFailure = payload => ({
   type: FETCH_NAVIGATION_FAILURE,
   payload,
+});
+
+export const resetNavigation = () => ({
+  type: RESET_NAVIGATION,
 });

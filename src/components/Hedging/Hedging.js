@@ -1,60 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { NavLink, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { Loader } from 'components/commons/Loader';
 import { RouteWithSubRoutes } from 'services/routesConfigurator';
 import { connect } from 'react-redux';
-import { fetchConfig } from './store/reducers/hedgingReducer';
 import { fetchNavigation } from './store/reducers/navigationReducer';
 import Navigation from './Navigation';
+import FakeForm from './FakeForm';
 
-const BreadCrumbs = styled.nav``;
-const LeftPanel = styled.aside``;
-const Body = styled.section``;
-const Footer = styled.footer``;
+const Root = styled.div`
+  display: flex;
+  flex: 1;
+`;
+const LeftPanel = styled.aside`
+  box-shadow: 0 14px 20px 2px rgba(0, 0, 0, 0.3);
+  width: ${({ isCollapse }) => (isCollapse ? '5rem' : '20rem')};
+  transition: all 200ms ease-in-out;
+  overflow: hidden;
+`;
+const Body = styled.section`
+  flex: 1;
+`;
 
-const Hedging = ({
-  location,
-  routes,
-  fetchConfigAction,
-  loading,
-  config,
-  fetchNavigationAction,
-  navQuery,
-  history,
-}) => {
-  const [breadCrumbs, setBreadCrumbs] = useState([]);
-  const [rootUrl, setRootUrl] = useState('');
+const FlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Hedging = ({ loading, config, fetchNavigationAction, navQuery }) => {
+  const [isForm, displayForm] = useState(false);
+  const [isCollapse, setCollapse] = useState(false);
+
   if (loading) return <Loader />;
   if (!config) return <Loader />;
-  useEffect(() => {
-    const entity = location.pathname.split();
-    console.log(config);
-    // fetchNavigationAction(location.pathname);
-  }, [location.pathname]);
+
   return (
-    <>
-      <BreadCrumbs>
-        <ul>
-          {breadCrumbs.map(crumb => (
-            <li>{crumb.label}</li>
-          ))}
-        </ul>
-      </BreadCrumbs>
-      <LeftPanel>
-        <label>Date de calcul</label>
-        <select>
-          <option>31.05.2018</option>
-        </select>
+    <Root>
+      <LeftPanel isCollapse={isCollapse}>
+        <FlexBox>
+          <button type="button" onClick={() => setCollapse(!isCollapse)}>
+            hide
+          </button>
+          <button type="button" onClick={() => displayForm(!isForm)}>
+            ShowForms
+          </button>
+        </FlexBox>
+        <Navigation />
       </LeftPanel>
       <Body>
-        <Navigation
-          config={config}
-          callback={fetchNavigationAction}
-          setRootUrl={setRootUrl}
-          rootUrl={rootUrl}
-          navQuery={navQuery}
-        />
         <Switch>
           {config.router.hedging.routes.map((route, i) => {
             return (
@@ -69,9 +63,28 @@ const Hedging = ({
           })}
         </Switch>
       </Body>
-      <Footer />
-    </>
+      {isForm && <FakeForm />}
+    </Root>
   );
+};
+
+Hedging.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  config: PropTypes.shape({
+    entities: PropTypes.object,
+    router: PropTypes.object,
+    initNavMenu: PropTypes.arrayOf(PropTypes.string),
+  }),
+  fetchNavigationAction: PropTypes.func.isRequired,
+  navQuery: PropTypes.shape({
+    error: PropTypes.string,
+    datas: PropTypes.arrayOf(PropTypes.object),
+    loading: PropTypes.bool,
+  }).isRequired,
+};
+
+Hedging.defaultProps = {
+  config: null,
 };
 
 const mapStateToProps = ({ hedgingReducer, navigationReducer }) => ({
@@ -81,9 +94,6 @@ const mapStateToProps = ({ hedgingReducer, navigationReducer }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchConfigAction: () => {
-    dispatch(fetchConfig());
-  },
   fetchNavigationAction: entity => {
     dispatch(fetchNavigation(entity));
   },

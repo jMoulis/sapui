@@ -12,7 +12,9 @@ const Tile = styled.div`
 `;
 
 const Root = styled.section`
+  label: Dashboard;
   display: flex;
+  flex: 1;
   flex-flow: row wrap;
   margin: 1rem auto;
   justify-content: space-evenly;

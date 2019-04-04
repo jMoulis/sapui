@@ -58,7 +58,6 @@ const FilterMenu = ({ action, form, menus }) => {
   };
 
   useEffect(() => {
-    console.log('filterMenu');
     const response = Object.keys(queries).map(key => {
       return `${key} ${queries[key]}`;
     }, []);

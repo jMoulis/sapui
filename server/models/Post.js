@@ -4,8 +4,14 @@ const { Schema } = mongoose;
 
 const PostSchema = new Schema({
   orderId: String,
-  productId: String,
-  planId: String,
+  productId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'product',
+  },
+  plantId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'plant',
+  },
   date: Date,
 });
 
