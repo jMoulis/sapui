@@ -16,6 +16,7 @@ const Icon = styled.i`
   &:hover {
     background-color: rgba(52, 97, 135, 0.15);
   }
+  ${({ css }) => ({ ...css })}
 `;
 
 export default Icon;

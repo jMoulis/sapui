@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const PostForm = () => {
-  const [inputValue, setInputValue] = useState({ create: '', edit: '' });
-  const [id, setId] = useState('');
+  const [inputValue, setInputValue] = useState({
+    create: '',
+    edit: '',
+    id: '',
+  });
   return (
     <>
       <h1>posts</h1>
@@ -18,8 +21,6 @@ const PostForm = () => {
               plantId: inputValue.plant,
               productId: inputValue.product,
             },
-          }).then(({ data }) => {
-            setId(data._id);
           });
         }}
       >
@@ -62,11 +63,22 @@ const PostForm = () => {
           event.preventDefault();
           axios({
             method: 'PATCH',
-            url: `/api/v1/posts/${id}`,
+            url: `/api/v1/posts/${inputValue.id}`,
             data: { name: inputValue.edit },
           }).then(response => console.log(response));
         }}
       >
+        <input
+          placeholder="PostId to edit"
+          value={inputValue.id}
+          onChange={event => {
+            const { value } = event.target;
+            setInputValue(prevValue => ({
+              ...prevValue,
+              id: value,
+            }));
+          }}
+        />
         <input
           value={inputValue.edit}
           onChange={event => {
@@ -78,7 +90,6 @@ const PostForm = () => {
           }}
         />
         <button type="submit">Edit post</button>
-        <span>{id}</span>
       </form>
       <div>
         <button
@@ -86,7 +97,7 @@ const PostForm = () => {
           onClick={() => {
             axios({
               method: 'DELETE',
-              url: `/api/v1/posts/${id}`,
+              url: `/api/v1/posts/${inputValue.id}`,
             }).then(response => console.log(response));
           }}
         >

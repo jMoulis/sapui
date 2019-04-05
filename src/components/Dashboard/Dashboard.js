@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
@@ -52,6 +53,17 @@ const Dashboard = ({ config }) => {
   );
 };
 
+Dashboard.propTypes = {
+  config: PropTypes.shape({
+    entities: PropTypes.object,
+    router: PropTypes.object,
+    initNavMenu: PropTypes.arrayOf(PropTypes.string),
+  }),
+};
+
+Dashboard.defaultProps = {
+  config: null,
+};
 const mapStateToProps = ({ hedgingReducer }) => ({
   config: hedgingReducer.config,
 });

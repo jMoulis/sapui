@@ -9,6 +9,7 @@ const Button = styled(BtnReset)`
   ${({ theme }) => {
     return theme.buttons.regular;
   }}
+  border-radius: ${({ circle }) => circle && '200px'};
   border-color: ${({ theme, action }) => {
     return theme.colors.status[action] || theme.colors.status.default;
   }};
@@ -66,8 +67,8 @@ const Button = styled(BtnReset)`
     }}
 `;
 
-export const ButtonStory = props => (
-  <Button {...props}>{props.children}</Button>
+export const ButtonStory = ({ children, ...rest }) => (
+  <Button {...rest}>{children}</Button>
 );
 
 ButtonStory.propTypes = {
@@ -83,6 +84,9 @@ ButtonStory.propTypes = {
   full: PropTypes.bool,
   /** @bool padding equal */
   square: PropTypes.bool,
+  /** @bool round */
+  circle: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 ButtonStory.defaultProps = {
@@ -92,6 +96,8 @@ ButtonStory.defaultProps = {
   sm: false,
   full: false,
   square: false,
+  circle: false,
+  children: null,
 };
 
 export default Button;

@@ -6,8 +6,8 @@ const ProductForm = () => {
     create: '',
     edit: '',
     plant: '',
+    id: '',
   });
-  const [id, setId] = useState('');
   return (
     <>
       <h1>Products</h1>
@@ -21,8 +21,6 @@ const ProductForm = () => {
               name: inputValue.create,
               plantID: inputValue.plant,
             },
-          }).then(({ data }) => {
-            setId(data._id);
           });
         }}
       >
@@ -54,11 +52,22 @@ const ProductForm = () => {
           event.preventDefault();
           axios({
             method: 'PATCH',
-            url: '/api/v1/products/5ca5e89bd3f0a5757a8432ef',
+            url: `/api/v1/products/${inputValue.id}`,
             data: { name: inputValue.edit },
           }).then(response => console.log(response));
         }}
       >
+        <input
+          placeholder="ProductId to edit"
+          value={inputValue.id}
+          onChange={event => {
+            const { value } = event.target;
+            setInputValue(prevValue => ({
+              ...prevValue,
+              id: value,
+            }));
+          }}
+        />
         <input
           value={inputValue.edit}
           onChange={event => {
@@ -70,7 +79,6 @@ const ProductForm = () => {
           }}
         />
         <button type="submit">Edit product</button>
-        <span>{id}</span>
       </form>
       <div>
         <button

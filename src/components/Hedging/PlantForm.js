@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const PlantForm = () => {
-  const [inputValue, setInputValue] = useState({ create: '', edit: '' });
-  const [id, setId] = useState('');
+  const [inputValue, setInputValue] = useState({
+    create: '',
+    edit: '',
+    id: '',
+  });
   return (
     <>
       <h1>Plants</h1>
@@ -14,8 +17,6 @@ const PlantForm = () => {
             method: 'POST',
             url: '/api/v1/plants',
             data: { name: inputValue.create },
-          }).then(({ data }) => {
-            setId(data._id);
           });
         }}
       >
@@ -36,11 +37,22 @@ const PlantForm = () => {
           event.preventDefault();
           axios({
             method: 'PATCH',
-            url: `/api/v1/plants/${id}`,
+            url: `/api/v1/plants/${inputValue.id}`,
             data: { name: inputValue.edit },
           });
         }}
       >
+        <input
+          value={inputValue.id}
+          placeholder="Plant Id to edit"
+          onChange={event => {
+            const { value } = event.target;
+            setInputValue(prevValue => ({
+              ...prevValue,
+              id: value,
+            }));
+          }}
+        />
         <input
           value={inputValue.edit}
           onChange={event => {
@@ -52,7 +64,6 @@ const PlantForm = () => {
           }}
         />
         <button type="submit">Edit plant</button>
-        <span>{id}</span>
       </form>
       <div>
         <button
@@ -60,7 +71,7 @@ const PlantForm = () => {
           onClick={() => {
             axios({
               method: 'DELETE',
-              url: `/api/v1/plants/${id}`,
+              url: `/api/v1/plants/${inputValue.id}`,
             }).then(response => console.log(response));
           }}
         >

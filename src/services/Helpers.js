@@ -20,13 +20,15 @@ class Helpers {
     });
   };
 
-  slugify = str =>
-    str
+  slugify = str => {
+    return str
       .toString()
       .replace(' ', '')
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
+      .replace(' ', '')
       .toLowerCase();
+  };
 }
 
 export default Helpers;
