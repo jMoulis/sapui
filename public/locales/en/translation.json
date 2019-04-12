@@ -30,5 +30,9 @@
     "category": "Category",
     "categoryName": "Category name",
     "categoryId": "Category Id"
+  },
+  "hedging": {
+    "selectPlant": "Select a Plant",
+    "selectProduct": "Select a product"
   }
 }

@@ -4,23 +4,31 @@ module.exports = class Api {
     this.res = res;
   }
 
-  success({ data, collection, navigation, parentId }, code) {
+  success(
+    { data, searchedEntity, navigation, parentId, displayedEntity, query },
+    code,
+  ) {
     // Check if data is an array of document
     // Because the type receveid is always an object, must check through available method
     if (typeof data.map === 'function') {
       return this.res.status(code || 200).send(
-        data.map(item => ({
-          ...item._doc,
-          uris: this._buildUris(collection, item._id),
-          navigation:
-            navigation &&
-            `/api/v1/${collection}/${parentId || item._id}/${navigation}`,
-        })),
+        data.map(item => {
+          return {
+            ...item._doc,
+            displayedEntity,
+            uris: this._buildUris(searchedEntity, item._id),
+            navigation:
+              navigation &&
+              `/api/v1/${searchedEntity}/${parentId || item._id}/${navigation}${
+                query ? `?${query}=${item._id}` : ''
+              }`,
+          };
+        }),
       );
     }
     return this.res.status(code || 200).send({
       ...data._doc,
-      uris: this._buildUris(collection, data._id),
+      uris: this._buildUris(searchedEntity, data._id),
     });
   }
 

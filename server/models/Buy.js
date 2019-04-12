@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const PostSchema = new Schema({
+const BuySchema = new Schema({
   date: Date,
-  type: String,
-  provider: String,
-  customer: String,
+  post: {
+    type: Schema.Types.ObjectId,
+    ref: 'post',
+  },
   product: {
     type: Schema.Types.ObjectId,
     ref: 'product',
@@ -17,9 +18,8 @@ const PostSchema = new Schema({
   },
   quantity: Number,
   delivered: Date,
-  price: Number,
 });
 
-const Post = mongoose.model('post', PostSchema);
+const Buy = mongoose.model('buy', BuySchema);
 
-module.exports = Post;
+module.exports = Buy;

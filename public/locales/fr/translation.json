@@ -30,5 +30,9 @@
     "category": "Catégorie",
     "categoryName": "Catégorie nom",
     "categoryId": "Catégorie Id"
+  },
+  "hedging": {
+    "selectPlant": "Sélectionner un dépôt",
+    "selectProduct": "Selectionner un produit"
   }
 }

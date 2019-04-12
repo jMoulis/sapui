@@ -1,6 +1,5 @@
 const Api = require('../services/Api');
 const Product = require('../models/Product');
-const Plant = require('../models/Plant');
 
 module.exports = {
   fetchAll: async (req, res) => {
@@ -19,14 +18,6 @@ module.exports = {
     const api = new Api(res);
     try {
       const newProduct = await Product.create(req.body);
-      await Plant.updateOne(
-        { _id: req.body.plantID },
-        {
-          $push: {
-            products: newProduct._id,
-          },
-        },
-      );
       api.success({
         data: newProduct,
         collection: 'products',

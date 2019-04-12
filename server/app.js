@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 routes(app);
 
 app.use((req, res) => {
-  console.log('404');
   const api = new Api(res);
   return api.failure({ message: `Route ${req.url} not found.` }, 404);
 });

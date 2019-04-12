@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 const Footer = styled.footer`
+  grid-area: footer;
   display: flex;
   align-items: center;
   justify-content: space-between;

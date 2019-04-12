@@ -1,5 +1,6 @@
 const Api = require('../services/Api');
 const Plant = require('../models/Plant');
+const Post = require('../models/Post');
 
 module.exports = {
   fetchAll: async (req, res) => {
@@ -7,9 +8,10 @@ module.exports = {
     try {
       const plants = await Plant.find({});
       api.success({
-        collection: 'plants',
+        searchedEntity: 'plants',
         data: plants,
         navigation: 'products',
+        displayedEntity: 'plants',
       });
     } catch (error) {
       api.failure(error, 422);
@@ -21,7 +23,8 @@ module.exports = {
       const newPlant = await Plant.create(req.body);
       api.success({
         data: newPlant,
-        collection: 'plants',
+        searchedEntity: 'plants',
+        displayedEntity: 'plants',
       });
     } catch (error) {
       api.failure(error, 422);
@@ -34,7 +37,8 @@ module.exports = {
       if (!plant) return api.failure({ message: 'No Plant found' }, 404);
       api.success({
         data: plant,
-        collection: 'plants',
+        displayedEntity: 'plants',
+        searchedEntity: 'plants',
         navigation: 'products',
       });
     } catch (error) {
@@ -51,7 +55,8 @@ module.exports = {
       if (!plant) return api.failure({ message: 'No Plant found' }, 404);
       api.success({
         data: plant,
-        collection: 'plants',
+        searchedEntity: 'plants',
+        displayedEntity: 'plants',
       });
     } catch (error) {
       api.failure(error, 422);
@@ -64,7 +69,8 @@ module.exports = {
       if (!plant) return api.failure({ message: 'No Plant found' }, 404);
       api.success({
         data: plant,
-        collection: 'plants',
+        searchedEntity: 'plants',
+        displayedEntity: 'plants',
       });
     } catch (error) {
       api.failure(error, 422);
@@ -80,9 +86,11 @@ module.exports = {
       if (!plant) return api.failure({ message: 'No Plant found' }, 404);
       api.success({
         data: plant.products,
-        collection: 'plants',
+        searchedEntity: 'plants',
+        displayedEntity: 'products',
         navigation: 'posts',
         parentId: req.params.id,
+        query: 'product',
       });
     } catch (error) {
       api.failure(error, 422);
@@ -90,15 +98,15 @@ module.exports = {
   },
   fetchPosts: async (req, res) => {
     const api = new Api(res);
+    const { id } = req.params;
+    const { product } = req.query;
     try {
-      const plant = await Plant.findOne(
-        { _id: req.params.id },
-        { posts: 1 },
-      ).populate('posts');
-      if (!plant) return api.failure({ message: 'No Posts found' }, 404);
+      const posts = await Post.find({ plant: id, product });
+      if (!posts) return api.failure({ message: 'No Posts found' }, 404);
       api.success({
-        data: plant.posts,
-        collection: 'posts',
+        data: posts,
+        searchedEntity: 'posts',
+        displayedEntity: 'posts',
       });
     } catch (error) {
       api.failure(error, 422);

@@ -10,18 +10,24 @@ import {
   resetNavigation,
 } from 'components/Hedging/store/reducers/navigationReducer';
 import { addToBreadcrumb } from 'components/Hedging/store/reducers/hedgingReducer';
+import { FlexBox } from 'components/Layout';
 import RouterStorage from 'services/RouterStorage';
+import { Icon } from 'components/commons/Icons';
 import NavigationListItem from './NavigationListItem';
 
-const Text = styled.span`
-  display: block;
-  padding: 1rem;
+const Label = styled.span`
+  width: ${({ shouldCollapsed }) => shouldCollapsed && 0};
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: all 300ms ease;
 `;
 
 const ListItemCustom = styled(ListItem)`
-  // width: 20rem;
+  width: 20rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
 `;
 
 const Navigation = ({
@@ -31,11 +37,10 @@ const Navigation = ({
   location,
   resetNavigationAction,
   addToBreadcrumbAction,
-  isCollapse,
+  shouldCollapsed,
 }) => {
   const helpers = new Helpers();
   const routerStorage = new RouterStorage('router');
-
   useEffect(() => {
     const router = routerStorage.getRouter();
     if (router) {
@@ -49,29 +54,50 @@ const Navigation = ({
     }
   }, [location.pathname]);
 
+  const loadDetail = () => {
+    // Call Api
+  };
+
   const shouldDisplayFetchedDatas =
     navQuery.datas && Array.isArray(navQuery.datas);
 
+  const emptyData =
+    !navQuery.error &&
+    !navQuery.loading &&
+    navQuery.datas &&
+    navQuery.datas.length === 0;
+
+  if (emptyData) {
+    return (
+      <List>
+        <ListItemCustom>No data found</ListItemCustom>
+      </List>
+    );
+  }
+  // if (navQuery.loading) return <Loader />;
   return (
     <List>
       {shouldDisplayFetchedDatas
-        ? navQuery.datas.map((route, i) => {
-            const shouldDisplayTextAsARouterLink = !!route.navigation;
+        ? navQuery.datas.map((data, i) => {
+            const { icon } = config.entities[data.displayedEntity];
+            const shouldDisplayTextAsARouterLink = !!data.navigation;
             const LinkToPath = `${location.pathname}/${helpers.slugify(
-              route.name || route._id,
+              data.name || data._id,
             )}`;
+
             if (shouldDisplayTextAsARouterLink) {
               return (
                 <NavigationListItem
-                  isCollapse={isCollapse}
+                  shouldCollapsed={shouldCollapsed}
                   key={i}
                   path={LinkToPath}
-                  label={route.name || route._id}
+                  label={data.name || data._id}
+                  icon={icon}
                   callback={() => {
                     routerStorage.addToRouter({
                       [LinkToPath]: {
-                        name: route.name || route._id,
-                        api: route.navigation,
+                        name: data.name || data._id,
+                        api: data.navigation,
                         route: LinkToPath,
                       },
                     });
@@ -81,18 +107,37 @@ const Navigation = ({
             }
             return (
               <ListItemCustom key={i}>
-                <Text title={route.name || route._id}>
-                  {route.name || route._id}
-                </Text>
+                <FlexBox css={{ overflow: 'hidden', padding: '1rem' }}>
+                  <Icon
+                    css={{
+                      paddingRight: '1rem',
+                      '&:hover': {
+                        backgroundColor: 'transparent',
+                      },
+                    }}
+                    dangerouslySetInnerHTML={{ __html: icon }}
+                  />
+                  <Label shouldCollapsed={shouldCollapsed}>
+                    {data.name || data._id}
+                  </Label>
+                </FlexBox>
+                {/* <Text
+                  onClick={() => loadDetail()}
+                  title={data.name || data._id}
+                >
+                  {data.name || data._id}
+                </Text> */}
               </ListItemCustom>
             );
           })
         : config.router.hedging.routes.map((route, i) => {
+            const { icon } = config.entities[route.collection];
             return (
               <NavigationListItem
                 key={i}
                 path={route.path}
-                isCollapse={isCollapse}
+                shouldCollapsed={shouldCollapsed}
+                icon={icon}
                 callback={() => {
                   routerStorage.addToRouter({
                     [`${route.path}`]: {
@@ -125,7 +170,7 @@ Navigation.propTypes = {
     loading: PropTypes.bool,
   }).isRequired,
   location: PropTypes.object.isRequired,
-  isCollapse: PropTypes.bool.isRequired,
+  shouldCollapsed: PropTypes.bool.isRequired,
 };
 
 Navigation.defaultProps = {

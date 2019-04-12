@@ -27,21 +27,21 @@ const Label = styled.span`
   white-space: nowrap;
   transition: all 300ms ease;
 `;
-const NavigationListItem = ({ path, callback, label, isCollapse }) => {
+
+const NavigationListItem = ({ path, callback, label, isCollapse, icon }) => {
   return (
     <ListItemCustom>
       <NavLinkCustom to={path} onClick={callback} title={label}>
-        <FlexBox>
+        <FlexBox css={{ overflow: 'hidden' }}>
           <Icon
             css={{
-              paddingRight: '1rem',
+              paddingRight: '1.2rem',
               '&:hover': {
                 backgroundColor: 'transparent',
               },
             }}
-          >
-            &#xe199;
-          </Icon>
+            dangerouslySetInnerHTML={{ __html: icon }}
+          />
           <Label isCollapse={isCollapse}>{label}</Label>
         </FlexBox>
         <ChevronRight

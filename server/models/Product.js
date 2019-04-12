@@ -4,10 +4,6 @@ const { Schema } = mongoose;
 
 const ProductSchema = new Schema({
   name: String,
-  plantId: {
-    type: Schema.Types.ObjectId,
-    ref: 'plant',
-  },
   date: Date,
   plants: [
     {

@@ -16,6 +16,7 @@ const getActualTheme = {
 const theme = currentTheme => {
   return {
     ...getActualTheme[currentTheme],
+    breakpoints,
     base: {},
     mediaQueries,
   };
