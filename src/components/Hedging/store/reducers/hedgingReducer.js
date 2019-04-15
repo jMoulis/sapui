@@ -1,5 +1,7 @@
 export const FETCH_CONFIG = 'FETCH_CONFIG';
 export const FETCH_CONFIG_SUCCESS = 'FETCH_CONFIG_SUCCESS';
+export const FETCH_CONFIG_FAILURE = 'FETCH_CONFIG_FAILURE';
+
 export const ADD_TO_BREADCRUMB = 'ADD_TO_BREADCRUMB';
 export const REMOVE_FROM_BREADCRUMB = 'REMOVE_FROM_BREADCRUMB';
 
@@ -7,6 +9,7 @@ const initialState = {
   config: null,
   loading: false,
   breadCrumb: [],
+  error: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -16,6 +19,9 @@ const reducer = (state = initialState, action = {}) => {
     }
     case FETCH_CONFIG_SUCCESS: {
       return { ...state, config: action.payload, loading: false };
+    }
+    case FETCH_CONFIG_FAILURE: {
+      return { ...state, config: null, error: action.payload, loading: false };
     }
     case ADD_TO_BREADCRUMB: {
       const storageRouter = Object.values(action.value);
@@ -51,6 +57,10 @@ export const fetchConfig = () => ({
 
 export const fetchConfigSuccess = payload => ({
   type: FETCH_CONFIG_SUCCESS,
+  payload,
+});
+export const fetchConfigFailure = payload => ({
+  type: FETCH_CONFIG_FAILURE,
   payload,
 });
 

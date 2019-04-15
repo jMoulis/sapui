@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { createPlant } from 'components/Hedging/store/reducers/plantReducer';
 
-const PlantForm = () => {
+const PlantForm = ({ createPlantAction }) => {
   const [inputValue, setInputValue] = useState({
     create: '',
     edit: '',
@@ -13,11 +15,12 @@ const PlantForm = () => {
       <form
         onSubmit={event => {
           event.preventDefault();
-          axios({
-            method: 'POST',
-            url: '/api/v1/plants',
-            data: { name: inputValue.create },
-          });
+          createPlantAction({ name: inputValue.create });
+          // axios({
+          //   method: 'POST',
+          //   url: '/api/v1/plants',
+          //   data: { name: inputValue.create },
+          // });
         }}
       >
         <input
@@ -82,4 +85,13 @@ const PlantForm = () => {
   );
 };
 
-export default PlantForm;
+const mapDispatchToProps = dispatch => ({
+  createPlantAction: values => {
+    dispatch(createPlant(values));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(PlantForm);

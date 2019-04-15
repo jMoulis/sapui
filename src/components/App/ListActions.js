@@ -9,7 +9,7 @@ const Root = styled(List)`
 const ListActions = ({ callback }) => {
   return (
     <Root>
-      <ListItem onClick={callback}>app1</ListItem>
+      <ListItem onClick={() => callback('newPlant')}>Add Plant</ListItem>
       <ListItem onClick={callback}>app2</ListItem>
     </Root>
   );

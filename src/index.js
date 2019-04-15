@@ -8,6 +8,7 @@ import { ThemeProvider } from 'emotion-theming';
 import '@babel/polyfill';
 import store from 'store';
 import { App } from 'components/App';
+import { ErrorBoundary } from 'services/ErrorBoundary';
 import * as serviceWorker from './serviceWorker';
 import './i18n';
 
@@ -20,7 +21,9 @@ ReactDOM.render(
     <Provider store={store}>
       <Global styles={GlobalStyles} />
       <ThemeProvider theme={theme(currentTheme)}>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </ThemeProvider>
     </Provider>
   </Router>,

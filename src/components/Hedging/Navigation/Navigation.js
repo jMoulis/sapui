@@ -46,7 +46,11 @@ const Navigation = ({
     if (router) {
       const route = router[location.pathname];
       if (route) {
-        fetchNavigationAction(route.api);
+        console.log(route);
+        fetchNavigationAction({
+          url: route.api,
+          entity: route.name.toLowerCase(),
+        });
         addToBreadcrumbAction(router, location.pathname);
       } else {
         resetNavigationAction();
@@ -184,8 +188,8 @@ const mapStateToProps = ({ hedgingReducer, navigationReducer }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchNavigationAction: entity => {
-    dispatch(fetchNavigation(entity));
+  fetchNavigationAction: ({ url, entity }) => {
+    dispatch(fetchNavigation({ url, entity }));
   },
   resetNavigationAction: () => {
     dispatch(resetNavigation());

@@ -1,30 +1,30 @@
 import axios from 'axios';
 import {
-  FETCH_CONFIG,
-  fetchConfigSuccess,
-  fetchConfigFailure,
-} from 'components/Hedging/store/reducers/hedgingReducer';
-import oDataRouter from 'services/oData/oDataRouter';
+  CREATE_PLANT,
+  createPlantSuccess,
+  createPlantFailure,
+} from 'components/Hedging/store/reducers/plantReducer';
+import plantApiRoute from './plantApiRoute';
 
 export default store => next => action => {
   switch (action.type) {
-    case FETCH_CONFIG: {
-      axios(oDataRouter.config())
+    case CREATE_PLANT: {
+      axios({ ...plantApiRoute.createPlant(action.values) })
         .then(response => {
-          store.dispatch(fetchConfigSuccess(response.data));
+          store.dispatch(createPlantSuccess(response.data));
         })
         .catch(error => {
           if (!error.response) {
-            return store.dispatch(fetchConfigFailure(error.message));
+            return store.dispatch(createPlantFailure(error.message));
           }
           if (error.response.status === 504) {
             return store.dispatch(
-              fetchConfigFailure(
+              createPlantFailure(
                 'Serveur indisponible. Veuillez contacter le service client',
               ),
             );
           }
-          return store.dispatch(fetchConfigFailure(error.response.data));
+          return store.dispatch(createPlantFailure(error.response.data));
         });
       break;
     }

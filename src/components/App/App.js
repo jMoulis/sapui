@@ -13,6 +13,7 @@ import { GridIcon } from 'components/commons/Icons';
 import NotFound from 'components/NotFound/NotFound';
 import { Toggle, Navigation } from 'components/Hedging/Navigation';
 import ListActions from './ListActions';
+import actions from './actions';
 
 const Root = styled.main`
   display: grid;
@@ -46,12 +47,14 @@ const Text = styled.p``;
 const isSmallDevice = theme =>
   window.matchMedia(`(max-width: ${theme.breakpoints.xs}px)`).matches;
 
-const App = ({ fetchConfigAction, config, theme }) => {
+const App = ({ fetchConfigAction, config, theme, error }) => {
   const [displayLeftPanel, setDisplayLeftPanel] = useState(
     isSmallDevice(theme),
   );
   const [displayRightPanel, setDisplayRightPanel] = useState(true);
   const [isSmall, setDeviceSize] = useState(isSmallDevice(theme));
+  const [activeApp, setActiveApp] = useState(null);
+
   const handleResize = () => {
     return window.addEventListener('resize', () => {
       setDeviceSize(isSmallDevice(theme));
@@ -87,6 +90,7 @@ const App = ({ fetchConfigAction, config, theme }) => {
     }
   };
 
+  if (error) return <span>{error}</span>;
   if (!config) return <span>Loader</span>;
 
   return (
@@ -121,7 +125,13 @@ const App = ({ fetchConfigAction, config, theme }) => {
 
       {!isSmall && (
         <ListActions
-          callback={() => setDisplayRightPanel(!displayRightPanel)}
+          callback={app => {
+            // Load App
+            if (actions[app] && typeof actions[app] === 'function') {
+              setActiveApp(actions[app]());
+            }
+            setDisplayRightPanel(!displayRightPanel);
+          }}
         />
       )}
 
@@ -132,7 +142,7 @@ const App = ({ fetchConfigAction, config, theme }) => {
         hidden
         width="30rem"
       >
-        <Text>RightPanel</Text>
+        <>{activeApp}</>
       </Toggle>
       <Footer>
         <FlexBox
@@ -165,6 +175,7 @@ App.defaultProps = {
 };
 const mapStateToProps = ({ hedgingReducer }) => ({
   config: hedgingReducer.config,
+  error: hedgingReducer.error,
 });
 
 const mapDispatchToProps = dispatch => ({

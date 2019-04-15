@@ -9,24 +9,38 @@ const initialState = {
     datas: null,
     loading: null,
     error: null,
+    entity: null,
   },
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case FETCH_NAVIGATION: {
-      return { ...state, navQuery: { ...state.navQuery, loading: true } };
+      return {
+        ...state,
+        navQuery: { ...state.navQuery, loading: true, entity: action.entity },
+      };
     }
     case FETCH_NAVIGATION_SUCCESS: {
       return {
         ...state,
-        navQuery: { error: null, datas: action.payload, loading: false },
+        navQuery: {
+          ...state.navQuery,
+          error: null,
+          datas: action.payload,
+          loading: false,
+        },
       };
     }
     case FETCH_NAVIGATION_FAILURE: {
       return {
         ...state,
-        navQuery: { error: action.payload, datas: null, loading: false },
+        navQuery: {
+          ...state.navQuery,
+          error: action.payload,
+          datas: null,
+          loading: false,
+        },
       };
     }
     case RESET_NAVIGATION: {
@@ -36,6 +50,7 @@ const reducer = (state = initialState, action = {}) => {
           datas: null,
           loading: null,
           error: null,
+          entity: null,
         },
       };
     }
@@ -48,9 +63,10 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
-export const fetchNavigation = entity => ({
+export const fetchNavigation = ({ url, entity }) => ({
   type: FETCH_NAVIGATION,
   entity,
+  url,
 });
 
 export const fetchNavigationSuccess = payload => ({
