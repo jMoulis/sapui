@@ -3,7 +3,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Icon } from 'components/commons/Icons';
 import { useTranslation } from 'react-i18next';
-import { FlexBox } from 'components/Layout';
+import { FlexBox } from 'components/commons/FlexBox';
 import InputText from './Input';
 import { Button, BtnGroup } from '../Buttons';
 

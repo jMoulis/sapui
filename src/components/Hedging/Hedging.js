@@ -5,8 +5,8 @@ import { Switch } from 'react-router-dom';
 import { Loader } from 'components/commons/Loader';
 import { RouteWithSubRoutes } from 'services/routesConfigurator';
 import { connect } from 'react-redux';
-import { fetchNavigation } from './store/reducers/navigationReducer';
-import BreadCrumb from './BreadCrumb';
+import { fetchNavigation } from 'store/reducers/navigationReducer';
+import { BreadCrumb } from 'components/BreadCrumb';
 
 const Body = styled.section`
   flex: 1;

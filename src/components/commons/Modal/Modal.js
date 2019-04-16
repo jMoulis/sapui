@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/core';
 import { useTranslation } from 'react-i18next';
-import FlexBox from 'components/Layout/FlexBox';
+import { FlexBox } from 'components/commons/FlexBox';
 import { Button, BtnClose } from 'components/commons/Buttons';
 import { CloseIcon } from 'components/commons/Icons';
 
