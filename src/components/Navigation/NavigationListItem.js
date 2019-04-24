@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ListItem } from 'components/commons/List';
 import { FlexBox } from 'components/commons/FlexBox';
-import { ChevronRight, Icon } from 'components/commons/Icons';
+import { Chevron, Icon } from 'components/commons/Icons';
 
 const NavLinkCustom = styled(Link)`
   padding: 1rem;
@@ -28,31 +28,30 @@ const Label = styled.span`
   transition: all 300ms ease;
 `;
 
+const CustomChevron = styled(Chevron)`
+  font-size: 1rem;
+  flex: collapsed && 1;
+  &:hover {
+    background-color: transparent;
+  },
+`;
+
+const CustomIcon = styled(Icon)`
+  padding-right: 1.2rem;
+  &:hover {
+    background-color: transparent;
+  }
+`;
+
 const NavigationListItem = ({ path, callback, label, collapsed, icon }) => {
   return (
     <ListItemCustom>
       <NavLinkCustom to={path} onClick={callback} title={label}>
         <FlexBox css={{ overflow: 'hidden' }}>
-          <Icon
-            css={{
-              paddingRight: '1.2rem',
-              '&:hover': {
-                backgroundColor: 'transparent',
-              },
-            }}
-            dangerouslySetInnerHTML={{ __html: icon }}
-          />
+          <CustomIcon icon={icon} />
           <Label collapsed={collapsed}>{label}</Label>
         </FlexBox>
-        <ChevronRight
-          css={{
-            fontSize: '1rem',
-            flex: collapsed && 1,
-            '&:hover': {
-              backgroundColor: 'transparent',
-            },
-          }}
-        />
+        <CustomChevron icon="right" />
       </NavLinkCustom>
     </ListItemCustom>
   );

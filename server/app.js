@@ -1,10 +1,14 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const keys = require('./config/keys');
-const routes = require('./routes');
-const Api = require('./services/Api');
+/* eslint-disable no-console */
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import expressGraphQL from 'express-graphql';
+import cors from 'cors';
+
+import keys from './config/keys';
+import routes from './routes';
+import Api from './services/Api';
+import schema from './graphql';
 
 mongoose.Promise = global.Promise;
 
@@ -16,12 +20,15 @@ mongoose.connection.on('error', error =>
 );
 
 const app = express();
-app.use(cors());
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
 routes(app);
 
+app.use(
+  '/graphql',
+  cors(),
+  bodyParser.json({ limit: '50mb' }),
+  bodyParser.urlencoded({ limit: '50mb', extended: true }),
+  expressGraphQL({ schema, graphiql: true }),
+);
 app.use((req, res) => {
   const api = new Api(res);
   return api.failure({ message: `Route ${req.url} not found.` }, 404);

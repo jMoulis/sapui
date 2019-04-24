@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { Icon, ChevronLeft } from 'components/commons/Icons';
+import { Icon, Chevron } from 'components/commons/Icons';
 import { useTranslation } from 'react-i18next';
 import { BtnReset } from 'components/commons/Buttons';
 
@@ -47,7 +47,8 @@ const FilterMenuHeader = ({ goBack }) => {
   const [input, onInputChange] = useState('');
   return (
     <Wrapper>
-      <ChevronLeft
+      <Chevron
+        icon="left"
         title={t('commons.return')}
         md
         margin="1rem 0 1rem 0.5rem"

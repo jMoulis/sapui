@@ -9,17 +9,16 @@ const CustomButton = styled(Button)`
 `;
 
 const NavButton = ({ onClick, collapsed, side }) => {
-  const renderChevron = () => {
-    if (side === 'left') {
-      return <Chevron direction={collapsed ? 'right' : 'left'} />;
+  function renderChevron() {
+    switch (side) {
+      case 'right':
+        return <Chevron icon={collapsed ? 'left' : 'right'} />;
+      case 'bottom':
+        return <Chevron icon={collapsed ? 'up' : 'down'} />;
+      default:
+        return <Chevron icon={collapsed ? 'right' : 'left'} />;
     }
-    if (side === 'right') {
-      return <Chevron direction={collapsed ? 'left' : 'right'} />;
-    }
-    if (side === 'bottom') {
-      return <Chevron direction={collapsed ? 'up' : 'down'} />;
-    }
-  };
+  }
   return (
     <CustomButton circle action="neutral" type="button" onClick={onClick}>
       {renderChevron()}

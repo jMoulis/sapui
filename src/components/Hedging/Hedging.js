@@ -16,17 +16,11 @@ const Body = styled.section`
 
 const Hedging = ({ loading, config, fetchNavigationAction, navQuery }) => {
   if (loading || !config) return <Loader />;
-  const appName = 'hedging';
   return (
     <Body>
-      <BreadCrumb
-        home={{
-          uri: appName,
-          name: 'home',
-        }}
-      />
+      <BreadCrumb />
       <Switch>
-        {config.router[appName].routes.map((route, i) => {
+        {config.app.routes.map((route, i) => {
           return (
             <RouteWithSubRoutes
               key={i}
@@ -46,7 +40,7 @@ Hedging.propTypes = {
   loading: PropTypes.bool.isRequired,
   config: PropTypes.shape({
     entities: PropTypes.object,
-    router: PropTypes.object,
+    app: PropTypes.object,
     initNavMenu: PropTypes.arrayOf(PropTypes.string),
   }),
   fetchNavigationAction: PropTypes.func.isRequired,

@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { FlexBox } from 'components/commons/FlexBox';
-import NavButton from '../NavButton';
+import NavButton from './NavButton';
 import Root from './Root';
 
-const CustomBox = styled.div`
+const Header = styled.header`
+  label: ToggleHeader;
   padding: 1rem;
   height: 6rem;
   justify-content: ${({ side }) => {
@@ -18,6 +19,11 @@ const CustomBox = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
+`;
+
+const Content = styled(FlexBox)`
+  label: ToggleContent;
+  background-color: ${({ theme }) => theme.colors.backgrounds.background2};
 `;
 
 const Toggle = ({
@@ -62,12 +68,12 @@ const Toggle = ({
       width={width}
       isResizing={isResizing}
     >
-      <CustomBox side={side}>
-        <NavButton collapsed={collapsed} side={side} onClick={callback} />
-      </CustomBox>
-      <FlexBox css={{ backgroundColor: 'white' }} flex="1" column>
+      <Content css={{}} flex="1" column>
         {childrenWithProps}
-      </FlexBox>
+      </Content>
+      <Header side={side}>
+        <NavButton collapsed={collapsed} side={side} onClick={callback} />
+      </Header>
     </Root>
   );
 };

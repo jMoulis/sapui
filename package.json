@@ -6,6 +6,7 @@
     "@babel/polyfill": "^7.4.3",
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
+    "@playlyfe/gql": "^2.6.1",
     "awesome-debounce-promise": "^2.1.0",
     "axios": "^0.18.0",
     "babel-plugin-emotion": "^10.0.7",
@@ -43,7 +44,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon server/app.js"
+    "server": "nodemon server/start.js"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,6 +1,8 @@
+import React from 'react';
 import styled from '@emotion/styled';
+import hexIcons from './hexIcons';
 
-const Icon = styled.i`
+const Root = styled.i`
   label: Icon;
   font-family: 'sapui-icons';
   display: flex;
@@ -19,4 +21,12 @@ const Icon = styled.i`
   ${({ css }) => ({ ...css })}
 `;
 
+const Icon = ({ children, icon, ...rest }) => {
+  return (
+    <Root
+      {...rest}
+      dangerouslySetInnerHTML={{ __html: hexIcons[icon] || icon }}
+    />
+  );
+};
 export default Icon;

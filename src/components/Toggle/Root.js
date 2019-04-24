@@ -15,6 +15,7 @@ const setheight = ({ side, collapsed }) => {
 };
 
 const Root = styled.aside`
+  label: Toogle;
   background-color: ${({ theme }) => theme.colors.action.secondary};
   grid-area: ${({ side }) => side};
   width: ${({ collapsed, hidden, width }) => {

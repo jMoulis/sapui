@@ -98,21 +98,4 @@ module.exports = {
       api.failure(error, 422);
     }
   },
-  fetchByPlantAndProduct: async (req, res) => {
-    const api = new Api(res);
-    const { id, plantId, productId } = req.params;
-    try {
-      const posts = await Post.find({
-        id,
-        plant: plantId,
-        product: productId,
-      });
-      api.success({
-        searchedEntity: 'posts',
-        data: posts,
-      });
-    } catch (error) {
-      api.failure(error, 422);
-    }
-  },
 };

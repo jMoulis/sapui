@@ -10,17 +10,17 @@ const Root = styled(List)`
   display: flex;
 `;
 
-const BreadCrumb = ({ breadCrumb, removeFromBreadcrumbAction, home }) => {
+const BreadCrumb = ({ breadCrumb, removeFromBreadcrumbAction }) => {
   return (
     <Root>
       <li>
         <Link
-          to={`/${home.uri}`}
+          to="/"
           onClick={() => {
             removeFromBreadcrumbAction(-1);
           }}
         >
-          {`${home.name} / `}
+          {`home / `}
         </Link>
       </li>
       {breadCrumb &&

@@ -5,7 +5,7 @@ import { keyframes } from '@emotion/core';
 import { useTranslation } from 'react-i18next';
 import { FlexBox } from 'components/commons/FlexBox';
 import { Button, BtnClose } from 'components/commons/Buttons';
-import { CloseIcon } from 'components/commons/Icons';
+import { Icon } from 'components/commons/Icons';
 
 const fadeIn = keyframes`
   0% {
@@ -101,7 +101,7 @@ const Modal = ({ children, show, header, content, footer, close }) => {
             <Header>
               {header}
               <BtnClose square action="danger" small onClick={close}>
-                <CloseIcon />
+                <Icon icon="close" />
               </BtnClose>
             </Header>
             <Content column flex="1">

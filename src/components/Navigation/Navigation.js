@@ -12,8 +12,11 @@ import {
 import { addToBreadcrumb } from 'store/reducers/hedgingReducer';
 import { FlexBox } from 'components/commons/FlexBox';
 import RouterStorage from 'services/RouterStorage';
-import { Icon } from 'components/commons/Icons';
 import NavigationListItem from './NavigationListItem';
+
+const Root = styled(List)`
+  label: Navigation;
+`;
 
 const Label = styled.span`
   width: ${({ collapsed }) => collapsed && 0};
@@ -43,15 +46,17 @@ const Navigation = ({
 }) => {
   const helpers = new Helpers();
   const routerStorage = new RouterStorage('router');
+
   useEffect(() => {
     const router = routerStorage.getRouter();
     if (router) {
       const route = router[location.pathname];
       if (route) {
         fetchNavigationAction({
-          url: route.api,
-          entity: route.name.toLowerCase(),
+          query: route.query,
+          keyQuery: route.keyQuery,
         });
+
         addToBreadcrumbAction(router, location.pathname);
       } else {
         resetNavigationAction();
@@ -77,11 +82,11 @@ const Navigation = ({
   }
 
   return (
-    <List {...rest}>
+    <Root {...rest}>
       {shouldDisplayFetchedDatas
         ? navQuery.datas.map((data, i) => {
-            const { icon } = config.entities[data.displayedEntity];
-            const shouldDisplayTextAsARouterLink = !!data.navigation;
+            // const { icon } = config.entities[data.displayedEntity];
+            const shouldDisplayTextAsARouterLink = !!data.query;
             const LinkToPath = `${location.pathname}/${helpers.slugify(
               data.name || data._id,
             )}`;
@@ -93,14 +98,15 @@ const Navigation = ({
                   key={i}
                   path={LinkToPath}
                   label={data.name || data._id}
-                  icon={icon}
+                  // icon={icon}
                   callback={() => {
                     if (collapsed) return toggle();
                     routerStorage.addToRouter({
                       [LinkToPath]: {
                         name: data.name || data._id,
-                        api: data.navigation,
+                        query: data.query,
                         route: LinkToPath,
+                        keyQuery: data.keyQuery,
                       },
                     });
                   }}
@@ -110,22 +116,14 @@ const Navigation = ({
             return (
               <ListItemCustom key={i}>
                 <FlexBox css={{ overflow: 'hidden', padding: '1rem' }}>
-                  <Icon
-                    css={{
-                      paddingRight: '1rem',
-                      '&:hover': {
-                        backgroundColor: 'transparent',
-                      },
-                    }}
-                    dangerouslySetInnerHTML={{ __html: icon }}
-                  />
+                  {/* <Icon icon="products" /> */}
                   <Label collapsed={collapsed}>{data.name || data._id}</Label>
                 </FlexBox>
               </ListItemCustom>
             );
           })
-        : config.router.hedging.routes.map((route, i) => {
-            const { icon } = config.entities[route.collection];
+        : config.app.routes.map((route, i) => {
+            const { icon } = config.entities[route.keyQuery];
             return (
               <NavigationListItem
                 key={i}
@@ -136,8 +134,10 @@ const Navigation = ({
                   routerStorage.addToRouter({
                     [`${route.path}`]: {
                       name: route.title,
-                      api: route.uri,
+                      query: route.query,
                       route: route.path,
+                      get: route.query,
+                      keyQuery: route.keyQuery,
                     },
                   });
                 }}
@@ -145,7 +145,7 @@ const Navigation = ({
               />
             );
           })}
-    </List>
+    </Root>
   );
 };
 
@@ -179,8 +179,8 @@ const mapStateToProps = ({ hedgingReducer, navigationReducer }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchNavigationAction: ({ url, entity }) => {
-    dispatch(fetchNavigation({ url, entity }));
+  fetchNavigationAction: ({ query, keyQuery }) => {
+    dispatch(fetchNavigation({ query, keyQuery }));
   },
   resetNavigationAction: () => {
     dispatch(resetNavigation());

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withRouter } from 'react-router-dom';
 import { withTheme } from 'emotion-theming';
-import { Icon, GridIcon, BurgerMenu } from 'components/commons/Icons';
+import { Icon } from 'components/commons/Icons';
 import { FlexBox } from 'components/commons/FlexBox';
 
 const AppTitle = styled.h3`
@@ -66,7 +66,8 @@ const Navbar = ({
     <Root collapsed={collapsed}>
       <FlexBox css={{ alignItems: 'center' }}>
         {shouldDisplayBurgerMenu() && (
-          <BurgerMenu
+          <Icon
+            icon="burger"
             data-id="menu"
             onClick={setDisplayLeftPanel}
             css={{ fontSize: '2.5rem' }}
@@ -83,8 +84,7 @@ const Navbar = ({
       </FlexBox>
 
       <IconWrapper>
-        <Icon>&#xe0ca;</Icon>
-        {!isSmall && <GridIcon onClick={setDisplayRightPanel} />}
+        {!isSmall && <Icon icon="grid" onClick={setDisplayRightPanel} />}
       </IconWrapper>
     </Root>
   );

@@ -9,7 +9,7 @@ const initialState = {
     datas: null,
     loading: null,
     error: null,
-    entity: null,
+    keyQuery: null,
   },
 };
 
@@ -18,7 +18,11 @@ const reducer = (state = initialState, action = {}) => {
     case FETCH_NAVIGATION: {
       return {
         ...state,
-        navQuery: { ...state.navQuery, loading: true, entity: action.entity },
+        navQuery: {
+          ...state.navQuery,
+          loading: true,
+          keyQuery: action.keyQuery,
+        },
       };
     }
     case FETCH_NAVIGATION_SUCCESS: {
@@ -50,7 +54,7 @@ const reducer = (state = initialState, action = {}) => {
           datas: null,
           loading: null,
           error: null,
-          entity: null,
+          keyQuery: null,
         },
       };
     }
@@ -63,10 +67,10 @@ const reducer = (state = initialState, action = {}) => {
 
 export default reducer;
 
-export const fetchNavigation = ({ url, entity }) => ({
+export const fetchNavigation = ({ query, keyQuery }) => ({
   type: FETCH_NAVIGATION,
-  entity,
-  url,
+  keyQuery,
+  query,
 });
 
 export const fetchNavigationSuccess = payload => ({

@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { useEffect, Suspense, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -12,10 +11,12 @@ import { fetchConfig } from 'store/reducers/hedgingReducer';
 import { GridIcon } from 'components/commons/Icons';
 import NotFound from 'components/NotFound/NotFound';
 import { Navigation } from 'components/Navigation';
-import { Toggle } from 'components/Navigation/Toggle';
+import { Toggle } from 'components/Toggle';
 import { FlexBox } from 'components/commons/FlexBox';
 import { Navbar } from 'components/Navbar';
 import { ActionPanel } from 'components/ActionPanel';
+import { LeftMenu } from '../LeftMenu';
+import Icon from '../commons/Icons/Icon';
 
 const Root = styled.main`
   display: grid;
@@ -52,7 +53,7 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const [displayLeftPanel, setDisplayLeftPanel] = useState(
     isSmallDevice(theme),
   );
-  const [isResizing, setResizingState] = useState(false);
+  const [isResizing, setResizing] = useState(false);
   const [displayRightPanel, setDisplayRightPanel] = useState(true);
   const [isSmall, setDeviceSize] = useState(isSmallDevice(theme));
   const [activeApp, setActiveApp] = useState(null);
@@ -60,9 +61,9 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   useEffect(() => {
     fetchConfigAction();
     let resizedId;
-    const doneResizing = () => setResizingState(false);
+    const doneResizing = () => setResizing(false);
     window.addEventListener('resize', () => {
-      setResizingState(true);
+      setResizing(true);
       clearTimeout(resizedId);
       resizedId = setTimeout(doneResizing, 100);
       setDeviceSize(isSmallDevice(theme));
@@ -81,7 +82,6 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
 
   if (error) return <span>{error}</span>;
   if (!config) return <span>Loader</span>;
-
   return (
     <Root collapsed={!displayLeftPanel || !displayRightPanel}>
       <Navbar
@@ -113,9 +113,7 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
       </Toggle>
       <Suspense fallback={<></>}>
         <Switch>
-          {Object.values(config.router).map(route => {
-            return <RouteWithSubRoutes {...route} key={route.path} />;
-          })}
+          <RouteWithSubRoutes {...config.app} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>
@@ -130,7 +128,7 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
       )}
 
       <Toggle
-        side={isSmall ? 'bottom' : 'right'} // See to deal with the transition on responsive. It displays from desktop to phone transition
+        side={isSmall ? 'bottom' : 'right'}
         callback={() => {
           setDisplayRightPanel(!displayRightPanel);
         }}
@@ -146,8 +144,13 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
       <Footer>
         <FlexBox flex="1" justifyContent="flex-end">
           {isSmall && (
-            <AppMenu
+            <Icon
+              icon="grid"
               data-id="menu"
+              css={{
+                margin: '0.5rem',
+                fontSize: '2.5rem',
+              }}
               onClick={() => {
                 setDisplayRightPanel(!displayRightPanel);
                 setDisplayLeftPanel(true);

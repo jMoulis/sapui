@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import { RouteWithSubRoutes } from 'services/routesConfigurator';
 
-const HedgingPlants = ({ title, routes, datas, ...rest }) => {
+const HedgePlant = ({ title, routes, datas, ...rest }) => {
   return (
     <>
       <Switch>
@@ -22,4 +22,4 @@ const HedgingPlants = ({ title, routes, datas, ...rest }) => {
   );
 };
 
-export default HedgingPlants;
+export default HedgePlant;
