@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { FlexBox } from 'components/commons/FlexBox';
@@ -38,7 +38,11 @@ const Toggle = ({
   isResizing,
 }) => {
   const rootRef = useRef(null);
+  const collapsedRef = useRef(collapsed);
+  const [shouldClose, setClose] = useState(collapsed);
+
   useEffect(() => {
+    collapsedRef.current = collapsed;
     const handleClickOutside = ({ target }) => {
       if (!collapsed) {
         if (!rootRef.current.contains(target) && target.dataset.id !== 'menu') {
@@ -57,7 +61,7 @@ const Toggle = ({
   }, [collapsed]);
 
   const childrenWithProps = React.Children.map(children, child =>
-    React.cloneElement(child, { collapsed, toggle: callback }),
+    React.cloneElement(child, { collapsed, toggle: callback, close }),
   );
   return (
     <Root
@@ -67,13 +71,26 @@ const Toggle = ({
       hidden={hidden}
       width={width}
       isResizing={isResizing}
+      isSmall={isSmall}
+      onMouseEnter={() => {
+        setClose(collapsedRef.current);
+        if (collapsed) return callback();
+      }}
+      onMouseLeave={() => {
+        if (shouldClose && !collapsed) {
+          close();
+        }
+      }}
+      onClick={() => {
+        setClose(false);
+      }}
     >
-      <Content css={{}} flex="1" column>
-        {childrenWithProps}
-      </Content>
       <Header side={side}>
         <NavButton collapsed={collapsed} side={side} onClick={callback} />
       </Header>
+      <Content flex="1" column>
+        {childrenWithProps}
+      </Content>
     </Root>
   );
 };

@@ -6,48 +6,49 @@ import styled from '@emotion/styled';
 import { withTheme } from 'emotion-theming';
 import { Footer } from 'components/Layout';
 import CompanyLogo from 'assets/images/logo.jpg';
-import { RouteWithSubRoutes } from 'services/routesConfigurator';
 import { fetchConfig } from 'store/reducers/hedgingReducer';
-import { GridIcon } from 'components/commons/Icons';
 import NotFound from 'components/NotFound/NotFound';
-import { Navigation } from 'components/Navigation';
+import { Dashboard } from 'components/Dashboard';
 import { Toggle } from 'components/Toggle';
 import { FlexBox } from 'components/commons/FlexBox';
 import { Navbar } from 'components/Navbar';
-import { ActionPanel } from 'components/ActionPanel';
-import { LeftMenu } from '../LeftMenu';
-import Icon from '../commons/Icons/Icon';
+import { LeftMenu } from 'components/LeftMenu';
+import { Icon } from 'components/commons/Icons';
+import { Sales } from 'components/Sales';
 
 const Root = styled.main`
   display: grid;
-  grid-template-areas:
-    'header header header right'
-    'left main action right'
-    'footer footer footer right';
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 6rem 1fr 6rem;
   width: 100vw;
-  ${({ theme, collapsed }) => {
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 6rem 1fr 6rem;
+  backgroundcolor: ${({ collapsed }) => collapsed && 'rgba(0, 0, 0, 0.4)'};
+  ${({ theme }) => {
     return {
-      [theme.mediaQueries.xs]: {
-        gridTemplateAreas: `'header'
-          'main'
-          'footer';`,
-        gridTemplateColumns: '1fr',
+      [theme.mediaQueries.sm]: {
+        gridTemplateAreas: `
+          'header header header header'
+          'left main main main'
+          'footer footer footer footer'`,
+        gridTemplateColumns: 'auto 1fr auto',
         gridTemplateRows: '6rem 1fr 6rem',
-        backgroundColor: collapsed && 'rgba(0, 0, 0, 0.4)',
       },
     };
   }};
 `;
-
-const AppMenu = styled(GridIcon)`
-  font-size: 3rem;
-  margin-right: 1rem;
+const Content = styled.div`
+  grid-area: main;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.backgrounds.background1};
 `;
 
 const isSmallDevice = theme =>
-  window.matchMedia(`(max-width: ${theme.breakpoints.xs}px)`).matches;
+  window.matchMedia(`(max-width: ${theme.breakpoints.sm}px)`).matches;
 
 const App = ({ fetchConfigAction, config, theme, error }) => {
   const [displayLeftPanel, setDisplayLeftPanel] = useState(
@@ -56,7 +57,6 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const [isResizing, setResizing] = useState(false);
   const [displayRightPanel, setDisplayRightPanel] = useState(true);
   const [isSmall, setDeviceSize] = useState(isSmallDevice(theme));
-  const [activeApp, setActiveApp] = useState(null);
 
   useEffect(() => {
     fetchConfigAction();
@@ -109,41 +109,20 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
         isSmall={isSmall}
         isResizing={isResizing}
       >
-        <Navigation />
+        <LeftMenu />
       </Toggle>
-      <Suspense fallback={<></>}>
-        <Switch>
-          <RouteWithSubRoutes {...config.app} />
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
-
-      {!isSmall && (
-        <ActionPanel
-          callback={app => {
-            setActiveApp(app);
-            setDisplayRightPanel(!displayRightPanel);
-          }}
-        />
-      )}
-
-      <Toggle
-        side={isSmall ? 'bottom' : 'right'}
-        callback={() => {
-          setDisplayRightPanel(!displayRightPanel);
-        }}
-        collapsed={displayRightPanel}
-        hidden
-        width="30rem"
-        isSmall={isSmall}
-        close={() => setDisplayRightPanel(true)}
-        isResizing={isResizing}
-      >
-        <>{activeApp}</>
-      </Toggle>
+      <Content>
+        <Suspense fallback={<></>}>
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/sales" component={Sales} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </Content>
       <Footer>
         <FlexBox flex="1" justifyContent="flex-end">
-          {isSmall && (
+          {false && (
             <Icon
               icon="grid"
               data-id="menu"

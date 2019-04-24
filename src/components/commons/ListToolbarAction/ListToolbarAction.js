@@ -36,12 +36,7 @@ const ListToolbarWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* padding: 0 2rem;
-  ${({ theme }) => ({
-    [theme.mediaQueries.sm]: {
-      padding: 0,
-    },
-  })} */
+  padding: 0;
 `;
 const ListCustom = styled(List)`
   display: flex;

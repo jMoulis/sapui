@@ -12,7 +12,8 @@
     "return": "Retour",
     "search": "Rechercher",
     "sort": "Trier",
-    "void": "Néant"
+    "void": "Néant",
+    "reduce": "Réduire"
   },
   "sorting": {
     "sortBy": "Trier par",

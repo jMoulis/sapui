@@ -12,7 +12,8 @@
     "return": "Return",
     "search": "Search",
     "sort": "Sort",
-    "void": "Void"
+    "void": "Void",
+    "reduce": "Réduire"
   },
   "sorting": {
     "sortBy": "Sort by",

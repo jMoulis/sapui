@@ -70,22 +70,22 @@ const Navbar = ({
             icon="burger"
             data-id="menu"
             onClick={setDisplayLeftPanel}
-            css={{ fontSize: '2.5rem' }}
+            size="2.5rem"
           />
         )}
         <Logo logo={company.logo} />
-        <AppTitle>{company.name}</AppTitle>
+        {!isSmall && <AppTitle>{company.name}</AppTitle>}
       </FlexBox>
-      <FlexBox css={{ width: '3rem', height: '3rem' }}>
-        <Img
-          src="https://unpkg.com/fiori-fundamentals@1.3.3/dist/images/copilot.png"
-          alt="Siri"
-        />
-      </FlexBox>
+      {!isSmall && (
+        <FlexBox css={{ width: '3rem', height: '3rem' }}>
+          <Img
+            src="https://unpkg.com/fiori-fundamentals@1.3.3/dist/images/copilot.png"
+            alt="Siri"
+          />
+        </FlexBox>
+      )}
 
-      <IconWrapper>
-        {!isSmall && <Icon icon="grid" onClick={setDisplayRightPanel} />}
-      </IconWrapper>
+      {!isSmall && <Icon icon="grid" />}
     </Root>
   );
 };
