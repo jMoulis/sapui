@@ -36,6 +36,7 @@ const Toggle = ({
   isSmall,
   close,
   isResizing,
+  autoClose,
 }) => {
   const rootRef = useRef(null);
   const collapsedRef = useRef(collapsed);
@@ -73,12 +74,16 @@ const Toggle = ({
       isResizing={isResizing}
       isSmall={isSmall}
       onMouseEnter={() => {
-        setClose(collapsedRef.current);
-        if (collapsed) return callback();
+        if (autoClose) {
+          setClose(collapsedRef.current);
+          if (collapsed) return callback();
+        }
       }}
       onMouseLeave={() => {
-        if (shouldClose && !collapsed) {
-          close();
+        if (autoClose) {
+          if (shouldClose && !collapsed) {
+            close();
+          }
         }
       }}
       onClick={() => {

@@ -13,7 +13,9 @@
     "search": "Search",
     "sort": "Sort",
     "void": "Void",
-    "reduce": "Réduire"
+    "reduce": "Reduce",
+    "create": "Ajouter",
+    "name": "Name"
   },
   "sorting": {
     "sortBy": "Sort by",
@@ -34,6 +36,10 @@
   },
   "hedging": {
     "selectPlant": "Select a Plant",
-    "selectProduct": "Select a product"
+    "selectProduct": "Select a product",
+    "addNewPlant": "Create a plant",
+    "plants": "Plants",
+    "editPlant": "Edit a Plant",
+    "deletePlant": "Delete a Plant"
   }
 }

@@ -15,11 +15,19 @@ const setheight = ({ side, collapsed, isSmall }) => {
   return '100%';
 };
 
+const widthWideScreen = ({ hidden, collapsed, width }) => {
+  if (hidden) {
+    if (collapsed) return 0;
+    return width || '20rem';
+  }
+  return collapsed ? '5rem' : width || '20rem';
+};
 const Root = styled.aside`
   label: Toogle;
   background-color: ${({ theme }) => theme.colors.action.secondary};
   grid-area: ${({ side }) => side};
-
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   transition: ${({ isResizing }) => !isResizing && 'all 150ms ease-in-out'};
   overflow: hidden;
   display: flex;
@@ -36,26 +44,11 @@ const Root = styled.aside`
     setWidth({ collapsed, side, isSmall })};
   height: ${({ side, collapsed, isSmall }) =>
     setheight({ collapsed, side, isSmall })};
-  ${({ theme }) => {
+  ${({ theme, collapsed, hidden, width }) => {
     return {
       [theme.mediaQueries.sm]: {
         position: 'relative',
-        widht: '5rem',
-        // width: ({ collapsed, hidden, width }) => {
-        //   if (hidden) {
-        //     if (collapsed) return 0;
-        //     return width || '20rem';
-        //   }
-        //   return collapsed ? '5rem' : width || '20rem';
-        // },
-        // position: 'absolute',
-        // zIndex: 1,
-        // top: side !== 'bottom' && 0,
-        // bottom: 0,
-        // left: (side === 'left' || side === 'bottom' || side === 'top') && 0,
-        // right: (side === 'right' || side === 'bottom' || side === 'top') && 0,
-        // width: setWidth({ collapsed, side }),
-        // height: setheight({ collapsed, side }),
+        width: widthWideScreen({ hidden, collapsed, width }),
       },
     };
   }}

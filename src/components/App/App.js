@@ -15,6 +15,7 @@ import { Navbar } from 'components/Navbar';
 import { LeftMenu } from 'components/LeftMenu';
 import { Icon } from 'components/commons/Icons';
 import { Sales } from 'components/Sales';
+import { ActionPanel } from 'components/ActionPanel';
 
 const Root = styled.main`
   display: grid;
@@ -30,10 +31,10 @@ const Root = styled.main`
     return {
       [theme.mediaQueries.sm]: {
         gridTemplateAreas: `
-          'header header header header'
-          'left main main main'
-          'footer footer footer footer'`,
-        gridTemplateColumns: 'auto 1fr auto',
+          'header header header right'
+          'left main action right'
+          'footer footer footer right'`,
+        gridTemplateColumns: 'auto 1fr 5rem auto',
         gridTemplateRows: '6rem 1fr 6rem',
       },
     };
@@ -57,7 +58,7 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const [isResizing, setResizing] = useState(false);
   const [displayRightPanel, setDisplayRightPanel] = useState(true);
   const [isSmall, setDeviceSize] = useState(isSmallDevice(theme));
-
+  const [activeApp, setActiveApp] = useState(null);
   useEffect(() => {
     fetchConfigAction();
     let resizedId;
@@ -108,6 +109,7 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
         close={() => setDisplayLeftPanel(true)}
         isSmall={isSmall}
         isResizing={isResizing}
+        autoClose
       >
         <LeftMenu />
       </Toggle>
@@ -120,6 +122,36 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
           </Switch>
         </Suspense>
       </Content>
+
+      {!isSmall && (
+        <ActionPanel
+          setActiveApp={app => {
+            setActiveApp(app);
+            if (displayRightPanel) {
+              return setDisplayRightPanel(!displayRightPanel);
+            }
+            if (app.label === activeApp.label) {
+              return setDisplayRightPanel(!displayRightPanel);
+            }
+          }}
+          collapsed={displayRightPanel}
+        />
+      )}
+
+      <Toggle
+        side={isSmall ? 'bottom' : 'right'}
+        callback={() => {
+          setDisplayRightPanel(!displayRightPanel);
+        }}
+        collapsed={displayRightPanel}
+        hidden
+        width="30rem"
+        isSmall={isSmall}
+        close={() => setDisplayRightPanel(true)}
+        isResizing={isResizing}
+      >
+        <>{activeApp && <activeApp.component />}</>
+      </Toggle>
       <Footer>
         <FlexBox flex="1" justifyContent="flex-end">
           {false && (

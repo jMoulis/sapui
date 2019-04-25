@@ -1,42 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import { List, ListItem } from 'components/commons/List';
-import { Icon, AddIcon } from 'components/commons/Icons';
+import { Icon } from 'components/commons/Icons';
 import actions from './actions';
 
 const Root = styled(List)`
   grid-area: action;
+  & * {
+    color: #354a5f;
+  }
 `;
 
 const ListItemCustom = styled(ListItem)`
   display: flex;
   padding: 1rem;
-`;
-
-const ListIcon = styled(Icon)`
-  padding-right: 1.2rem;
-  &:hover {
-    background-color: transparent;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  &::after {
+    content: ' ';
+    position: absolute;
+    width: 3px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: ${({ selectedMenu }) =>
+      selectedMenu && 'rgb(255, 99, 132)'};
   }
 `;
 
-const ActionPanel = ({ callback, config }) => {
+const ActionPanel = ({ setActiveApp, collapsed }) => {
+  const [selectedMenu, setSelectedMenu] = useState(null);
   return (
     <Root>
       {Object.values(actions).map((action, index) => (
         <ListItemCustom
           key={index}
+          selectedMenu={selectedMenu === action.label && !collapsed}
           title={action.label}
           onClick={() => {
             if (action.component && typeof action.component === 'function') {
-              callback(action.component);
+              setActiveApp({
+                component: action.component,
+                label: action.label,
+              });
+              setSelectedMenu(action.label);
             }
           }}
         >
-          <ListIcon icon="add" />
-          <Icon icon={action.icon} />
+          <Icon icon={action.icon} isNotif={action.isNotif} size="2.5rem" />
         </ListItemCustom>
       ))}
     </Root>
@@ -44,11 +58,7 @@ const ActionPanel = ({ callback, config }) => {
 };
 
 ActionPanel.propTypes = {
-  callback: PropTypes.func.isRequired,
+  setActiveApp: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ hedgingReducer }) => ({
-  config: hedgingReducer.config,
-});
-
-export default connect(mapStateToProps)(ActionPanel);
+export default ActionPanel;

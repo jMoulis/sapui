@@ -38,7 +38,7 @@ const Content = styled(FlexBox)`
           'card1 card2 card3 card4'
           'tile1 tile1 tile2 tile3'
           'tile1 tile1 tile4 tile4'`,
-        gridTemplateColumns: 'repeat(4, minmax(25rem, 1fr))',
+        gridTemplateColumns: 'repeat(4, minmax(15rem, 1fr))',
         gridTemplateRows: '10rem repeat(2, 30vh)',
         gridGap: '1rem',
       },
@@ -51,7 +51,7 @@ const Dashboard = () => {
     <Root>
       <Content>
         {cards.map((card, index) => (
-          <Tile gridArea={`card${index + 1}`}>
+          <Tile gridArea={`card${index + 1}`} key={index}>
             <Card
               icon={card.icon}
               color={card.color}
