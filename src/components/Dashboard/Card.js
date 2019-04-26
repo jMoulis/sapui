@@ -5,8 +5,8 @@ import { FlexBox } from 'components/commons/FlexBox';
 import { Icon } from 'components/commons/Icons';
 
 const Root = styled(NavLink)`
-  flex: 1;
   display: flex;
+  height: 10rem;
 `;
 
 const Title = styled.span`

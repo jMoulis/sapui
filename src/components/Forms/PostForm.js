@@ -29,6 +29,8 @@ const Select = styled.select`
   border-radius: 0;
 `;
 
+const ButtonWrapper = styled.div``;
+
 const fetchData = async (entity, callback) => {
   try {
     const { data } = await axios({
@@ -186,11 +188,11 @@ const PostForm = () => {
             }));
           }}
         />
-        <div>
-          <Button lg type="submit">
+        <ButtonWrapper>
+          <Button full type="submit">
             Add Sale
           </Button>
-        </div>
+        </ButtonWrapper>
       </Form>
       {/* <form
         onSubmit={event => {

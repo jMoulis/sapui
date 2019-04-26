@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { FlexBox } from 'components/commons/FlexBox';
 import { Chart } from './Chart';
@@ -13,6 +13,7 @@ const Root = styled.section`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   padding: 1rem;
+  height: 80vh;
 `;
 
 const Content = styled(FlexBox)`
@@ -20,27 +21,13 @@ const Content = styled(FlexBox)`
   flex-wrap: wrap;
   grid-area: main;
   display: grid;
-  grid-template-areas:
-    'card1'
-    'card2'
-    'card3'
-    'card4'
-    'tile1'
-    'tile2'
-    'tile3'
-    'tile4';
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 10rem) repeat(4, 20rem);
+  grid-template-rows: ${({ length }) => `repeat(${length}, 1fr)`};
   ${({ theme }) => {
     return {
       [theme.mediaQueries.sm]: {
-        gridTemplateAreas: `
-          'card1 card2 card3 card4'
-          'tile1 tile1 tile2 tile3'
-          'tile1 tile1 tile4 tile4'`,
-        gridTemplateColumns: 'repeat(4, minmax(15rem, 1fr))',
-        gridTemplateRows: '10rem repeat(2, 30vh)',
-        gridGap: '1rem',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gridTemplateRows: '10rem repeat(3, 1fr)',
       },
     };
   }};
@@ -49,9 +36,9 @@ const Content = styled(FlexBox)`
 const Dashboard = () => {
   return (
     <Root>
-      <Content>
+      <Content length={cards.length}>
         {cards.map((card, index) => (
-          <Tile gridArea={`card${index + 1}`} key={index}>
+          <Tile position={card.position} key={index}>
             <Card
               icon={card.icon}
               color={card.color}
@@ -61,16 +48,36 @@ const Dashboard = () => {
           </Tile>
         ))}
 
-        <Tile gridArea="tile1">
+        <Tile
+          position={{
+            gridColumn: '1 / 3',
+            gridRow: '2 / -1',
+          }}
+        >
           <Chart id="3" type="bar" />
         </Tile>
-        <Tile gridArea="tile2">
+        <Tile
+          position={{
+            gridColumn: '3 / 4',
+            gridRow: '2 / 3',
+          }}
+        >
           <Chart id="1" type="polarArea" />
         </Tile>
-        <Tile gridArea="tile3">
+        <Tile
+          position={{
+            gridColumn: '4 / 5',
+            gridRow: '2 / 3',
+          }}
+        >
           <Chart id="2" type="radar" />
         </Tile>
-        <Tile gridArea="tile4">
+        <Tile
+          position={{
+            gridColumn: '3 / 5',
+            gridRow: '3 / 5',
+          }}
+        >
           <Chart id="4" type="bar" />
         </Tile>
       </Content>
