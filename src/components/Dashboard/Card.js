@@ -6,7 +6,6 @@ import { Icon } from 'components/commons/Icons';
 
 const Root = styled(NavLink)`
   display: flex;
-  height: 10rem;
 `;
 
 const Title = styled.span`

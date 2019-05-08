@@ -19,6 +19,7 @@ const Root = styled.div`
     isDragging && {
       transform: 'rotate(5deg)',
     }}
+
   overflow: hidden;
   position: relative;
   display: flex;
@@ -30,14 +31,19 @@ const Root = styled.div`
     box-shadow: 0 3px 5px 2px rgba(0, 0, 0, 0.14),
       0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   }
+  ${({ isDragOver, theme }) => {
+    return isDragOver
+      ? { backgroundColor: 'gray' }
+      : theme.colors.backgrounds.background2;
+  }}
 `;
 
-const Tile = ({ children, ...rest }) => {
+const Tile = ({ children, id, ...rest }) => {
   const [isDragging, setDrag] = useState(false);
+  const [isDragOver, setDragOver] = useState(false);
   const handleDragStart = event => {
     setDrag(true);
-    console.log(event.target.id);
-    event.dataTransfer.setData('text/plain', event.target.id);
+    event.dataTransfer.setData('text/plain', 'event.target.id');
     event.dataTransfer.effectAllowed = 'move';
     event.dataTransfer.dropEffect = 'move';
   };
@@ -47,51 +53,30 @@ const Tile = ({ children, ...rest }) => {
   };
 
   const handleDragEnd = event => {
+    console.log('done');
     setDrag(false);
-    const data = event.dataTransfer.getData('text/html');
-    console.log(data);
     // event.target.appendChild(document.getElementById(data));
   };
 
-  const handleDrop = event => {
-    // event.preventDefault();
-    const data = event.dataTransfer.getData('text/plain');
-    console.log(data);
-    console.log('drop');
-    console.log(event.target);
-    if (document.getElementById(data)) {
-      event.target.appendChild(document.getElementById(data));
-    }
-  };
   return (
     <>
       <Root
-        id="yo"
+        id={`root-${id}`}
         draggable="true"
         onDrag={handleDrag}
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
         isDragging={isDragging}
+        isDragOver={isDragOver}
+        onDrop={() => console.log('drop')}
+        onDragOver={() => setDragOver(true)}
+        onDragLeave={() => {
+          setDragOver(false);
+        }}
         {...rest}
       >
-        {children}
+        {children || '+'}
       </Root>
-      <span
-        id="drop"
-        onDrop={handleDrop}
-        onDragOver={event => {
-          event.preventDefault();
-          // Set the dropEffect to move
-          console.log('hello');
-          event.dataTransfer.dropEffect = 'move';
-        }}
-        style={{
-          height: '20rem',
-          width: '20rem',
-          display: 'block',
-          backgroundColor: 'black',
-        }}
-      />
     </>
   );
 };
