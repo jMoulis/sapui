@@ -109,6 +109,7 @@ Toggle.propTypes = {
   width: PropTypes.string,
   isSmall: PropTypes.bool,
   isResizing: PropTypes.bool.isRequired,
+  autoClose: PropTypes.bool,
   close: PropTypes.func.isRequired,
 };
 
@@ -117,6 +118,7 @@ Toggle.defaultProps = {
   width: null,
   isSmall: false,
   hidden: null,
+  autoClose: false,
 };
 
 export default Toggle;

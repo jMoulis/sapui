@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
+import BtnMenu from './BtnMenu';
+import TileMenu from './TileMenu';
 
 const Root = styled.div`
   label: Tile;
-  margin: 0.5rem;
   cursor: pointer;
-  grid-column: 1;
+  resize: both;
   ${({ theme, position }) => {
     return {
       [theme.mediaQueries.sm]: {
@@ -13,9 +15,11 @@ const Root = styled.div`
       },
     };
   }};
+  z-index: ${({ zIndex }) => zIndex};
   overflow: hidden;
   position: relative;
   display: flex;
+  justify-content: center;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   &:hover {
@@ -30,6 +34,14 @@ const Root = styled.div`
         }
       : { backgroundColor: theme.colors.backgrounds.background2 };
   }}
+  ${({ isDragStart }) => {
+    return isDragStart
+      ? {
+          transform: 'rotate(5deg)',
+          transition: 'all 150ms ease-in',
+        }
+      : null;
+  }}
 `;
 
 const DefaultTile = ({
@@ -38,67 +50,132 @@ const DefaultTile = ({
   position,
   item,
   setSource,
-  itemSource,
+  sourceItem,
+  text,
+  id,
+  cbResize,
+  removeItem,
   ...rest
 }) => {
   const [isDragOver, setDragOver] = useState(false);
   const [isDropped, setDropped] = useState(false);
+  const [defaultSize, setDefaultSize] = useState();
+  const [zIndex, setZIndex] = useState(null);
+  const [isDragStart, setDragStart] = useState(false);
+  const [isMenu, setMenu] = useState(false);
+  const [isBtnMenu, setBtnMenu] = useState(false);
+  const divRef = useRef();
+  const collapsedRef = useRef(isMenu);
+
+  const handleClickOutside = ({ target }) => {
+    if (isMenu) {
+      if (!target.dataset.menu) {
+        setMenu(false);
+      }
+    }
+  };
+  useEffect(() => {
+    collapsedRef.current = isMenu;
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMenu]);
 
   const handleDragStart = event => {
-    console.log('Start');
+    setDragStart(true);
     event.dataTransfer.effectAllowed = 'move';
     event.dataTransfer.dropEffect = 'move';
     setSource(item);
   };
 
-  const handleDrop = async event => {
-    console.log('Drop');
-    event.preventDefault();
-    setDragOver(false);
-    setDropped(true);
-    setSource(itemSource);
+  const resetCss = () => {
+    setZIndex(null);
+    setDragStart(false);
+    divRef.current.style.removeProperty('width');
+    divRef.current.style.removeProperty('height');
   };
 
   useEffect(() => {
     if (!isDragOver && isDropped) {
-      console.log('Callback');
-      console.log(isDragOver);
       callback({
-        itemSource,
         target: item,
       });
+      resetCss();
     }
   }, [isDragOver, isDropped]);
 
+  const handleDrop = () => {
+    setDragOver(false);
+    setDropped(true);
+    setSource(sourceItem);
+    resetCss();
+  };
+
   const handleDragOver = event => {
     event.preventDefault();
-    console.log('Over');
     setDropped(false);
-    if (itemSource && itemSource.id === item.id) return null;
+    if (sourceItem && item && sourceItem.id === item.id) return null;
     setDragOver(true);
   };
 
-  const handleDragLeave = event => {
-    console.log('Leave');
+  const handleDragLeave = () => {
     setDragOver(false);
   };
 
+  const handleMouseDown = () => {
+    setDefaultSize(null);
+    setZIndex(10);
+  };
+
+  const handleStopResizing = event => {
+    const { width, height } = event.target.getBoundingClientRect();
+    setZIndex(null);
+    const colSpan = Math.floor(width / 200);
+    const rowSpan = Math.floor(height / 200);
+    if (event.target === divRef.current) {
+      cbResize({
+        target: {
+          ...item,
+          position: {
+            gridRowEnd: `span ${rowSpan}`,
+            gridColumnEnd: `span ${colSpan}`,
+          },
+        },
+      });
+      resetCss();
+    }
+  };
+
   return (
-    <>
-      <Root
-        id={item.id}
-        draggable
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragStart={handleDragStart}
-        onDragLeave={handleDragLeave}
-        isDragOver={isDragOver}
-        position={position}
-        {...rest}
-      >
-        <span>{item.id}</span>
-      </Root>
-    </>
+    <Root
+      id={id || item.id}
+      draggable
+      zIndex={zIndex}
+      defaultSize={defaultSize}
+      ref={divRef}
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+      onDragStart={handleDragStart}
+      onDragLeave={handleDragLeave}
+      onDragEnd={() => resetCss()}
+      isDragOver={isDragOver}
+      position={position}
+      onMouseUp={handleStopResizing}
+      onMouseDown={handleMouseDown}
+      onMouseEnter={() => setBtnMenu(true)}
+      onMouseLeave={() => setBtnMenu(false)}
+      isDragStart={isDragStart}
+      {...rest}
+    >
+      {children || <span>{text}</span>}
+      <BtnMenu
+        inProps={isBtnMenu || isMenu}
+        callback={() => setMenu(prevState => !prevState)}
+      />
+
+      <TileMenu inProps={isMenu} removeItem={removeItem} item={item} />
+    </Root>
   );
 };
 

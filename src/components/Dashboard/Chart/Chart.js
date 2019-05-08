@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import ChartJS from 'chart.js';
 import styled from '@emotion/styled';
-import { FlexBox } from 'components/commons/FlexBox';
 
 const setUpChart = (ctx, type) => {
   return new ChartJS(ctx, {
@@ -38,8 +37,11 @@ const setUpChart = (ctx, type) => {
     },
   });
 };
-const Canvas = styled.canvas`
+const Canvas = styled.canvas``;
+const Wrapper = styled.div`
   padding: 1rem;
+  width: 90%;
+  height: 90%;
 `;
 
 const Chart = ({ id, type }) => {
@@ -48,7 +50,11 @@ const Chart = ({ id, type }) => {
     const ctx = chartRef.current;
     setUpChart(ctx, type);
   }, []);
-  return <Canvas ref={chartRef} id={id} width="200" height="200" />;
+  return (
+    <Wrapper>
+      <Canvas ref={chartRef} id={id} />
+    </Wrapper>
+  );
 };
 
 export default Chart;

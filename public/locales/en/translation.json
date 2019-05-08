@@ -15,7 +15,9 @@
     "void": "Void",
     "reduce": "Reduce",
     "create": "Ajouter",
-    "name": "Name"
+    "name": "Name",
+    "delete": "Delete",
+    "actionsLists": "Actions List"
   },
   "sorting": {
     "sortBy": "Sort by",

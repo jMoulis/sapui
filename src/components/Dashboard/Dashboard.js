@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styled from '@emotion/styled';
 import { FlexBox } from 'components/commons/FlexBox';
@@ -8,45 +8,66 @@ import { FlexBox } from 'components/commons/FlexBox';
 // import Test from './Test';
 import DefaultTile from './DefaultTile';
 import { cards, gridSize } from './fakeData';
+import Trash from './Trash';
 
 const Root = styled.section`
   label: Dashboard;
-  display: grid;
-  grid-template-areas: 'main';
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
   padding: 1rem;
-  height: 80vh;
+  display: flex;
+  flex: 1;
 `;
 
 const Content = styled(FlexBox)`
   label: DashboardContent;
+  position: relative;
+  flex: 1;
   flex-wrap: wrap;
   grid-area: main;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-auto-rows: 20rem;
-  ${({ theme }) => {
-    return {
-      [theme.mediaQueries.sm]: {
-        gridTemplateColumns: 'repeat(4, minmax(20rem, 1fr))',
-        gridTemplateRows: 'repeat(4, 1fr)',
-      },
-    };
-  }};
 `;
+
+const moveInArray = ({ items, tragetId, sourceId, elementToMove }) => {
+  const targetIndex = items.findIndex(item => item && item.id === tragetId);
+  const sourceIndex = items.findIndex(item => item && item.id === sourceId);
+  const newValues = [...items.filter((item, index) => index !== sourceIndex)];
+
+  newValues.splice(targetIndex, 0, {
+    ...elementToMove,
+    position: {
+      ...elementToMove.position,
+    },
+  });
+  return newValues;
+};
 
 const Dashboard = () => {
   const [items, setItem] = useState({ values: [...gridSize], changed: false });
-  const [itemSource, setSource] = useState(null);
+  const [sourceItem, setSource] = useState(null);
 
   const handleMoveItem = ({ target }) => {
-    const newSource = { ...itemSource, position: target.position };
-    const newTarget = { ...target, position: itemSource.position };
+    setItem({
+      values: moveInArray({
+        items: items.values,
+        tragetId: target.id,
+        sourceId: sourceItem.id,
+        elementToMove: sourceItem,
+      }),
+    });
+  };
 
+  const handleRemoveItem = ({ source }) => {
+    const newValues = items.values.filter(item => item.id !== source.id);
+    setItem({ values: newValues });
+  };
+
+  const handleResize = ({ target }) => {
     const newValues = items.values.map(item => {
-      if (item.id === itemSource.id) return newSource;
-      if (item.id === target.id) return newTarget;
+      if (item.id === target.id) {
+        return target;
+      }
       return item;
     });
     setItem({ values: newValues });
@@ -75,52 +96,34 @@ const Dashboard = () => {
         {items &&
           Array.isArray(items.values) &&
           items.values.map((item, index) => {
+            if (!item)
+              return (
+                <DefaultTile
+                  key={index}
+                  id={index}
+                  callback={handleMoveItem}
+                  setSource={setSource}
+                  sourceItem={sourceItem}
+                  text="EmptySlot"
+                />
+              );
             return (
               <DefaultTile
                 item={item}
-                position={item.position}
+                position={item && item.position}
                 key={index}
-                id={item.id}
+                id={index}
                 callback={handleMoveItem}
                 setSource={setSource}
-                itemSource={itemSource}
+                sourceItem={sourceItem}
+                text={item.id}
+                cbResize={handleResize}
+                removeItem={handleRemoveItem}
               >
                 {item.component ? <item.component /> : null}
               </DefaultTile>
             );
           })}
-        {/* <Tile
-          position={{
-            gridColumn: '1 / 3',
-            gridRow: '2 / -1',
-          }}
-        >
-          <Chart id="3" type="bar" />
-        </Tile>
-        <Tile
-          position={{
-            gridColumn: '3 / 4',
-            gridRow: '2 / 3',
-          }}
-        >
-          <Chart id="1" type="polarArea" />
-        </Tile>
-        <Tile
-          position={{
-            gridColumn: '4 / 5',
-            gridRow: '2 / 3',
-          }}
-        >
-          <Chart id="2" type="radar" />
-        </Tile>
-        <Tile
-          position={{
-            gridColumn: '3 / 5',
-            gridRow: '3 / 5',
-          }}
-        >
-          <Chart id="4" type="bar" />
-        </Tile> */}
       </Content>
     </Root>
   );
