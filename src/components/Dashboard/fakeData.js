@@ -48,83 +48,110 @@ export const cards = [
   },
 ];
 
+export const widgets = {
+  Chart: props => <Chart id="3" type="bar" {...props} />,
+  Message: props => <h1 {...props}>TestMessage</h1>,
+};
+
 export const tiles = [
   {
     id: 'tile-1',
     position: {
-      gridColumn: '1 / 2',
-      gridRow: '4',
+      gridRowEnd: 1,
+      gridColumnEnd: 1,
     },
-    component: props => <Chart id="3" type="bar" {...props} />,
+    component: {
+      name: 'Chart',
+      props: {
+        id: '1',
+        type: 'bar',
+      },
+    },
   },
   {
     id: 'tile-2',
     position: {
-      gridColumn: '2 / 3',
-      gridRow: '4',
+      gridRowEnd: 1,
+      gridColumnEnd: 1,
     },
-    component: props => <Chart id="1" type="polarArea" {...props} />,
-  },
-  {
-    id: 'tile-3',
-    position: {
-      gridColumn: '3 / 4',
-      gridRow: '4',
+    component: {
+      name: 'Message',
+      props: {},
     },
-    component: props => <Chart id="4" type="bar" {...props} />,
   },
   {
     id: 'tile-4',
     position: {
-      gridColumn: '4 / 5',
-      gridRow: '4',
+      gridRowEnd: 1,
+      gridColumnEnd: 1,
     },
-    component: props => <Chart id="4" type="bar" {...props} />,
+    component: {
+      name: 'Chart',
+      props: {
+        id: '5',
+        type: 'polarArea',
+      },
+    },
   },
 ];
 
 export const gridSize = [
   {
     id: 'default-1',
-    name: 'shouldStay',
     position: {
-      gridRowEnd: 'span 2',
-      gridColumnEnd: 'span 2',
+      gridRowEnd: 2,
+      gridColumnEnd: 2,
     },
-    component: props => <Chart id="4" type="bar" {...props} />,
+    component: {
+      name: 'Chart',
+      props: {
+        id: '4',
+        type: 'bar',
+      },
+    },
   },
   {
     id: 'default-2',
-    component: props => <Chart id="1" type="polarArea" {...props} />,
+    position: {
+      gridRowEnd: 1,
+      gridColumnEnd: 1,
+    },
+    component: {
+      name: 'Chart',
+      props: {
+        id: '1',
+        type: 'polarArea',
+      },
+    },
   },
-  {
-    id: 'default-3',
-  },
-  {
-    id: 'default-4',
-  },
-  {
-    id: 'default-5',
-  },
-  {
-    id: 'default-6',
-  },
-  {
-    id: 'default-7',
-  },
-  {
-    id: 'default-8',
-  },
-  {
-    id: 'default-9',
-  },
-  {
-    id: 'default-10',
-  },
-  {
-    id: 'default-11',
-  },
-  {
-    id: 'default-12',
-  },
+  // {
+  //   id: 'default-3',
+  // },
+  // {
+  //   id: 'default-4',
+  // },
+  // {
+  //   id: 'default-5',
+  // },
+  // {
+  //   id: 'default-6',
+  // },
+  // {
+  //   id: 'default-7',
+  // },
+  // {
+  //   id: 'default-8',
+  // },
+  // {
+  //   id: 'default-9',
+  // },
+  // {
+  //   id: 'default-10',
+  // },
+  // {
+  //   id: 'default-11',
+  // },
+  // {
+  //   id: 'default-12',
+  // },
 ];

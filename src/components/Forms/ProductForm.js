@@ -42,6 +42,7 @@ const ProductForm = () => {
       >
         <Input
           value={inputValue.create}
+          name="name"
           label={t('commons.name')}
           onChange={event => {
             const { value } = event.target;
@@ -53,6 +54,7 @@ const ProductForm = () => {
         />
         <Input
           value={inputValue.plant}
+          name="plantId"
           onChange={event => {
             const { value } = event.target;
             setInputValue(prevValue => ({

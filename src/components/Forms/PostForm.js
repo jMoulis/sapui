@@ -83,6 +83,7 @@ const PostForm = () => {
         }}
       >
         <Input
+          name="date"
           type="text"
           label="Date"
           value={inputValue.date}
@@ -131,6 +132,7 @@ const PostForm = () => {
             ))}
         </Select>
         <Input
+          name="provider"
           value={inputValue.provider}
           label="Provider"
           onChange={event => {
@@ -142,6 +144,7 @@ const PostForm = () => {
           }}
         />
         <Input
+          name="customer"
           value={inputValue.customer}
           onChange={event => {
             const { value } = event.target;
@@ -153,6 +156,7 @@ const PostForm = () => {
           label="Customer"
         />
         <Input
+          name="quantity"
           type="text"
           value={inputValue.quantity}
           onChange={event => {
@@ -165,6 +169,7 @@ const PostForm = () => {
           label="Quantity"
         />
         <Input
+          name="price"
           type="text"
           value={inputValue.price}
           onChange={event => {
@@ -177,6 +182,7 @@ const PostForm = () => {
           placeholder="Price"
         />
         <Input
+          name="delivered"
           type="text"
           label="Date Delivered"
           value={inputValue.delivered}

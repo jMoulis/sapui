@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, useState } from 'react';
+import React, { useEffect, Suspense, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
@@ -16,6 +16,7 @@ import { LeftMenu } from 'components/LeftMenu';
 import { Icon } from 'components/commons/Icons';
 import { Sales } from 'components/Sales';
 import { ActionPanel } from 'components/ActionPanel';
+import actions from 'components/ActionPanel/actions';
 
 const Root = styled.main`
   display: grid;
@@ -59,6 +60,8 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const [displayRightPanel, setDisplayRightPanel] = useState(true);
   const [isSmall, setDeviceSize] = useState(isSmallDevice(theme));
   const [activeApp, setActiveApp] = useState(null);
+  const [selectedMenu, setSelectedMenu] = useState(null);
+  const rootRef = useRef();
   useEffect(() => {
     fetchConfigAction();
     let resizedId;
@@ -79,6 +82,17 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const company = {
     name: 'FakeCompany',
     logo: CompanyLogo,
+  };
+
+  const handleSetActiveApp = app => {
+    setActiveApp(app);
+    setSelectedMenu(app.label);
+    if (displayRightPanel) {
+      return setDisplayRightPanel(!displayRightPanel);
+    }
+    if (app.label === activeApp.label) {
+      return setDisplayRightPanel(!displayRightPanel);
+    }
   };
 
   if (error) return <span>{error}</span>;
@@ -113,10 +127,21 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
       >
         <LeftMenu />
       </Toggle>
-      <Content>
+      <Content ref={rootRef}>
         <Suspense fallback={<></>}>
           <Switch>
-            <Route exact path="/" component={Dashboard} />
+            <Route
+              exact
+              path="/"
+              render={routeProps => (
+                <Dashboard
+                  {...routeProps}
+                  setActiveApp={handleSetActiveApp}
+                  actions={actions}
+                  rootBoundingRect={rootRef}
+                />
+              )}
+            />
             <Route path="/sales" component={Sales} />
             <Route component={NotFound} />
           </Switch>
@@ -125,16 +150,9 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
 
       {!isSmall && (
         <ActionPanel
-          setActiveApp={app => {
-            setActiveApp(app);
-            if (displayRightPanel) {
-              return setDisplayRightPanel(!displayRightPanel);
-            }
-            if (app.label === activeApp.label) {
-              return setDisplayRightPanel(!displayRightPanel);
-            }
-          }}
+          setActiveApp={handleSetActiveApp}
           collapsed={displayRightPanel}
+          selectedMenu={selectedMenu}
         />
       )}
 

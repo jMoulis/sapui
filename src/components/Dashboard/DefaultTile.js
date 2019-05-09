@@ -11,7 +11,8 @@ const Root = styled.div`
   ${({ theme, position }) => {
     return {
       [theme.mediaQueries.sm]: {
-        ...position,
+        gridRowEnd: `span ${position && position.gridRowEnd}`,
+        gridColumnEnd: `span ${position && position.gridColumnEnd}`,
       },
     };
   }};
@@ -20,6 +21,8 @@ const Root = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  height: ${({ height }) => height};
+  width: ${({ width }) => width};
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   &:hover {
@@ -49,12 +52,15 @@ const DefaultTile = ({
   callback,
   position,
   item,
-  setSource,
-  sourceItem,
   text,
   id,
   cbResize,
   removeItem,
+  noDragable,
+  noMenu,
+  onClick,
+  width,
+  height,
   ...rest
 }) => {
   const [isDragOver, setDragOver] = useState(false);
@@ -64,6 +70,7 @@ const DefaultTile = ({
   const [isDragStart, setDragStart] = useState(false);
   const [isMenu, setMenu] = useState(false);
   const [isBtnMenu, setBtnMenu] = useState(false);
+  const [sourceItem, setSource] = useState(null);
   const divRef = useRef();
   const collapsedRef = useRef(isMenu);
 
@@ -86,7 +93,9 @@ const DefaultTile = ({
     setDragStart(true);
     event.dataTransfer.effectAllowed = 'move';
     event.dataTransfer.dropEffect = 'move';
-    setSource(item);
+    console.log(item);
+    const itemJson = JSON.stringify(item);
+    event.dataTransfer.setData('item', itemJson);
   };
 
   const resetCss = () => {
@@ -98,17 +107,21 @@ const DefaultTile = ({
 
   useEffect(() => {
     if (!isDragOver && isDropped) {
+      console.log(item);
       callback({
         target: item,
+        source: sourceItem,
       });
       resetCss();
     }
   }, [isDragOver, isDropped]);
 
-  const handleDrop = () => {
+  const handleDrop = event => {
     setDragOver(false);
     setDropped(true);
-    setSource(sourceItem);
+    const itemJson = event.dataTransfer.getData('item');
+    console.log(itemJson);
+    setSource(JSON.parse(itemJson));
     resetCss();
   };
 
@@ -133,13 +146,14 @@ const DefaultTile = ({
     setZIndex(null);
     const colSpan = Math.floor(width / 200);
     const rowSpan = Math.floor(height / 200);
-    if (event.target === divRef.current) {
+    if (event.target === divRef.current && cbResize) {
       cbResize({
+        source: sourceItem,
         target: {
           ...item,
           position: {
-            gridRowEnd: `span ${rowSpan}`,
-            gridColumnEnd: `span ${colSpan}`,
+            gridRowEnd: rowSpan,
+            gridColumnEnd: colSpan,
           },
         },
       });
@@ -150,7 +164,9 @@ const DefaultTile = ({
   return (
     <Root
       id={id || item.id}
-      draggable
+      width={width}
+      height={height}
+      draggable={!noDragable}
       zIndex={zIndex}
       defaultSize={defaultSize}
       ref={divRef}
@@ -165,16 +181,21 @@ const DefaultTile = ({
       onMouseDown={handleMouseDown}
       onMouseEnter={() => setBtnMenu(true)}
       onMouseLeave={() => setBtnMenu(false)}
+      onClick={onClick}
       isDragStart={isDragStart}
       {...rest}
     >
       {children || <span>{text}</span>}
-      <BtnMenu
-        inProps={isBtnMenu || isMenu}
-        callback={() => setMenu(prevState => !prevState)}
-      />
+      {!noMenu && (
+        <>
+          <BtnMenu
+            inProps={isBtnMenu || isMenu}
+            callback={() => setMenu(prevState => !prevState)}
+          />
 
-      <TileMenu inProps={isMenu} removeItem={removeItem} item={item} />
+          <TileMenu inProps={isMenu} removeItem={removeItem} item={item} />
+        </>
+      )}
     </Root>
   );
 };

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import { List, ListItem } from 'components/commons/List';
 import { Icon } from 'components/commons/Icons';
@@ -31,8 +30,7 @@ const ListItemCustom = styled(ListItem)`
   }
 `;
 
-const ActionPanel = ({ setActiveApp, collapsed }) => {
-  const [selectedMenu, setSelectedMenu] = useState(null);
+const ActionPanel = ({ setActiveApp, collapsed, selectedMenu }) => {
   return (
     <Root>
       {Object.values(actions).map((action, index) => (
@@ -46,7 +44,6 @@ const ActionPanel = ({ setActiveApp, collapsed }) => {
                 component: action.component,
                 label: action.label,
               });
-              setSelectedMenu(action.label);
             }
           }}
         >
@@ -59,6 +56,12 @@ const ActionPanel = ({ setActiveApp, collapsed }) => {
 
 ActionPanel.propTypes = {
   setActiveApp: PropTypes.func.isRequired,
+  collapsed: PropTypes.bool,
+  selectedMenu: PropTypes.string,
 };
 
+ActionPanel.defaultProps = {
+  collapsed: false,
+  selectedMenu: null,
+};
 export default ActionPanel;
