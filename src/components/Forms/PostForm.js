@@ -2,11 +2,34 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
+import { Input } from 'components/commons/Form';
+import { Button } from 'components/commons/Buttons';
+import { Link } from 'react-router-dom';
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
+const Root = styled.div`
+  padding: 1rem;
 `;
+
+const Header = styled.h1``;
+const Title = styled.h3``;
+const Form = styled.form`
+  margin: 2rem 0;
+`;
+
+const Select = styled.select`
+  display: block;
+  border: none;
+  padding: 0.5rem;
+  outline: none;
+  font-size: 1.5rem;
+  height: 5rem;
+  transition: all 250ms ease-in;
+  background-color: rgba(86, 87, 89, 0.1);
+  width: 100%;
+  border-radius: 0;
+`;
+
+const ButtonWrapper = styled.div``;
 
 const fetchData = async (entity, callback) => {
   try {
@@ -39,8 +62,8 @@ const PostForm = () => {
     fetchData('products', setProducts);
   }, []);
   return (
-    <>
-      <h1>Sales</h1>
+    <Root>
+      <Header>Posts</Header>
       <Form
         onSubmit={event => {
           event.preventDefault();
@@ -59,8 +82,10 @@ const PostForm = () => {
           });
         }}
       >
-        <input
-          type="date"
+        <Input
+          name="date"
+          type="text"
+          label="Date"
           value={inputValue.date}
           onChange={event => {
             const { value } = event.target;
@@ -71,10 +96,9 @@ const PostForm = () => {
           }}
         />
         <label>PlantId</label>
-        <select
+        <Select
           onChange={event => {
             const { value } = event.target;
-            console.log(value);
             setInputValue(prevValue => ({
               ...prevValue,
               plant: value,
@@ -84,11 +108,13 @@ const PostForm = () => {
           <option value="">{t('selectPlant')}</option>
           {plants &&
             plants.map(plant => (
-              <option value={plant._id}>{plant.name}</option>
+              <option key={plant._id} value={plant._id}>
+                {plant.name}
+              </option>
             ))}
-        </select>
+        </Select>
         <label>ProductID</label>
-        <select
+        <Select
           onChange={event => {
             const { value } = event.target;
             setInputValue(prevValue => ({
@@ -100,11 +126,15 @@ const PostForm = () => {
           <option value="">{t('selectProduct')}</option>
           {products &&
             products.map(product => (
-              <option value={product._id}>{product.name}</option>
+              <option key={product._id} value={product._id}>
+                {product.name}
+              </option>
             ))}
-        </select>
-        <input
+        </Select>
+        <Input
+          name="provider"
           value={inputValue.provider}
+          label="Provider"
           onChange={event => {
             const { value } = event.target;
             setInputValue(prevValue => ({
@@ -112,9 +142,9 @@ const PostForm = () => {
               provider: value,
             }));
           }}
-          placeholder="Provider"
         />
-        <input
+        <Input
+          name="customer"
           value={inputValue.customer}
           onChange={event => {
             const { value } = event.target;
@@ -123,10 +153,11 @@ const PostForm = () => {
               customer: value,
             }));
           }}
-          placeholder="customer"
+          label="Customer"
         />
-        <input
-          type="number"
+        <Input
+          name="quantity"
+          type="text"
           value={inputValue.quantity}
           onChange={event => {
             const { value } = event.target;
@@ -135,10 +166,11 @@ const PostForm = () => {
               quantity: value,
             }));
           }}
-          placeholder="Quantity"
+          label="Quantity"
         />
-        <input
-          type="number"
+        <Input
+          name="price"
+          type="text"
           value={inputValue.price}
           onChange={event => {
             const { value } = event.target;
@@ -147,10 +179,12 @@ const PostForm = () => {
               price: value,
             }));
           }}
-          placeholder="price"
+          placeholder="Price"
         />
-        <input
-          type="date"
+        <Input
+          name="delivered"
+          type="text"
+          label="Date Delivered"
           value={inputValue.delivered}
           onChange={event => {
             const { value } = event.target;
@@ -160,7 +194,11 @@ const PostForm = () => {
             }));
           }}
         />
-        <button type="submit">Add Sale</button>
+        <ButtonWrapper>
+          <Button full type="submit">
+            Add Sale
+          </Button>
+        </ButtonWrapper>
       </Form>
       {/* <form
         onSubmit={event => {
@@ -206,7 +244,7 @@ const PostForm = () => {
         />
         <button type="submit">Edit Sale</button>
       </form> */}
-      <div>
+      {/* <div>
         <button
           type="button"
           onClick={() => {
@@ -218,8 +256,20 @@ const PostForm = () => {
         >
           Delete sale
         </button>
-      </div>
-    </>
+      </div> */}
+      <ul>
+        <li>
+          <Link to="/plants">
+            <Title>{t('hedging.editPlant')}</Title>
+          </Link>
+        </li>
+        <li>
+          <Link to="/plants">
+            <Title>{t('hedging.deletePlant')}</Title>
+          </Link>
+        </li>
+      </ul>
+    </Root>
   );
 };
 

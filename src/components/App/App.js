@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, useState } from 'react';
+import React, { useEffect, Suspense, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
@@ -6,48 +6,51 @@ import styled from '@emotion/styled';
 import { withTheme } from 'emotion-theming';
 import { Footer } from 'components/Layout';
 import CompanyLogo from 'assets/images/logo.jpg';
-import { RouteWithSubRoutes } from 'services/routesConfigurator';
 import { fetchConfig } from 'store/reducers/hedgingReducer';
-import { GridIcon } from 'components/commons/Icons';
 import NotFound from 'components/NotFound/NotFound';
-import { Navigation } from 'components/Navigation';
+import { Dashboard } from 'components/Dashboard';
 import { Toggle } from 'components/Toggle';
 import { FlexBox } from 'components/commons/FlexBox';
 import { Navbar } from 'components/Navbar';
+import { LeftMenu } from 'components/LeftMenu';
+import { Icon } from 'components/commons/Icons';
+import { Sales } from 'components/Sales';
 import { ActionPanel } from 'components/ActionPanel';
-import { LeftMenu } from '../LeftMenu';
-import Icon from '../commons/Icons/Icon';
+import actions from 'components/ActionPanel/actions';
 
 const Root = styled.main`
   display: grid;
-  grid-template-areas:
-    'header header header right'
-    'left main action right'
-    'footer footer footer right';
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 6rem 1fr 6rem;
   width: 100vw;
-  ${({ theme, collapsed }) => {
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 6rem 1fr 6rem;
+  backgroundcolor: ${({ collapsed }) => collapsed && 'rgba(0, 0, 0, 0.4)'};
+  ${({ theme }) => {
     return {
-      [theme.mediaQueries.xs]: {
-        gridTemplateAreas: `'header'
-          'main'
-          'footer';`,
-        gridTemplateColumns: '1fr',
+      [theme.mediaQueries.sm]: {
+        gridTemplateAreas: `
+          'header header header right'
+          'left main action right'
+          'footer footer footer right'`,
+        gridTemplateColumns: 'auto 1fr 5rem auto',
         gridTemplateRows: '6rem 1fr 6rem',
-        backgroundColor: collapsed && 'rgba(0, 0, 0, 0.4)',
       },
     };
   }};
 `;
-
-const AppMenu = styled(GridIcon)`
-  font-size: 3rem;
-  margin-right: 1rem;
+const Content = styled.div`
+  grid-area: main;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.backgrounds.background1};
 `;
 
 const isSmallDevice = theme =>
-  window.matchMedia(`(max-width: ${theme.breakpoints.xs}px)`).matches;
+  window.matchMedia(`(max-width: ${theme.breakpoints.sm}px)`).matches;
 
 const App = ({ fetchConfigAction, config, theme, error }) => {
   const [displayLeftPanel, setDisplayLeftPanel] = useState(
@@ -57,7 +60,8 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const [displayRightPanel, setDisplayRightPanel] = useState(true);
   const [isSmall, setDeviceSize] = useState(isSmallDevice(theme));
   const [activeApp, setActiveApp] = useState(null);
-
+  const [selectedMenu, setSelectedMenu] = useState(null);
+  const rootRef = useRef();
   useEffect(() => {
     fetchConfigAction();
     let resizedId;
@@ -78,6 +82,17 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const company = {
     name: 'FakeCompany',
     logo: CompanyLogo,
+  };
+
+  const handleSetActiveApp = app => {
+    setActiveApp(app);
+    setSelectedMenu(app.label);
+    if (displayRightPanel) {
+      return setDisplayRightPanel(!displayRightPanel);
+    }
+    if (app.label === activeApp.label) {
+      return setDisplayRightPanel(!displayRightPanel);
+    }
   };
 
   if (error) return <span>{error}</span>;
@@ -108,22 +123,36 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
         close={() => setDisplayLeftPanel(true)}
         isSmall={isSmall}
         isResizing={isResizing}
+        autoClose
       >
-        <Navigation />
+        <LeftMenu />
       </Toggle>
-      <Suspense fallback={<></>}>
-        <Switch>
-          <RouteWithSubRoutes {...config.app} />
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
+      <Content ref={rootRef}>
+        <Suspense fallback={<></>}>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={routeProps => (
+                <Dashboard
+                  {...routeProps}
+                  setActiveApp={handleSetActiveApp}
+                  actions={actions}
+                  rootBoundingRect={rootRef}
+                />
+              )}
+            />
+            <Route path="/sales" component={Sales} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </Content>
 
       {!isSmall && (
         <ActionPanel
-          callback={app => {
-            setActiveApp(app);
-            setDisplayRightPanel(!displayRightPanel);
-          }}
+          setActiveApp={handleSetActiveApp}
+          collapsed={displayRightPanel}
+          selectedMenu={selectedMenu}
         />
       )}
 
@@ -139,11 +168,11 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
         close={() => setDisplayRightPanel(true)}
         isResizing={isResizing}
       >
-        <>{activeApp}</>
+        <>{activeApp && <activeApp.component />}</>
       </Toggle>
       <Footer>
         <FlexBox flex="1" justifyContent="flex-end">
-          {isSmall && (
+          {false && (
             <Icon
               icon="grid"
               data-id="menu"

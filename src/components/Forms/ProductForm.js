@@ -1,7 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styled from '@emotion/styled';
+import { useTranslation } from 'react-i18next';
+import { Input } from 'components/commons/Form';
+import { Button } from 'components/commons/Buttons';
+import { Link } from 'react-router-dom';
+
+const Root = styled.div`
+  padding: 1rem;
+`;
+
+const Header = styled.h1``;
+const Title = styled.h3``;
+const Form = styled.form`
+  margin: 2rem 0;
+`;
 
 const ProductForm = () => {
+  const { t } = useTranslation();
   const [inputValue, setInputValue] = useState({
     create: '',
     edit: '',
@@ -9,9 +25,9 @@ const ProductForm = () => {
     id: '',
   });
   return (
-    <>
-      <h1>Products</h1>
-      <form
+    <Root>
+      <Header>Products</Header>
+      <Form
         onSubmit={event => {
           event.preventDefault();
           axios({
@@ -24,8 +40,10 @@ const ProductForm = () => {
           });
         }}
       >
-        <input
+        <Input
           value={inputValue.create}
+          name="name"
+          label={t('commons.name')}
           onChange={event => {
             const { value } = event.target;
             setInputValue(prevValue => ({
@@ -34,8 +52,9 @@ const ProductForm = () => {
             }));
           }}
         />
-        <input
+        <Input
           value={inputValue.plant}
+          name="plantId"
           onChange={event => {
             const { value } = event.target;
             setInputValue(prevValue => ({
@@ -43,11 +62,11 @@ const ProductForm = () => {
               plant: value,
             }));
           }}
-          placeholder="PlantID"
+          label="PlantID"
         />
-        <button type="submit">Add product</button>
-      </form>
-      <form
+        <Button type="submit">Add product</Button>
+      </Form>
+      {/* <form
         onSubmit={event => {
           event.preventDefault();
           axios({
@@ -92,8 +111,8 @@ const ProductForm = () => {
         >
           Delete product
         </button>
-      </div>
-    </>
+      </div> */}
+    </Root>
   );
 };
 

@@ -1,20 +1,24 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { ListItem, List } from 'components/commons/List';
+import React, { useRef, useState, useEffect } from 'react';
+import { List } from 'components/commons/List';
 
-const ListItemCustom = styled(ListItem)`
-  width: 20rem;
-  height: 5rem;
-  display: flex;
-  align-items: center;
-`;
+import MenuListItem from './MenuListItem';
 
-const LeftMenu = () => {
+const LeftMenu = ({ collapsed, toggle, close }) => {
   return (
     <List>
-      <ListItemCustom>Dashboard</ListItemCustom>
-      <ListItemCustom>Analyse</ListItemCustom>
-      <ListItemCustom>Admin</ListItemCustom>
+      <MenuListItem
+        to="/"
+        icon="dashboard"
+        label="Dashboard"
+        callback={() => {
+          if (collapsed) return toggle();
+          return null;
+        }}
+        close={close}
+        collapsed={collapsed}
+      />
+      {/* <MenuListItem>Analyse</MenuListItem>
+      <MenuListItem>Admin</MenuListItem> */}
     </List>
   );
 };

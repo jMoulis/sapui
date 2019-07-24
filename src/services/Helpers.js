@@ -1,4 +1,6 @@
 /* eslint-disable no-nested-ternary */
+import { breakpoints } from 'styles/theme';
+
 class Helpers {
   sorting = ({ array, key, order }) => {
     return array.sort((value, nextValue) => {
@@ -29,6 +31,9 @@ class Helpers {
       .replace(' ', '')
       .toLowerCase();
   };
+
+  isSmallDevice = () =>
+    window.matchMedia(`(max-width: ${breakpoints.sm}px)`).matches;
 }
 
 export default Helpers;

@@ -1,22 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Chevron } from 'components/commons/Icons';
+import { Icon } from 'components/commons/Icons';
 import Button from 'components/commons/Buttons/Button';
 import styled from '@emotion/styled';
 
 const CustomButton = styled(Button)`
   border: none;
+  height: 3rem;
+  width: 3rem;
 `;
 
 const NavButton = ({ onClick, collapsed, side }) => {
   function renderChevron() {
     switch (side) {
       case 'right':
-        return <Chevron icon={collapsed ? 'left' : 'right'} />;
+        return (
+          <Icon
+            icon={collapsed ? 'left' : 'right'}
+            width="1rem"
+            height="1.6rem"
+          />
+        );
       case 'bottom':
-        return <Chevron icon={collapsed ? 'up' : 'down'} />;
+        return (
+          <Icon icon={collapsed ? 'up' : 'down'} width="1rem" height="1.6rem" />
+        );
       default:
-        return <Chevron icon={collapsed ? 'right' : 'left'} />;
+        return (
+          <Icon
+            icon={collapsed ? 'right' : 'left'}
+            width="1rem"
+            height="1.6rem"
+          />
+        );
     }
   }
   return (

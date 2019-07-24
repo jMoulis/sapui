@@ -21,6 +21,7 @@ module.exports = {
     const api = new Api(res);
     try {
       const newPlant = await Plant.create(req.body);
+      if (!newPlant) return api.failure({ message: 'No plant created' }, 422);
       api.success({
         data: newPlant,
         searchedEntity: 'plants',

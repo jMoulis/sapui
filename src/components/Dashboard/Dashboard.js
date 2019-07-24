@@ -1,74 +1,172 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
-
-const Tile = styled.div`
-  width: 14.8rem;
-  height: 14.8rem;
-  border: 1px solid lightgray;
-  margin: 1rem;
-  cursor: pointer;
-`;
+import { FlexBox } from 'components/commons/FlexBox';
+// import { Chart } from './Chart';
+// import Card from './Card';
+// import Tile from './Tile';
+// import Test from './Test';
+import { ReactComponent as AddIcon } from 'assets/icons/plus-solid.svg';
+import DefaultTile from './DefaultTile';
+import { cards, gridSize, widgets } from './fakeData';
 
 const Root = styled.section`
   label: Dashboard;
+  padding: 1rem;
   display: flex;
   flex: 1;
-  flex-flow: row wrap;
-  margin: 1rem auto;
-  justify-content: space-evenly;
-  &::after {
-    content: '';
-    width: 14.8rem;
-    height: 14.8rem;
-    margin: 1rem;
-  }
 `;
 
-const StyledLink = styled(NavLink)`
-  text-decoration: none;
+const Content = styled(FlexBox)`
+  label: DashboardContent;
+  position: relative;
+  flex: 1;
+  flex-wrap: wrap;
+  grid-area: main;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 20rem);
+  grid-auto-rows: 20rem;
+  grid-auto-flow: dense;
 `;
 
-const Dashboard = ({ config }) => {
+const moveInArray = ({ items, targetId, sourceId, elementToMove }) => {
+  if (!items || !targetId || !sourceId || !elementToMove) return null;
+  const targetIndex = items.findIndex(item => item && item.id === targetId);
+  const sourceIndex = items.findIndex(item => item && item.id === sourceId);
+  const newValues = [...items.filter((item, index) => index !== sourceIndex)];
+  newValues.splice(targetIndex, 0, {
+    ...elementToMove,
+    position: {
+      ...elementToMove.position,
+    },
+  });
+  return newValues;
+};
+
+const Dashboard = ({ setActiveApp, actions, rootBoundingRect }) => {
+  const [items, setItem] = useState([...gridSize]);
+  const [emptySlot, setEmptySlot] = useState([]);
+  const mainRef = useRef();
+  const handleMoveItem = ({ target, source }) => {
+    if (!target || !source) return null;
+    setItem(
+      moveInArray({
+        items,
+        targetId: target.id,
+        sourceId: source.id,
+        elementToMove: source,
+      }),
+    );
+  };
+
+  const handleRemoveItem = ({ source }) => {
+    const newValues = items.filter(item => item.id !== source.id);
+    setItem({ values: newValues });
+  };
+
+  const handleResize = ({ target }) => {
+    const newValues = items.map(item => {
+      if (item.id === target.id) {
+        return target;
+      }
+      return item;
+    });
+    setItem(newValues);
+  };
+
+  const createGrid = () => {
+    const { width, height } = rootBoundingRect.current.getBoundingClientRect();
+    const columnAvailable = Math.floor(width / (200 - 20));
+    const rowAvailable = Math.floor(height / (200 - 20));
+    const totalSlot = columnAvailable * rowAvailable;
+    const totalCol = items.reduce((tot, item) => {
+      const itemTotal = item.position.gridColumnEnd * item.position.gridRowEnd;
+      return tot + itemTotal;
+    }, 0);
+
+    console.log(totalSlot);
+    for (let i = 0; i < totalSlot - totalCol; i += 1) {
+      setEmptySlot(prevSlot => [
+        ...prevSlot,
+        {
+          id: i,
+          text: 'EmptySlot',
+          position: {
+            gridRowEnd: 1,
+            gridColumnEnd: 1,
+          },
+        },
+      ]);
+    }
+
+    return totalSlot;
+  };
+  useEffect(() => {
+    setEmptySlot([]);
+    createGrid();
+  }, [items]);
   return (
-    <Root>
-      {config &&
-        Object.values(config.router).map(route => {
+    <Root ref={mainRef}>
+      <Content>
+        {/* {cards.map((card, index) => (
+          <Tile position={card.position} key={index} id={card.id}>
+            <Card
+              icon={card.icon}
+              color={card.color}
+              title={card.title}
+              to={card.to}
+            />
+          </Tile>
+        ))} */}
+        {/* {tiles.map(tile => {
           return (
-            route.allowed && (
-              <StyledLink
-                key={route.path}
-                to={{
-                  pathname: route.path,
+            <Tile id={tile.id} position={tile.position}>
+              {<tile.component id={tile.id} />}
+            </Tile>
+          );
+        })} */}
+        {items &&
+          Array.isArray(items) &&
+          items.map((item, index) => {
+            const Widget = widgets[item.component.name];
+            return (
+              <DefaultTile
+                item={item}
+                position={item && item.position}
+                key={index}
+                id={item.id}
+                callback={handleMoveItem}
+                text={item.id}
+                cbResize={handleResize}
+                removeItem={handleRemoveItem}
+              >
+                {Widget ? <Widget {...item.component.props} /> : null}
+              </DefaultTile>
+            );
+          })}
+        {emptySlot &&
+          emptySlot.map(slot => {
+            return (
+              <DefaultTile
+                item={slot}
+                noDragable
+                noMenu
+                id={-1}
+                text="EmptySlot"
+                cbResize={handleResize}
+                removeItem={handleRemoveItem}
+                callback={handleMoveItem}
+                onClick={() => {
+                  setActiveApp(actions.newShortCut);
                 }}
               >
-                <Tile>{route.title}</Tile>
-              </StyledLink>
-            )
-          );
-        })}
+                <AddIcon width="3rem" />
+              </DefaultTile>
+            );
+          })}
+      </Content>
     </Root>
   );
 };
 
-Dashboard.propTypes = {
-  config: PropTypes.shape({
-    entities: PropTypes.object,
-    router: PropTypes.object,
-    initNavMenu: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
-
-Dashboard.defaultProps = {
-  config: null,
-};
-const mapStateToProps = ({ hedgingReducer }) => ({
-  config: hedgingReducer.config,
-});
-
-export default connect(
-  mapStateToProps,
-  null,
-)(Dashboard);
+export default Dashboard;

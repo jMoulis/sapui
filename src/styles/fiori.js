@@ -62,6 +62,15 @@ const colors = {
     selected: '#0A6ED1',
     selectedHover: '#0A6ED1',
   },
+  rgba: {
+    primary: '0,193,255',
+    secondary: '8,151,204',
+    ternary: '11,96,137',
+    white: '255,255,255',
+    gray: '86,87,89',
+    error: '244, 67, 54',
+    success: '97, 189, 79',
+  },
 };
 
 const theme = {

@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import { withTheme } from 'emotion-theming';
 import { Icon } from 'components/commons/Icons';
 import { FlexBox } from 'components/commons/FlexBox';
+import profilePhoto from 'assets/images/dummy.jpg';
+import { Avatar } from '../commons/Avatar';
 
 const AppTitle = styled.h3`
   display: flex;
@@ -19,16 +21,11 @@ const Root = styled.nav`
   align-items: center;
   justify-content: space-between;
   height: 6rem;
-  background-color: ${({ theme }) => theme.colors.shell.shell1};
   padding: 1rem;
+  background-color: ${({ theme }) => theme.colors.shell.shell1};
   & > * {
     color: ${({ theme }) => theme.colors.action.secondary};
   }
-`;
-
-const Img = styled.img`
-  width: 100%;
-  height: auto;
 `;
 
 const Logo = styled.div`
@@ -36,32 +33,11 @@ const Logo = styled.div`
   background-size: contain;
   width: 4rem;
   height: 4rem;
-  margin: 0 1rem;
+  margin-right: 1rem;
 `;
 
-const IconWrapper = styled(FlexBox)`
-  & i {
-    margin: 0.5rem;
-    font-size: 2.5rem;
-  }
-  & i:first-of-type {
-    margin-right: 2rem;
-  }
-`;
-
-const Navbar = ({
-  company,
-  setDisplayRightPanel,
-  setDisplayLeftPanel,
-  collapsed,
-  isSmall,
-}) => {
-  const shouldDisplayBurgerMenu = () => {
-    if (isSmall) {
-      return true;
-    }
-    return false;
-  };
+const Navbar = ({ company, setDisplayLeftPanel, collapsed, isSmall }) => {
+  const shouldDisplayBurgerMenu = () => isSmall;
   return (
     <Root collapsed={collapsed}>
       <FlexBox css={{ alignItems: 'center' }}>
@@ -70,22 +46,15 @@ const Navbar = ({
             icon="burger"
             data-id="menu"
             onClick={setDisplayLeftPanel}
-            css={{ fontSize: '2.5rem' }}
+            size="2.5rem"
           />
         )}
         <Logo logo={company.logo} />
-        <AppTitle>{company.name}</AppTitle>
+        {!isSmall && <AppTitle>{company.name}</AppTitle>}
       </FlexBox>
-      <FlexBox css={{ width: '3rem', height: '3rem' }}>
-        <Img
-          src="https://unpkg.com/fiori-fundamentals@1.3.3/dist/images/copilot.png"
-          alt="Siri"
-        />
+      <FlexBox alignItems="center">
+        <Avatar img={profilePhoto} size="3rem" />
       </FlexBox>
-
-      <IconWrapper>
-        {!isSmall && <Icon icon="grid" onClick={setDisplayRightPanel} />}
-      </IconWrapper>
     </Root>
   );
 };
@@ -94,7 +63,6 @@ Navbar.propTypes = {
   company: PropTypes.shape({
     name: PropTypes.string,
   }),
-  setDisplayRightPanel: PropTypes.func.isRequired,
   setDisplayLeftPanel: PropTypes.func.isRequired,
   collapsed: PropTypes.bool.isRequired,
   isSmall: PropTypes.bool.isRequired,
@@ -105,4 +73,5 @@ Navbar.defaultProps = {
 };
 
 const NavBarWithTheme = withTheme(Navbar);
+
 export default withRouter(NavBarWithTheme);

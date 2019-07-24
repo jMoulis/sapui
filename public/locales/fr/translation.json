@@ -12,7 +12,12 @@
     "return": "Retour",
     "search": "Rechercher",
     "sort": "Trier",
-    "void": "Néant"
+    "void": "Néant",
+    "reduce": "Réduire",
+    "create": "Ajouter",
+    "name": "Nom",
+    "delete": "Supprimer",
+    "actionsLists": "Liste des actions"
   },
   "sorting": {
     "sortBy": "Trier par",
@@ -33,6 +38,10 @@
   },
   "hedging": {
     "selectPlant": "Sélectionner un dépôt",
-    "selectProduct": "Selectionner un produit"
+    "selectProduct": "Selectionner un produit",
+    "addNewPlant": "Créer un dépôt",
+    "plants": "Dépôts",
+    "editPlant": "Modifier un dépôt",
+    "deletePlant": "Supprimer un dépôt"
   }
 }

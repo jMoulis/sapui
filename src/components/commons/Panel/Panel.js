@@ -8,9 +8,10 @@ const PanelStyled = styled.div`
   flex: 1;
   padding: 1rem;
   margin: 1rem;
+  padding: 0;
   ${({ theme }) => ({
     [theme.mediaQueries.sm]: {
-      padding: 0,
+      padding: '1rem',
     },
   })}
 `;

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const BtnReset = styled.button`
   display: inline-block;
-  margin: 0 0.25rem;
+  margin: 0.5rem 0;
   appearance: none;
   outline: 0;
   border: 0;
