@@ -6,7 +6,7 @@ import { withTheme } from 'emotion-theming';
 import { Icon } from 'components/commons/Icons';
 import { FlexBox } from 'components/commons/FlexBox';
 import profilePhoto from 'assets/images/dummy.jpg';
-import { Avatar } from '../commons/Avatar';
+import { Avatar } from 'components/commons/Avatar';
 
 const AppTitle = styled.h3`
   display: flex;

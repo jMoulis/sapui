@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import { List } from 'components/commons/List';
 
 import MenuListItem from './MenuListItem';
@@ -17,8 +17,6 @@ const LeftMenu = ({ collapsed, toggle, close }) => {
         close={close}
         collapsed={collapsed}
       />
-      {/* <MenuListItem>Analyse</MenuListItem>
-      <MenuListItem>Admin</MenuListItem> */}
     </List>
   );
 };

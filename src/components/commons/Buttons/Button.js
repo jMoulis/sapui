@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import BtnReset from './BtnReset';
 
-const Button = styled(BtnReset)`
+const Button = styled.button`
   label: Button;
   position: relative;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  transition: all 150ms ease-in;
   ${({ theme }) => {
     return theme.buttons.regular;
   }}

@@ -1,12 +1,9 @@
 import React, { useEffect, Suspense, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { withTheme } from 'emotion-theming';
-import { Footer } from 'components/Layout';
 import CompanyLogo from 'assets/images/logo.jpg';
-import { fetchConfig } from 'store/reducers/hedgingReducer';
 import NotFound from 'components/NotFound/NotFound';
 import { Dashboard } from 'components/Dashboard';
 import { Toggle } from 'components/Toggle';
@@ -14,7 +11,7 @@ import { FlexBox } from 'components/commons/FlexBox';
 import { Navbar } from 'components/Navbar';
 import { LeftMenu } from 'components/LeftMenu';
 import { Icon } from 'components/commons/Icons';
-import { Sales } from 'components/Sales';
+import Footer from 'components/App/Footer';
 import { ActionPanel } from 'components/ActionPanel';
 import actions from 'components/ActionPanel/actions';
 
@@ -52,7 +49,7 @@ const Content = styled.div`
 const isSmallDevice = theme =>
   window.matchMedia(`(max-width: ${theme.breakpoints.sm}px)`).matches;
 
-const App = ({ fetchConfigAction, config, theme, error }) => {
+const App = ({ theme, error }) => {
   const [displayLeftPanel, setDisplayLeftPanel] = useState(
     isSmallDevice(theme),
   );
@@ -63,7 +60,6 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   const [selectedMenu, setSelectedMenu] = useState(null);
   const rootRef = useRef();
   useEffect(() => {
-    fetchConfigAction();
     let resizedId;
     const doneResizing = () => setResizing(false);
     window.addEventListener('resize', () => {
@@ -96,7 +92,6 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
   };
 
   if (error) return <span>{error}</span>;
-  if (!config) return <span>Loader</span>;
   return (
     <Root collapsed={!displayLeftPanel || !displayRightPanel}>
       <Navbar
@@ -137,12 +132,11 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
                 <Dashboard
                   {...routeProps}
                   setActiveApp={handleSetActiveApp}
-                  actions={actions}
                   rootBoundingRect={rootRef}
                 />
               )}
             />
-            <Route path="/sales" component={Sales} />
+
             <Route component={NotFound} />
           </Switch>
         </Suspense>
@@ -193,36 +187,14 @@ const App = ({ fetchConfigAction, config, theme, error }) => {
 };
 
 App.propTypes = {
-  config: PropTypes.shape({
-    entities: PropTypes.object,
-    router: PropTypes.object,
-    initNavMenu: PropTypes.arrayOf(PropTypes.string),
-  }),
-  fetchConfigAction: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   error: PropTypes.string,
 };
 
 App.defaultProps = {
-  config: null,
   error: null,
 };
-const mapStateToProps = ({ hedgingReducer }) => ({
-  config: hedgingReducer.config,
-  error: hedgingReducer.error,
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchConfigAction: () => {
-    dispatch(fetchConfig());
-  },
-});
 
 const AppWithTheme = withTheme(App);
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AppWithTheme),
-);
+export default withRouter(AppWithTheme);

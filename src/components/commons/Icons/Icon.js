@@ -1,18 +1,18 @@
 import React from 'react';
-import { ReactComponent as DashboardIcon } from 'assets/icons/dashboard.svg';
+import { ReactComponent as Burger } from 'assets/icons/bars-solid.svg';
+import { ReactComponent as Product } from 'assets/icons/box.svg';
 import { ReactComponent as ChevronRight } from 'assets/icons/chevron-right-solid.svg';
 import { ReactComponent as ChevronLeft } from 'assets/icons/chevron-left-solid.svg';
-import { ReactComponent as Burger } from 'assets/icons/bars-solid.svg';
+import { ReactComponent as Message } from 'assets/icons/comment-alt-regular.svg';
+import { ReactComponent as DashboardIcon } from 'assets/icons/dashboard.svg';
 import { ReactComponent as Income } from 'assets/icons/euro-sign-solid.svg';
+import { ReactComponent as Industry } from 'assets/icons/industry-solid.svg';
 import { ReactComponent as Order } from 'assets/icons/order.svg';
-import { ReactComponent as Product } from 'assets/icons/box.svg';
+import { ReactComponent as Add } from 'assets/icons/plus-solid.svg';
 import { ReactComponent as Quote } from 'assets/icons/quote.svg';
 import { ReactComponent as SignIn } from 'assets/icons/sign-in-alt-solid.svg';
 import { ReactComponent as SignOut } from 'assets/icons/sign-out-alt-solid.svg';
-import { ReactComponent as Message } from 'assets/icons/comment-alt-regular.svg';
 import { ReactComponent as Task } from 'assets/icons/tasks-solid.svg';
-import { ReactComponent as Add } from 'assets/icons/plus-solid.svg';
-import { ReactComponent as Industry } from 'assets/icons/industry-solid.svg';
 
 import styled from '@emotion/styled';
 
