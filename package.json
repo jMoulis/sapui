@@ -8,7 +8,7 @@
     "@emotion/styled": "^10.0.10",
     "@playlyfe/gql": "^2.6.1",
     "awesome-debounce-promise": "^2.1.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-emotion": "^10.0.7",
     "chart.js": "^2.8.0",
     "emotion-theming": "^10.0.10",
